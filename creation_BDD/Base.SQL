@@ -18,7 +18,6 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `u696608455_bevep`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `Compteur` (
-  `Id_Compteur` int(11) NOT NULL AUTO_INCREMENT,
+  `Id_compteur` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(20) COLLATE utf8_unicode_ci,
   `GPS_LAT` float,
   `GPS_LON` float,
@@ -49,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `Evenement` (
   `Photo_1` varchar(20) COLLATE utf8_unicode_ci,
   `Photo_2` varchar(20) COLLATE utf8_unicode_ci,
   PRIMARY KEY (`Id_event`)
+  FOREIGN KEY ('Createur') REFERENCES Exploitant (Id_exploitant)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -73,6 +73,8 @@ CREATE TABLE IF NOT EXISTS `Litige` (
   `Id_releve_1` int(11) NOT NULL,
   `Id_releve_2` int(11) NOT NULL,
   PRIMARY KEY (`Id_litige`)
+  FOREIGN KEY (Id_releve_1) REFERENCES Releve (Id_releve)
+  FOREIGN KEY (Id_releve_2) REFERENCES Releve (Id_releve)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -83,12 +85,13 @@ CREATE TABLE IF NOT EXISTS `Litige` (
 
 CREATE TABLE IF NOT EXISTS `Parcelle` (
   `Id_parcelle` int(11) NOT NULL AUTO_INCREMENT,
-  `Borne` int(11),
+  `Compteur` int(11),
   `Nom` varchar(60) COLLATE utf8_unicode_ci,
   `GPS_LAT` float,
   `GPS_LON` float,
   `Altitude` int,
   PRIMARY KEY (`Id_parcelle`)
+  FOREIGN KEY (Compteur) REFERENCES Compteur (Id_compteur)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -102,6 +105,8 @@ CREATE TABLE IF NOT EXISTS `Propriete` (
   `date_debut` datetime,
   `date_fin` datetime,
   PRIMARY KEY (`Id_propriete`)
+  FOREIGN KEY (Id_parcelle) REFERENCES Parcelle (Id_parcelle)
+  FOREIGN KEY (Id_exploitant) REFERENCES Exploitant (Id_exploitant)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -119,6 +124,7 @@ CREATE TABLE IF NOT EXISTS `Releve` (
   `Date` timestamp NOT NULL,
   
   PRIMARY KEY (`Id_releve`)
+  FOREIGN KEY (Compteur) REFERENCES Compteur (Id_compteur)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
