@@ -53,9 +53,6 @@ CREATE TABLE IF NOT EXISTS `Evenement` (
 
 -- --------------------------------------------------------
 
---
--- Structure de la table `Exploitant`
---AUTO_INCREMENT=0 car l'administrateur à l'id 0. Si ça ne marche pas, ils faudra le mettre à la fin et modifier les données
 CREATE TABLE IF NOT EXISTS `Exploitant` (
   `Id_exploitant` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(60) COLLATE utf8_unicode_ci,
@@ -97,7 +94,6 @@ CREATE TABLE IF NOT EXISTS `Parcelle` (
 -- --------------------------------------------------------
 
 -- Structure de la table `Propriete`
---necessite un id. ex: si le gars vend son champ, puis le rachete qq annees plus tard
 
 CREATE TABLE IF NOT EXISTS `Propriete` (
   `Id_propriete` int(11) NOT NULL AUTO_INCREMENT,
@@ -112,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `Propriete` (
 
 --
 -- Structure de la table `Releve`
--- l'Exploitant est celui qui a consommé l'eau. L'administrateur peut entrer un relevé au nom de n'importe qui.
+-- Exploitant : celui qui a consomme l.eau. L.administrateur peut entrer un releve au nom de n.importe qui.
 
 CREATE TABLE IF NOT EXISTS `Releve` (
   `Id_releve` int(11) NOT NULL AUTO_INCREMENT,
