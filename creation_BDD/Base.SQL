@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `Evenement` (
   `Createur` int(11) NOT NULL,
   `Photo_1` varchar(20) COLLATE utf8_unicode_ci,
   `Photo_2` varchar(20) COLLATE utf8_unicode_ci,
-  PRIMARY KEY (`Id_event`)
-  FOREIGN KEY ('Createur') REFERENCES Exploitant (Id_exploitant)
+  PRIMARY KEY (`Id_event`),
+  FOREIGN KEY (Createur) REFERENCES Exploitant (Id_exploitant)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS `Litige` (
   `Etat` tinyint(1) NOT NULL,
   `Id_releve_1` int(11) NOT NULL,
   `Id_releve_2` int(11) NOT NULL,
-  PRIMARY KEY (`Id_litige`)
-  FOREIGN KEY (Id_releve_1) REFERENCES Releve (Id_releve)
+  PRIMARY KEY (`Id_litige`),
+  FOREIGN KEY (Id_releve_1) REFERENCES Releve (Id_releve),
   FOREIGN KEY (Id_releve_2) REFERENCES Releve (Id_releve)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `Parcelle` (
   `GPS_LAT` float,
   `GPS_LON` float,
   `Altitude` int,
-  PRIMARY KEY (`Id_parcelle`)
+  PRIMARY KEY (`Id_parcelle`),
   FOREIGN KEY (Compteur) REFERENCES Compteur (Id_compteur)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -104,8 +104,8 @@ CREATE TABLE IF NOT EXISTS `Propriete` (
   `Id_exploitant` int(11) NOT NULL,
   `date_debut` datetime,
   `date_fin` datetime,
-  PRIMARY KEY (`Id_propriete`)
-  FOREIGN KEY (Id_parcelle) REFERENCES Parcelle (Id_parcelle)
+  PRIMARY KEY (`Id_propriete`),
+  FOREIGN KEY (Id_parcelle) REFERENCES Parcelle (Id_parcelle),
   FOREIGN KEY (Id_exploitant) REFERENCES Exploitant (Id_exploitant)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `Releve` (
   `Index_fin` int(11) NOT NULL,
   `Date` timestamp NOT NULL,
   
-  PRIMARY KEY (`Id_releve`)
+  PRIMARY KEY (`Id_releve`),
   FOREIGN KEY (Compteur) REFERENCES Compteur (Id_compteur)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
