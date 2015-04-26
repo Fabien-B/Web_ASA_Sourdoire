@@ -56,7 +56,6 @@ CREATE TABLE IF NOT EXISTS `Evenement` (
 --
 -- Structure de la table `Exploitant`
 --AUTO_INCREMENT=0 car l'administrateur à l'id 0. Si ça ne marche pas, ils faudra le mettre à la fin et modifier les données
-
 CREATE TABLE IF NOT EXISTS `Exploitant` (
   `Id_exploitant` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(20) COLLATE utf8_unicode_ci,
@@ -99,7 +98,6 @@ CREATE TABLE IF NOT EXISTS `Parcelle` (
 
 -- --------------------------------------------------------
 
---
 -- Structure de la table `Propriete`
 --necessite un id. ex: si le gars vend son champ, puis le rachete qq annees plus tard
 
@@ -108,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `Propriete` (
   `Id_parcelle` int(11) NOT NULL,
   `Id_exploitant` int(11) NOT NULL,
   `date_debut` datetime NOT NULL,
-  `date_fin` datetime NOT NULL
+  `date_fin` datetime NOT NULL,
   PRIMARY KEY (`Id_propriete`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
