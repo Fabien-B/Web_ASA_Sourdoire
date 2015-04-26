@@ -58,9 +58,7 @@ CREATE TABLE IF NOT EXISTS `Evenement` (
 --AUTO_INCREMENT=0 car l'administrateur à l'id 0. Si ça ne marche pas, ils faudra le mettre à la fin et modifier les données
 CREATE TABLE IF NOT EXISTS `Exploitant` (
   `Id_exploitant` int(11) NOT NULL AUTO_INCREMENT,
-  `Nom` varchar(20) COLLATE utf8_unicode_ci,
-  `Prenom` varchar(20) COLLATE utf8_unicode_ci,
-  `Date_naiss` datetime,
+  `Nom` varchar(60) COLLATE utf8_unicode_ci,
   `Mail` varchar(60) COLLATE utf8_unicode_ci,
   `Tel` varchar(20) COLLATE utf8_unicode_ci,
   PRIMARY KEY (`Id_exploitant`)
@@ -105,8 +103,8 @@ CREATE TABLE IF NOT EXISTS `Propriete` (
   `Id_propriete` int(11) NOT NULL AUTO_INCREMENT,
   `Id_parcelle` int(11) NOT NULL,
   `Id_exploitant` int(11) NOT NULL,
-  `date_debut` datetime NOT NULL,
-  `date_fin` datetime NOT NULL,
+  `date_debut` datetime,
+  `date_fin` datetime,
   PRIMARY KEY (`Id_propriete`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
