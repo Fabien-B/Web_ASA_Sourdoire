@@ -11,7 +11,7 @@ def afficherHautPage(titre=""):
         <meta name="language" content="FR"/>
         <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=yes" />
         <meta name="description" content="Test python web" />
-        <link rel="stylesheet" href="stylesheets/base.css">
+        <link rel="stylesheet" href="../stylesheets/base.css">
 	    <link rel="stylesheet" href="../stylesheets/skeleton.css">
 	    <link rel="stylesheet" href="../stylesheets/layout.css">
         <link rel="stylesheet" href="../stylesheets/flexslider.css">
@@ -22,12 +22,12 @@ def afficherHautPage(titre=""):
     <body>
         <header id="header" class="site-header" role="banner">
             <div id="header-inner" class="container sixteen columns over">
-                <hgroup class="one-third column alpha">
+                <hgroup class="four columns alpha">
                     <h1 id="site-title" class="site-title">
                         <a href="index.html" id="logo"><img src="images/icebrrrg-logo.png" alt="Icebrrrg logo" height="63" width="157" /></a>
                     </h1>
                 </hgroup>
-                <nav id="main-nav" class="two thirds column omega">
+                <nav id="main-nav" class="eight columns alpha">
                     <ul id="main-nav-menu" class="nav-menu">
                         <li id="menu-item-1" class="current">
                             <a href="index.html">Home</a>
@@ -45,14 +45,16 @@ def afficherHautPage(titre=""):
                             <a href="full-width.html">Full Width</a>
                         </li>
                         <li id="menu-item-6">
-                            <a href="contact.html">Contact</a>
                         </li>
                     </ul>
                 </nav>
+                <div id="login" class="four columns omega">
+                '''+afficherFormulaireConnexion()+'''
+                </div>
             </div>
         </header>
 
-    '''+afficherFormulaireConnexion()
+    '''
 
 
 def afficherFormulaireConnexion():
@@ -72,13 +74,12 @@ def afficherFormulaireConnexion():
         <form action="traiterFormulaireConnexion" METHOD="get">
         <h1>Connexion</h1>
                 Veuillez entrer votre login<br />
-                <input name="nom" size=10 maxlength=10 type="text" value="" required /><br />
+                <input name="nom" size=10 maxlength=10 type="text" value="" required />
                 <button name="choix" value="maj"> Ok </button>
         </form>
         </div>
         '''
     return ret
-
 
 
 def afficherBasPage():
