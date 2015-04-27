@@ -11,7 +11,11 @@ def afficherHautPage(titre=""):
         <meta name="language" content="FR"/>
         <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=yes" />
         <meta name="description" content="Test python web" />
-        <link rel ="stylesheet"  href="/'''+rep+'''css/monSite.css" />
+        <link rel="stylesheet" href="stylesheets/base.css">
+	    <link rel="stylesheet" href="stylesheets/skeleton.css">
+	    <link rel="stylesheet" href="stylesheets/layout.css">
+        <link rel="stylesheet" href="stylesheets/flexslider.css">
+        <link rel="stylesheet" href="stylesheets/prettyPhoto.css">
         <script type="text/javascript" src="/'''+rep+'''js/jquery-2.1.3.js"></script>
         <script type="text/javascript" src="/'''+rep+'''js/monSite.js"></script>
     </head>
