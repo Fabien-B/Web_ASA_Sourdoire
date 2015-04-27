@@ -45,10 +45,12 @@ CREATE TABLE IF NOT EXISTS `Evenement` (
   `Id_event` int(11) NOT NULL AUTO_INCREMENT,
   `Descriptif` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `Createur` int(11) NOT NULL,
+  `Compteur` int(11),
   `Photo_1` varchar(20) COLLATE utf8_unicode_ci,
   `Photo_2` varchar(20) COLLATE utf8_unicode_ci,
   PRIMARY KEY (`Id_event`),
-  FOREIGN KEY (Createur) REFERENCES Exploitant (Id_exploitant)
+  FOREIGN KEY (Createur) REFERENCES Exploitant (Id_exploitant),
+  FOREIGN KEY (Compteur) REFERENCES Compteur (Id_compteur)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -58,6 +60,8 @@ CREATE TABLE IF NOT EXISTS `Exploitant` (
   `Nom` varchar(60) COLLATE utf8_unicode_ci,
   `Mail` varchar(60) COLLATE utf8_unicode_ci,
   `Tel` varchar(20) COLLATE utf8_unicode_ci,
+  `Password` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `Salt` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id_exploitant`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0 ;
 
