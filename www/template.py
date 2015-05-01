@@ -58,28 +58,32 @@ def afficherHautPage(titre=""):
 
 
 def afficherFormulaireConnexion():
-    ret=""
-    if "nom" in Session(): # si l'utilisateur est connecte
-        ret='''
-        <div id="connexion">
-        <form action="traiterFormulaireConnexion" METHOD="get">
-            <h1 style="display:inline-block;">'''+Session()['nom']+'''</h1> connecte  <br />
-            <button name="choix" value="deconnecter"> Deconnecter </button>
-        </form>
-        </div>
-        '''
-    else: # utilisateur non connecte
+
+    # if "nom" in Session(): # si l'utilisateur est connecte
+    #     ret='''
+    #     <div id="connexion">
+    #     <form action="traiterFormulaireConnexion" METHOD="get">
+    #         <h1 style="display:inline-block;">'''+Session()['nom']+'''</h1> connecte  <br />
+    #         <button name="choix" value="deconnecter"> Deconnecter </button>
+    #     </form>
+    #     </div>
+    #     '''
+    # else: # utilisateur non connecte
+
         ret= '''
         <div id="connexion">
         <form action="traiterFormulaireConnexion" METHOD="get">
-        <h1>Connexion</h1>
-                Veuillez entrer votre login<br />
-                <input name="nom" size=10 maxlength=10 type="text" value="" required />
-                <button name="choix" value="maj"> Ok </button>
+            <br />
+                <input name="nom" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
+                <input type="submit" value="Ok" style="float: right" />
+                <div style="overflow: hidden; padding-right: .5em;">
+                    <input type="password" style="width: 100%;" placeholder="Mot de passe" required />
+                </div>
+
         </form>
         </div>
         '''
-    return ret
+        return ret
 
 
 def afficherBasPage():
