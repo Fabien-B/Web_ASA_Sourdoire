@@ -22,8 +22,7 @@ def traiterFormulaireConnexion(choix, login='',password=''):
 
 # fonctions AFFICHAGE
 def afficherAccueil():
-    ret=template.afficherHautPage()
-    ret+='''
+    ret='''
     	<div class="container">
 		    <div class="sixteen columns">
                 <div class="flex-container">

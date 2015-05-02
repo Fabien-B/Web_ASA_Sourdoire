@@ -68,10 +68,10 @@ def afficherFormulaireConnexion():
         ret='''
         <form id="connect" action="traiterFormulaireConnexion" METHOD="get">
             <br />
-                <input name="nom" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
-                <input type="submit" name="connect" value="Ok" />
+                <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
+                <input type="submit" name="choix" value="Ok" />
                 <div>
-                    <input type="password" placeholder="Mot de passe" required />
+                    <input name="password" type="password" placeholder="Mot de passe" required />
                 </div>
         '''
     else: # utilisateur non connecte
