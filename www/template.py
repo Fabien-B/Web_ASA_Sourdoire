@@ -12,8 +12,8 @@ def afficherHautPage(titre=""):
         <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=yes" />
         <meta name="description" content="Test python web" />
         <link rel="stylesheet" href="../stylesheets/base.css">
-	    <link rel="stylesheet" href="../stylesheets/skeleton.css">
-	    <link rel="stylesheet" href="../stylesheets/layout.css">
+        <link rel="stylesheet" href="../stylesheets/skeleton.css">
+        <link rel="stylesheet" href="../stylesheets/layout.css">
         <link rel="stylesheet" href="../stylesheets/flexslider.css">
         <link rel="stylesheet" href="../stylesheets/prettyPhoto.css">
         <script type="text/javascript" src="/'''+rep+'''js/jquery-2.1.3.js"></script>
@@ -24,7 +24,7 @@ def afficherHautPage(titre=""):
             <div id="header-inner" class="container sixteen columns over">
                 <hgroup class="four columns alpha">
                     <h1 id="site-title" class="site-title">
-                        <a href="index.html" id="logo"><img src="images/icebrrrg-logo.png" alt="Icebrrrg logo" height="63" width="157" /></a>
+                        <a href="index" id="logo"><img src="images/icebrrrg-logo.png" alt="Icebrrrg logo" height="63" width="157" /></a>
                     </h1>
                 </hgroup>
                 <nav id="main-nav" class="eight columns alpha">
@@ -58,34 +58,31 @@ def afficherHautPage(titre=""):
 
 
 def afficherFormulaireConnexion():
-
-    # if "nom" in Session(): # si l'utilisateur est connecte
-    #     ret='''
-    #     <div id="connexion">
-    #     <form action="traiterFormulaireConnexion" METHOD="get">
-    #         <h1 style="display:inline-block;">'''+Session()['nom']+'''</h1> connecte  <br />
-    #         <button name="choix" value="deconnecter"> Deconnecter </button>
-    #     </form>
-    #     </div>
-    #     '''
-    # else: # utilisateur non connecte
-
+    if "login" not in Session():
         ret= '''
         <div id="connexion">
         <form action="traiterFormulaireConnexion" METHOD="get">
-            <br />
-                <input name="nom" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
-                <input type="submit" value="Ok" style="float: right" />
-                <div style="overflow: hidden; padding-right: .5em;">
-                    <input type="password" style="width: 100%;" placeholder="Mot de passe" required />
-                </div>
+        <br />
+            <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
+            <input name="choix" type="submit" value="Ok" style="float: right" />
+            <div style="overflow: hidden; padding-right: .5em;">
+                <input type="password" style="width: 100%;" placeholder="Mot de passe" required />
+            </div>
 
         </form>
         </div>
         '''
-        return ret
-
-
+    else:
+         ret='''
+         <div id="connexion">
+         <form action="traiterFormulaireConnexion" METHOD="get">
+             <h1 style="display:inline-block;">'''+Session()['login']+'''</h1> connecte  <br />
+             <button name="choix" value="deconnecter"> Deconnecter </button>
+         </form>
+         </div>
+         '''
+    return ret
+    
 def afficherBasPage():
     return '''
     <div id="bas">Exemple d'appli web  python-html / CSS / Jquery</div>
