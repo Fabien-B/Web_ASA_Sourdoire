@@ -12,8 +12,8 @@ def afficherHautPage(titre=""):
         <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=yes" />
         <meta name="description" content="Test python web" />
         <link rel="stylesheet" href="../stylesheets/base.css">
-	    <link rel="stylesheet" href="../stylesheets/skeleton.css">
-	    <link rel="stylesheet" href="../stylesheets/layout.css">
+        <link rel="stylesheet" href="../stylesheets/skeleton.css">
+        <link rel="stylesheet" href="../stylesheets/layout.css">
         <link rel="stylesheet" href="../stylesheets/flexslider.css">
         <link rel="stylesheet" href="../stylesheets/prettyPhoto.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
@@ -26,7 +26,11 @@ def afficherHautPage(titre=""):
             <div id="header-inner" class="container sixteen columns over">
                 <hgroup class="two columns alpha">
                     <h1 id="site-title" class="site-title">
+<<<<<<< HEAD
                         <a href="index.html" id="logo"><img src="images/accueil1.jpeg" alt="Icebrrrg logo" height="63" width="157" /></a>
+=======
+                        <a href="index" id="logo"><img src="images/icebrrrg-logo.png" alt="Icebrrrg logo" height="63" width="157" /></a>
+>>>>>>> 74bc1534cdc2f79c9364fb0abbcb42ba039c7952
                     </h1>
                 </hgroup>
                 <nav id="main-nav" class="eleven columns alpha">
@@ -64,18 +68,8 @@ def afficherHautPage(titre=""):
 
 def afficherFormulaireConnexion():
 
-    # if "nom" in Session(): # si l'utilisateur est connecte
-    #     ret='''
-    #     <div id="connexion">
-    #     <form action="traiterFormulaireConnexion" METHOD="get">
-    #         <h1 style="display:inline-block;">'''+Session()['nom']+'''</h1> connecte  <br />
-    #         <button name="choix" value="deconnecter"> Deconnecter </button>
-    #     </form>
-    #     </div>
-    #     '''
-    # else: # utilisateur non connecte
-
-    ret= '''
+    if "login" not in Session():
+        ret='''
         <form id="connect" action="traiterFormulaireConnexion" METHOD="get">
             <br />
                 <input name="nom" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
@@ -83,10 +77,17 @@ def afficherFormulaireConnexion():
                 <div>
                     <input type="password" placeholder="Mot de passe" required />
                 </div>
-        </form>
         '''
+    else: # utilisateur non connecte
+        ret='''
+         <div id="connexion">
+         <form action="traiterFormulaireConnexion" METHOD="get">
+             <h1 style="display:inline-block;">'''+Session()['login']+'''</h1> connecte  <br />
+             <button name="choix" value="deconnecter"> Deconnecter </button>
+         </form>
+         </div>
+         '''
     return ret
-
 
 def afficherBasPage():
     return '''

@@ -1,8 +1,24 @@
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 
 # fonctions CONTROLEUR (calculs, maj base, MAIS PAS D'AFFICHAGE)
-def index():
-    return afficherAccueil()
+def index(message=''):
+    ret=template.afficherHautPage()
+    ret += afficherAccueil()
+    ret += template.afficherBasPage()
+    return ret
+
+def traiterFormulaireConnexion(choix, login='',password=''):
+    if choix=='deconnecter':
+        if "login" in Session(): del Session()["login"]
+        return index('Deconnecte')
+    else:
+        if password != 'test':
+            Session()["login"] = login;
+            return  index('Login Ok <b>'+login+'</b><br/>Vous pouvez modifier')
+        else:
+            return index('login incorrect!')
+
+
 
 # fonctions AFFICHAGE
 def afficherAccueil():
@@ -41,3 +57,4 @@ def afficherAccueil():
         </div>
         '''
     return ret
+
