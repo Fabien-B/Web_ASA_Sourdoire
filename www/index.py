@@ -1,8 +1,8 @@
 
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 
-def index(message=''):
-    ret=template.afficherHautPage()
+def index(error=''):
+    ret=template.afficherHautPage(error)
     ret += corps_accueil()
     ret += template.afficherBasPage()
     return ret
@@ -21,6 +21,6 @@ def traiterFormulaireConnexion(choix, login='',password=''):
     else:
         if password != 'test':
             Session()["login"] = login;
-            return  index('Login Ok <b>'+login+'</b><br/>Vous pouvez modifier')
+            return  index()
         else:
-            return index('login incorrect!')
+            return index('error')

@@ -1,7 +1,7 @@
 rep = 'exempleWebPython/'  # sous-repertoire d'installation de cet exemple dans www
 
 
-def afficherHautPage(titre=""):
+def afficherHautPage(error = ''):
     return '''
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
@@ -16,6 +16,7 @@ def afficherHautPage(titre=""):
         <link rel="stylesheet" href="../stylesheets/layout.css">
         <link rel="stylesheet" href="../stylesheets/flexslider.css">
         <link rel="stylesheet" href="../stylesheets/prettyPhoto.css">
+        <link rel="stylesheet" href="../stylesheets/perso.css">
         <script type="text/javascript" src="/'''+rep+'''js/jquery-2.1.3.js"></script>
         <script type="text/javascript" src="/'''+rep+'''js/monSite.js"></script>
     </head>
@@ -30,26 +31,26 @@ def afficherHautPage(titre=""):
                 <nav id="main-nav" class="eight columns alpha">
                     <ul id="main-nav-menu" class="nav-menu">
                         <li id="menu-item-1" class="current">
-                            <a href="index.html">Home</a>
+                            <a href="index.html">Accueil</a>
                         </li>
                         <li id="menu-item-2">
-                            <a href="three-column.html">Three Column</a>
+                            <a href="three-column.html">Ma Conso</a>
                         </li>
                         <li id="menu-item-3">
-                            <a href="sidebar-right.html">Sidebar Right</a>
+                            <a href="sidebar-right.html">Relevés</a>
                         </li>
                         <li id="menu-item-4">
-                            <a href="sidebar-left.html">Sidebar Left</a>
+                            <a href="sidebar-left.html">Évènements</a>
                         </li>
                         <li id="menu-item-5">
-                            <a href="full-width.html">Full Width</a>
+                            <a href="full-width.html">Le Réseau</a>
                         </li>
                         <li id="menu-item-6">
                         </li>
                     </ul>
                 </nav>
                 <div id="login" class="four columns omega">
-                '''+afficherFormulaireConnexion()+'''
+                '''+afficherFormulaireConnexion(error)+'''
                 </div>
             </div>
         </header>
@@ -57,16 +58,19 @@ def afficherHautPage(titre=""):
     '''
 
 
-def afficherFormulaireConnexion():
+def afficherFormulaireConnexion(error = ''):
     if "login" not in Session():
         ret= '''
         <div id="connexion">
         <form action="traiterFormulaireConnexion" METHOD="get">
         <br />
             <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
-            <input name="choix" type="submit" value="Ok" style="float: right" />
+            '''
+        if error == 'error':
+            ret += '<div class="input-error">login ou mot de passe incorrect</div>'
+        ret += '''<input name="choix" type="submit" value="Ok" style="float: right" />
             <div style="overflow: hidden; padding-right: .5em;">
-                <input type="password" style="width: 100%;" placeholder="Mot de passe" required />
+                <input name="password" type="password" style="width: 100%;" placeholder="Mot de passe" required />
             </div>
 
         </form>
