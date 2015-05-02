@@ -26,11 +26,7 @@ def afficherHautPage(titre=""):
             <div id="header-inner" class="container sixteen columns over">
                 <hgroup class="two columns alpha">
                     <h1 id="site-title" class="site-title">
-<<<<<<< HEAD
-                        <a href="index.html" id="logo"><img src="images/accueil1.jpeg" alt="Icebrrrg logo" height="63" width="157" /></a>
-=======
                         <a href="index" id="logo"><img src="images/icebrrrg-logo.png" alt="Icebrrrg logo" height="63" width="157" /></a>
->>>>>>> 74bc1534cdc2f79c9364fb0abbcb42ba039c7952
                     </h1>
                 </hgroup>
                 <nav id="main-nav" class="eleven columns alpha">
@@ -88,6 +84,7 @@ def afficherFormulaireConnexion():
          </div>
          '''
     return ret
+
 
 def afficherBasPage():
     return '''
