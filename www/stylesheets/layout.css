@@ -32,7 +32,7 @@ h1 a { text-indent: -9999px; }
 #main-nav { float: left; }
 #main-nav ul, #main-nav li { list-style: none; padding: 0; margin: 0; display: inline; } 
 #main-nav ul li { float: left; position: relative; }
-#main-nav ul li a { display: inline-block; padding: 48px 10px 34px 10px; margin: 0 5px; text-decoration: none; font-size: 12px; border-bottom: 3px solid transparent; }
+#main-nav ul li a { display: inline-block; padding: 48px 5px 20px 5px; margin: 0px; text-decoration: none; font-size: 12px; border-bottom: 3px solid transparent; }
 #main-nav ul li:hover { border-bottom: 3px solid #2c88c9 !important; }
 .current { font-weight: bold !important; color: #444 !important; border-bottom: 3px solid #2c88c9 !important; }
 

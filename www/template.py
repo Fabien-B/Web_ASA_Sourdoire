@@ -16,8 +16,9 @@ def afficherHautPage(error = '', titre=''):
             <link rel="stylesheet" href="../stylesheets/flexslider.css">
             <link rel="stylesheet" href="../stylesheets/prettyPhoto.css">
             <link rel="stylesheet" href="../stylesheets/perso.css">
-            <script type="text/javascript" src="/'''+rep+'''js/jquery-2.1.3.js"></script>
-            <script type="text/javascript" src="/'''+rep+'''js/monSite.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+            <script src="../js/jquery.flexslider-min.js"></script>
+            <script src="../js/scripts.js"></script>
         </head>
         <body>
             <header id="header" class="site-header" role="banner">
@@ -29,7 +30,6 @@ def afficherHautPage(error = '', titre=''):
                     </hgroup>
                     <nav id="main-nav" class="eight columns alpha">
                         <ul id="main-nav-menu" class="nav-menu">'''
-
     ret += create_link('menu-item-1', 'Accueil', titre,'index.py')
     ret += create_link('menu-item-2', 'Ma Conso', titre,'page_conso.py')
     ret += create_link('menu-item-3', 'Relevés', titre,'page_releves.py')
@@ -38,7 +38,7 @@ def afficherHautPage(error = '', titre=''):
 
     ret += '''          </ul>
                 </nav>
-                <div id="login" class="four columns omega">
+                <div id="login" class="three columns omega">
                 '''+afficherFormulaireConnexion(error)+'''
                 </div>
             </div>
@@ -54,26 +54,22 @@ def create_link(position, titre, current_page,fichier):
 
 
 
-def afficherFormulaireConnexion(error = ''):
+def afficherFormulaireConnexion(error=''):
+
     if "login" not in Session():
-        ret= '''
-        <div id="connexion">
-        <form action="traiterFormulaireConnexion" METHOD="get">
-        <br />
-            <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
-            '''
+        ret='''
+        <form id="connect" action="traiterFormulaireConnexion" METHOD="get">
+            <br />
+                <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />'''
         if error == 'error':
             ret += '<div class="input-error">login ou mot de passe incorrect</div>'
-        ret += '''<input name="choix" type="submit" value="Ok" style="float: right" />
-            <div style="overflow: hidden; padding-right: .5em;">
-                <input name="password" type="password" style="width: 100%;" placeholder="Mot de passe" required />
-            </div>
-
-        </form>
-        </div>
+        ret+= '''<input type="submit" name="choix" value="Ok" />
+                <div>
+                    <input name="password" type="password" placeholder="Mot de passe" required />
+                </div>
         '''
-    else:
-         ret='''
+    else: # utilisateur non connecte
+        ret='''
          <div id="connexion">
          <form action="traiterFormulaireConnexion" METHOD="get">
              <h1 style="display:inline-block;">'''+Session()['login']+'''</h1> connecte  <br />
@@ -82,7 +78,8 @@ def afficherFormulaireConnexion(error = ''):
          </div>
          '''
     return ret
-    
+
+
 def afficherBasPage():
     return '''
     <div id="bas">Exemple d'appli web  python-html / CSS / Jquery</div>
