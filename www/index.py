@@ -2,14 +2,13 @@
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 
 def index(error=''):
-    ret=template.afficherHautPage(error)
+    ret=template.afficherHautPage(error, titre='Accueil')
     ret += corps_accueil()
     ret += template.afficherBasPage()
     return ret
 
 def corps_accueil():
     html = """
-    <h1>Le titre d'accueil!</h1>
     <p>Un petit paragraphe</p>
     """
     return html
