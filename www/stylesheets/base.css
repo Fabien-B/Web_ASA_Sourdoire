@@ -260,6 +260,11 @@
 		font-weight: normal;
 		font-size: 13px;
 		color: #444; }
+	#connect div { overflow: hidden; 
+			padding-right: .5em; }
+	#connect input[type="submit"] {float: right;}
+	#connect input[type="password"] {width: 90%;}
+
 
 /* #Misc
 ================================================== */
