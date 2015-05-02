@@ -23,18 +23,20 @@ def afficherHautPage(error = '', titre=''):
         <body>
             <header id="header" class="site-header" role="banner">
                 <div id="header-inner" class="container sixteen columns over">
-                    <hgroup class="four columns alpha">
+                    <hgroup class="two columns alpha">
                         <h1 id="site-title" class="site-title">
-                            <a href="index" id="logo"><img src="images/icebrrrg-logo.png" alt="Icebrrrg logo" height="63" width="157" /></a>
+                            <a href="../index.py" id="logo"><img src="images/icebrrrg-logo.png" alt="Icebrrrg logo" height="63" width="157" /></a>
                         </h1>
                     </hgroup>
-                    <nav id="main-nav" class="eight columns alpha">
+                    <nav id="main-nav" class="eleven columns alpha">
                         <ul id="main-nav-menu" class="nav-menu">'''
     ret += create_link('menu-item-1', 'Accueil', titre,'index.py')
     ret += create_link('menu-item-2', 'Ma Conso', titre,'page_conso.py')
-    ret += create_link('menu-item-3', 'Relevés', titre,'page_releves.py')
-    ret += create_link('menu-item-4', 'Évènements', titre,'page_evenements.py')
-    ret += create_link('menu-item-5', 'Le Réseau', titre,'page_reseau.py')
+    ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
+    ret += create_link('menu-item-4', 'Mes parcelles', titre,'page_parcelles.py')
+    ret += create_link('menu-item-5', 'Signaler un évenement', titre,'page_evenements.py')
+    ret += create_link('menu-item-6', 'Voir le réseau', titre,'page_reseau.py')
+    ret += create_link('menu-item-7', 'Contacter l\'Admin', titre, 'page_contact.py')
 
     ret += '''          </ul>
                 </nav>
