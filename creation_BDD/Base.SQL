@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS `Exploitant` (
   `Nom` varchar(60) COLLATE utf8_unicode_ci,
   `Mail` varchar(60) COLLATE utf8_unicode_ci,
   `Tel` varchar(20) COLLATE utf8_unicode_ci,
+  `Login` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `Password` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `Salt` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id_exploitant`)
