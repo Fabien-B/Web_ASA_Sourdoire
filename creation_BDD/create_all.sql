@@ -1,6 +1,6 @@
-drop database if exists test_asa;
-create database test_asa;
-use test_asa;
+drop database if exists asa;
+create database asa;
+use asa;
 source Base.SQL;
 source Compteurs.sql;
 source exploitants.sql;
