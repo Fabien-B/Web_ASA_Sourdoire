@@ -16,13 +16,18 @@ def Connexion(page, choix, login='',password=''):
             logins_list.append(log)
         if not login in logins_list:
             return page('error')
-        #else:
+        #else
         requete = "select Password,Salt from Exploitant where login='{}';".format(login)
         curseur.execute(requete)
         (pw_base,salt)=curseur.fetchall()[0]
         pw_user = bcrypt.hashpw(password,salt)
         if pw_user == pw_base:
-            Session()["login"] = login;
+            Session()["login"] = login
+            requete = "select Id_exploitant, Nom from Exploitant where Login='{}';".format(login)
+            curseur.execute(requete)
+            (id_exploitant,nom)=curseur.fetchall()[0]
+            Session()["Id_exploitant"] = id_exploitant
+            Session()["nom"] = nom
             return  page()
         else:
             return page('error')
