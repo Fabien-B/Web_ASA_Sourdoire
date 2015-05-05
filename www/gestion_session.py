@@ -1,33 +1,22 @@
-import mysql.connector
 import bcrypt
+exploitant = Import('Exploitant.py')
 
 def Connexion(page, choix, login='',password=''):
     if choix=='deconnecter':
         if "login" in Session(): del Session()["login"]
         return page('Deconnecte')
     else:
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
-        curseur = connection.cursor()
-        requete = 'select login from Exploitant;'
-        curseur.execute(requete)
-        logins_tuples=curseur.fetchall()
-        logins_list = []
-        for (log,) in logins_tuples:
-            logins_list.append(log)
-        if not login in logins_list:
+        id_ex = exploitant.Exploitant.exist_login(login)
+        if id_ex == -1:
             return page('error')
-        #else
-        requete = "select Password,Salt from Exploitant where login='{}';".format(login)
-        curseur.execute(requete)
-        (pw_base,salt)=curseur.fetchall()[0]
+        target_ex = exploitant.Exploitant(id_ex)
+        pw_base = target_ex.password
+        salt = target_ex.salt
         pw_user = bcrypt.hashpw(password,salt)
         if pw_user == pw_base:
-            Session()["login"] = login
-            requete = "select Id_exploitant, Nom from Exploitant where Login='{}';".format(login)
-            curseur.execute(requete)
-            (id_exploitant,nom)=curseur.fetchall()[0]
-            Session()["Id_exploitant"] = id_exploitant
-            Session()["nom"] = nom
+            Session()["login"] = target_ex.login
+            Session()["Id_exploitant"] = target_ex.id
+            Session()["nom"] = target_ex.nom
             return  page()
         else:
             return page('error')
