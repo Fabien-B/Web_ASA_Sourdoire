@@ -23,9 +23,9 @@ def afficherHautPage(error = '', titre=''):
         <body>
             <header id="header" class="site-header" role="banner">
                 <div id="header-inner" class="container sixteen columns over">
-                    <hgroup class="two columns alpha">
+                    <hgroup class="tree columns alpha">
                         <h1 id="site-title" class="site-title">
-                            <a href="../index.py" id="logo"><img src="images/icebrrrg-logo.png" alt="Icebrrrg logo" height="63" width="157" /></a>
+                            <a href="../index.py" id="logo"><img src="../images/logo.png" alt="Icebrrrg logo" height="63" /></a>
                         </h1>
                     </hgroup>
                     <nav id="main-nav" class="eleven columns alpha">
@@ -70,11 +70,11 @@ def afficherFormulaireConnexion(error=''):
                     <input name="password" type="password" placeholder="Mot de passe" required />
                 </div>
         '''
-    else: # utilisateur non connecte
+    else: # utilisateur connecte
         ret='''
          <div id="connexion">
          <form action="traiterFormulaireConnexion" METHOD="get">
-             <h1 style="display:inline-block;">'''+Session()['login']+'''</h1> connecte  <br />
+             <h1 style="display:inline-block;">'''+Session()['nom']+'''</h1> connecte  <br />
              <button name="choix" value="deconnecter"> Deconnecter </button>
          </form>
          </div>
