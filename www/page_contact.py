@@ -7,7 +7,14 @@ def index(error=''):
     ret += template.afficherBasPage()
     return ret
 
-def corps_page():
+def corps_page_connecte():
+    html = """
+    <p>J'irais chercher le contact</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YUNtPBmQTR8" frameborder="0" allowfullscreen></iframe>
+    """
+    return html
+
+def corps_page_deconnecte():
     html = """
     <p>J'irais chercher le contact</p>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/YUNtPBmQTR8" frameborder="0" allowfullscreen></iframe>
