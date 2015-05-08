@@ -1,5 +1,6 @@
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 connexion = Import('gestion_session.py')
+exploitant = Import('Exploitant.py')
 
 
 def index(error=''):
@@ -18,16 +19,16 @@ def traiterFormulaireConnexion(choix, login='',password=''):
 
 def afficherFormulaireContact_connecte():
     html = """
-    <h1 class=h1>Formulaire de contact</h1>
+    <h1 id=contactformtitle>Formulaire de contact</h1>
     <br>
-    <h2 class=h2>Numéro de téléphone : 06 XX XX XX XX</div>
-    <form id=contact action=../page_contact.py/traiterFormulaireContact METHOD="get">
-    <table>
+    <h2 id=numtel>Numéro de téléphone de l'administrateur : """ + str(exploitant.Exploitant(0).tel) + """</h2>
+    <form id=contactform action=../page_contact.py/traiterFormulaireContact METHOD="get">
+    <table id = contacttable>
     <tr>
-    <td>Objet de la Demande :</td><td>
+    <td id = objetdemande><strong>Objet de la Demande :</strong></td><td id = formobjetdemande>
     <input name="topic" size=20 maxlength=70 type="text" value="" placeholder="Objet de la demande" required />
     </td></tr>
-    <tr><td colspan=2>
+    <tr id = tr2><td colspan=2>
     <textarea NAME="demande" ROWS="10" cols="500" placeholder="Votre demande ici"></textarea>
     </td></tr></table>
     <br />
