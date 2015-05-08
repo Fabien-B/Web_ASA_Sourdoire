@@ -1,7 +1,7 @@
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 connexion = Import('gestion_session.py')
 releve = Import('releve.py')
-#parcelle = Import('parcelle.py')
+parcelle = Import('parcelle.py')
 
 def index(error=''):
     ret=template.afficherHautPage(error, titre='Ma Conso')
@@ -13,7 +13,7 @@ def index(error=''):
     return ret
 
 def corps_page_connecte():
-    #dico_parc_rels = get_releves(Session()["Id_exploitant"])    #TODO: ajouter la date de début et celle de fin.
+    dico_parc_rels = get_releves(Session()["Id_exploitant"])    #TODO: ajouter la date de début et celle de fin.
     html = """
     <p>Bonjour!</p>
     <table class="table_conso">
@@ -26,12 +26,12 @@ def corps_page_connecte():
     </form>
     <caption>Votre consommation</caption>
     <tr>
-        <th>Compteur</th>
         <th>Parcelle</th>
+        <th>Compteur</th>
         <th>Consommation</th>
     </tr>"""
-    #for champ in dico_parc_rels.keys():
-    #    html += add_line(champ,dico_parc_rels[champ])
+    for champ in dico_parc_rels.keys():
+        html += add_line(champ,dico_parc_rels[champ])
 
     html += '''</table>
     '''
@@ -47,13 +47,13 @@ def add_line(parc, rels):
     '''add_line(<Parcelle>, [<Releve1>,<Releve2>, ...]'''
     conso = 0
     for rel in rels:
-        conso += rel.index_fin - rel.index_deb
+        conso += 10 * (rel.index_fin - rel.index_deb)
     line = """
     <tr>
         <td>{}</td>
         <td>{}</td>
         <td>{}</td>
-    </tr>""".format(parc.Nom,parc.Compteur,conso)
+    </tr>""".format(parc.nom,parc.compteur,conso)
     return line
 
 def get_releves(Id_exploitant, date_debut=None, date_fin=None):
@@ -64,7 +64,7 @@ def get_releves(Id_exploitant, date_debut=None, date_fin=None):
         if id_parcelle in parcelles.keys():
             dico[parcelles[id_parcelle]].append(releve.Releve(id_releve))
         else:
-            parcelles[id_parcelle] = parcelle.Parcelles(id_parcelle)
+            parcelles[id_parcelle] = parcelle.Parcelle(id_parcelle)
             dico[parcelles[id_parcelle]] = [releve.Releve(id_releve)]
     return dico
 
