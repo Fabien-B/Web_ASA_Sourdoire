@@ -26,17 +26,19 @@ def afficherFormulaireContact_connecte():
     <table id = contacttable>
     <tr>
     <td id = objetdemande><strong>Objet de la Demande :</strong></td><td id = formobjetdemande>
-    <input name="topic" size=20 maxlength=70 type="text" value="" placeholder="Objet de la demande" required />
+    <input id=topicinput name="topic" size=20 maxlength=70 type="text" value="" placeholder="Objet de la demande" required />
     </td></tr>
     <tr id = tr2><td colspan=2>
-    <textarea NAME="demande" ROWS="10" cols="500" placeholder="Votre demande ici"></textarea>
+    <textarea id=topicarea NAME="demande" ROWS="10" cols="500" placeholder="Votre demande ici"></textarea>
     </td></tr></table>
     <br />
-    <div>Combien font 2+2 ?</div>
-    <input type="text" name="captcha" size=5 maxlength=5 value="" placeholder="Captcha" required />
+    <div class=captchadiv>Combien font 2+2 ? <br />
+    <input id = captchainput type="text" name="captcha" size=5 maxlength=5 value="" placeholder="Captcha" required /></div>
     <br />
+    <div class=captchadiv>
     <input type=submit value=Envoyer>
     <input type=reset value=Annuler>
+    </div>
     </form>
     """
     return html
