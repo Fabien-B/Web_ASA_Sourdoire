@@ -1,3 +1,16 @@
 .input-error{
     color:#ff0000;
 }
+
+.table_conso {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 1px;
+    border-color: gray;
+    with=500px
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 15px;
+}
