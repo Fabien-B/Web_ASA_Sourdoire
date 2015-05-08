@@ -49,6 +49,7 @@ class Releve(object):
 
     @staticmethod
     def get_releves_id(id_exploitant,youger_date=None, older_date=None):
+        '''return a list of tuples: [(id_releve, id_parcelle), ... ]'''
         connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
         curseur = connection.cursor()
 
@@ -62,7 +63,7 @@ class Releve(object):
         else:
             older_date = 'NULL'
 
-        requete = '''SELECT Releve.Id_releve FROM Releve,Parcelle,Propriete
+        requete = '''SELECT Releve.Id_releve,Parcelle.Id_parcelle FROM Releve,Parcelle,Propriete
                     WHERE Releve.Compteur = Parcelle.Compteur
                     AND Parcelle.Id_parcelle = Propriete.Id_parcelle
                     AND (Propriete.date_debut < Releve.Date OR Propriete.date_debut IS NULL)
@@ -74,8 +75,8 @@ class Releve(object):
         curseur.execute(requete)
         id_rel_tuple = curseur.fetchall()
         id_rel_list = []
-        for (id_rel,) in id_rel_tuple:
-            id_rel_list.append(id_rel)
+        for (id_rel,id_pacelle) in id_rel_tuple:
+            id_rel_list.append((id_rel,id_pacelle))
 
         return id_rel_list
 
