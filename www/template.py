@@ -71,13 +71,19 @@ def afficherFormulaireConnexion(error=''):
                 </div>
         '''
     else: # utilisateur connecte
-        ret='''
-         <div id="connexion">
+        ret='''<table style="height=50%"><td>
+         <div id="deconnect" style="display:inline; text-align:center" >
          <form action="traiterFormulaireConnexion" METHOD="get">
-             <h1 style="display:inline-block;">'''+Session()['nom']+'''</h1> connecte  <br />
+         Bonjour
+             <h2 style="display:inline-block;">'''+Session()['nom']+'''</h1><br />
+             <div style="display:inline-block">
+             <button name="choix" value="profil">Profil</button>
              <button name="choix" value="deconnecter"> Deconnecter </button>
+             </div>
+         </center>
          </form>
          </div>
+         </td></table>
          '''
     return ret
 
