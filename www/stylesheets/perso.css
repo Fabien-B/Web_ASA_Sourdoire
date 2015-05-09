@@ -2,7 +2,7 @@
     color:#ff0000;
 }
 
-.table_conso {
+#conso_content {
     display: table;
     border-collapse: separate;
     border-spacing: 1px;
