@@ -34,13 +34,15 @@ def corps_page_deconnecte():
 
 def conso_table(date_debut=None, date_fin=None):
     dico_parc_rels = get_releves(Session()["Id_exploitant"], date_debut, date_fin)    #TODO: ajouter la date de début et celle de fin.
-    html="""<table class="table_conso" id="conso_content">
-    <caption>Votre consommation</caption>
+    debut = date_debut if date_debut else 'plus ancien'
+    fin = date_fin if date_fin else 'plus récent'
+    html="""<table id="conso_content">
+    <caption>Votre consommation depuis le {} jusqu'au {} :</caption>
     <tr>
         <th>Parcelle</th>
         <th>Compteur</th>
         <th>Consommation</th>
-    </tr>"""
+    </tr>""".format(debut,fin)
     conso_parcelles = {}
     for champ in dico_parc_rels.keys():
         (line,conso) = add_line(champ,dico_parc_rels[champ])
