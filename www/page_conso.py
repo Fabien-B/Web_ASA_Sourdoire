@@ -40,8 +40,15 @@ def conso_table(date_debut=None, date_fin=None):
         <th>Compteur</th>
         <th>Consommation</th>
     </tr>"""
+    conso_parcelles = {}
     for champ in dico_parc_rels.keys():
-        html += add_line(champ,dico_parc_rels[champ])
+        (line,conso) = add_line(champ,dico_parc_rels[champ])
+        conso_parcelles[conso] = line
+
+    conso_sorted = sorted(conso_parcelles.keys())
+
+    for conso in reversed(conso_sorted):
+        html += conso_parcelles[conso]
     html += '</table>'
     return html
 
@@ -56,7 +63,7 @@ def add_line(parc, rels):
         <td>{}</td>
         <td>{}</td>
     </tr>""".format(parc.nom,parc.compteur,conso)
-    return line
+    return (line,conso)
 
 def get_releves(Id_exploitant, date_debut=None, date_fin=None):
     releves_list = releve.Releve.get_releves_id(Id_exploitant,date_debut,date_fin)
