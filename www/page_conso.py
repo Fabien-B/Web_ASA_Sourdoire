@@ -2,6 +2,7 @@ template = Import('template.py' ) # import du fichier template (entete, pieds de
 connexion = Import('gestion_session.py')
 releve = Import('releve.py')
 parcelle = Import('parcelle.py')
+compteur = Import('compteur.py')
 
 def index(error=''):
     ret=template.afficherHautPage(error, titre='Ma Conso')
@@ -55,6 +56,7 @@ def conso_table(date_debut=None, date_fin=None):
 def add_line(parc, rels):
     '''add_line(<Parcelle>, [<Releve1>,<Releve2>, ...]'''
     conso = 0
+    nom_compteur = compteur.Compteur(parc.compteur).nom
     for rel in rels:
         conso += 10 * (rel.index_fin - rel.index_deb)
     line = """
@@ -62,7 +64,7 @@ def add_line(parc, rels):
         <td>{}</td>
         <td>{}</td>
         <td>{}</td>
-    </tr>""".format(parc.nom,parc.compteur,conso)
+    </tr>""".format(parc.nom,nom_compteur,conso)
     return (line,conso)
 
 def get_releves(Id_exploitant, date_debut=None, date_fin=None):
