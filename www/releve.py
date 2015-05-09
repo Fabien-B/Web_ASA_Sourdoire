@@ -4,7 +4,7 @@ class Releve(object):
     database = 'asa'
 
     def __init__(self,id_rel,compteur=None,exploitant=None,index_deb=None,index_fin=None,date=None):
-        if  id_rel>=0:
+        if  id_rel>0:
             pass
             self.load(id_rel)
         else:

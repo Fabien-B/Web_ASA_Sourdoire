@@ -4,7 +4,7 @@ class Parcelle(object):
     database = 'asa'
 
     def __init__(self,id_parc,compteur=None,nom=None,lat=None,lon=None,altitude=None):
-        if  id_parc>=0:
+        if  id_parc>0:
             pass
             self.load(id_parc)
         else:
