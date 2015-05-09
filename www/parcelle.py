@@ -5,7 +5,6 @@ class Parcelle(object):
 
     def __init__(self,id_parc,compteur=None,nom=None,lat=None,lon=None,altitude=None):
         if  id_parc>0:
-            pass
             self.load(id_parc)
         else:
             connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')

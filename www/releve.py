@@ -5,7 +5,6 @@ class Releve(object):
 
     def __init__(self,id_rel,compteur=None,exploitant=None,index_deb=None,index_fin=None,date=None):
         if  id_rel>0:
-            pass
             self.load(id_rel)
         else:
             connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
