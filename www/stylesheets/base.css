@@ -283,6 +283,7 @@
 	#connect input[type="password"] {width: 90%;}
 	#deconnect form{margin-bottom:0px;}
 	#deconnect button{margin-bottom:0px;}
+	#deconnect input[type="submit"]{margin-bottom:0px;}
 
 
 /* #Misc

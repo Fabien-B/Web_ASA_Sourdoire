@@ -15,6 +15,8 @@ def index(error=''):
 
 def corps_page_connecte(date_debut=None, date_fin=None):
     html = """
+        <div class="container">
+            <div class="sixteen columns main-content">
     <p>Bonjour!</p>
     <form>
         <label for="date_debut">date de début:</label>
@@ -24,6 +26,8 @@ def corps_page_connecte(date_debut=None, date_fin=None):
         <button type="button" id="update_releves" >Ok</button>
     </form>"""
     html += conso_table()
+    html += """</div>
+    </div>"""
     return html
 
 def corps_page_deconnecte():
