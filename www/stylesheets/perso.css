@@ -1,6 +1,10 @@
+.leaflet-control-attribution{
+visibility: hidden;
+}
+
 .input-error{
     color:#ff0000;
-}
+}l
 
 #conso_content {
     display: table;
