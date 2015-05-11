@@ -37,7 +37,7 @@ def afficherFormulaireContact_connecte():
     <div class=captchadiv>Combien font 2+2 ? <br />
     <input class = captchainput type="text" name="captcha" size=5 maxlength=5 value="" placeholder="Captcha" required /></div>
     <br />
-    <div class=captchadiv>
+    <div class=captchadiv2>
     <input type=submit value=Envoyer>
     <input type=reset value=Annuler>
     </div>
@@ -79,11 +79,13 @@ def afficherFormulaireContact_non_connecte():
     </td></tr>
     </table>
     <br />
-    <div class=captchadiv>Combien font 2+2 ?</div>
-    <input class = captchainput type="number" name="captcha" size=5 maxlength=5 value="" placeholder="Captcha" required />
+    <div class=captchadiv>Combien font 2+2 ? <br />
+    <input class = captchainput type="text" name="captcha" size=5 maxlength=5 value="" placeholder="Captcha" required /></div>
     <br />
+    <div class=captchadiv2>
     <input type=submit value=Envoyer>
     <input type=reset value=Annuler>
+    </div>
     </form>
         </div>
     </div>
