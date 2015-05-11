@@ -2,12 +2,21 @@ template = Import('template.py' ) # import du fichier template (entete, pieds de
 connexion = Import('gestion_session.py')
 
 def index(error=''):
-    ret=template.afficherHautPage(error, titre='Entrer un relevé')
-    ret += corps_page()
+    ret=template.afficherHautPage(error, titre='Ma Conso')
+    if "login" in Session():
+        ret += corps_page_connecte()
+    else:
+        ret += corps_page_deconnecte()
     ret += template.afficherBasPage()
     return ret
 
-def corps_page():
+def corps_page_deconnecte():
+    html = """
+    <p>Bonjour! Veuillez vous connecter.</p>
+    """
+    return html
+
+def corps_page_connecte(date_debut=None, date_fin=None):
     html = """
     <div class="container">
     <h1 class="container sixteen columns over" style="text-align: center;margin-bottom:15px;">Entrer un relevé</h1>
@@ -15,23 +24,12 @@ def corps_page():
         <div class="sidebar-widget">
         <h2>Informations du relevé</h2>
         <p>Compteur :  <select name="Combo">1</select></p>
-	<p>Index début :<input type="number"></p>
-	<p>Index fin :<input type="number"></p>
+	<p>Index début :<input type="text"></p>
+	<p>Index fin :<input type="text"></p>
 
 
-<div>
-	    <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css">
-  <script src="../js/jquery-1.10.2.js"></script>
-  <script src="../js/jquery-ui.js"></script>
-  <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
- 
-<p>Date: <input type="text" id="datepicker"></p></div>
-	
-        </div>        
+
+<p>Date: <input type="text" id="datepicker"></p>   
         </aside>
         <!-- End Left Sidebar -->
         
