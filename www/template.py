@@ -33,7 +33,7 @@ def afficherHautPage(error = '', titre=''):
                     </div>
                     <div class="eight columns alpha">
                 </div>
-                <div id="login" class="five columns omega" style="float:right;height:80px;">
+                <div id="login" class="five columns alpha" style="float:right;height:80px;">
                 '''+afficherFormulaireConnexion(error)+'''
                 </div>
             </div>
@@ -69,20 +69,22 @@ def afficherFormulaireConnexion(error=''):
         ret='''
         <form id="connect" action="traiterFormulaireConnexion" METHOD="POST">
             <br />
-                <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />'''
-        if error == 'error':
-            ret += '<div class="input-error">login ou mot de passe incorrect</div>'
-        ret+= '''<input type="submit" name="choix" value="Ok" />
-                <div>
-                    <input name="password" type="password" placeholder="Mot de passe" required />
-                </div>
+            <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
+        <table class="login">
+        <tr>
+        <td><input name="password" type="password" placeholder="Mot de passe" required /></td>
+        <td><input type="submit" name="choix" value="Ok" /></td>
+        </tr>
+        </table>
          </form>
         '''
+        if error == 'error':
+            ret += '<div class="input-error">login ou mot de passe incorrect</div>'
     else: # utilisateur connecte
         ret='''<table><tbody><tr><td>
          <div id="deconnect" style="display:inline; text-align:center">
         <div>Bonjour</div>
-        <div><h2 style="display: inherit;text-align:center;width:100%;">ADMINISTRATEUR</h2></div>
+        <div><h2 style="display: inherit;text-align:center;width:100%;">'''+Session()['nom']+'''</h2></div>
            <div style="display: inline-flex;">
          <form action="../page_profil.py">
             <input type="submit" value="Profil" />

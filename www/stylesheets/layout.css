@@ -88,7 +88,7 @@ blockquote cite { position: absolute; right: 50px; text-align: right; bottom: 0;
 blockquote::before, blockquote::after { content: '\201C'; font-size: 100px; position: absolute; top: 0px; left: 0px; line-height: 1em; font-family: Georgia, "Times New Roman", serif; font-style: italic; color: #DDD; padding-right:20px; }
 
 
-footer {background: #85E96A; border-top: 1px solid #40C81C; }
+footer {background: #85E96A; border-top: 1px solid #40C81C; margin-top: 2em;}
 #footer-base { background: #006407; font-size: 0.9em; font-style: italic; color: #EEE; padding: 0.8em 0; }
 #footer-base a { color: #85E96A; }
 #footer-base a:hover { color: #EEE; }
