@@ -16,6 +16,11 @@ def index(error=''):
 def corps_page_connecte(date_debut=None, date_fin=None):
     html = """
         <div class="container">
+<style>
+table, th, td {
+    border: 1px solid black;
+    padding: 15px;
+}</style>
             <div class="sixteen columns main-content">
     <p>Bonjour!</p>
     <form>
