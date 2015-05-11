@@ -2,7 +2,7 @@ import bcrypt
 exploitant = Import('Exploitant.py')
 
 def Connexion(page, choix, login='',password=''):
-    if choix=='deconnecter':
+    if choix=='Déconnecter':
         if "login" in Session(): del Session()["login"]
         return page('Deconnecte')
     else:
