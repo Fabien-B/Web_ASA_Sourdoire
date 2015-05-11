@@ -37,7 +37,7 @@ def afficherHautPage(error = '', titre=''):
                 '''+afficherFormulaireConnexion(error)+'''
                 </div>
             </div>
-            <div id="header-inner" class="container sixteen columns over">
+            <div id="header-inner" class="container ten columns alpha">
                     <nav id="main-nav">
                         <ul id="main-nav-menu" class="nav-menu">'''
     ret += create_link('menu-item-1', 'Accueil', titre,'index.py')
