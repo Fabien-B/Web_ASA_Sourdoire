@@ -37,7 +37,7 @@ def afficherHautPage(error = '', titre=''):
                 '''+afficherFormulaireConnexion(error)+'''
                 </div>
             </div>
-            <div id="header-inner" class="container sixteen columns over">
+            <div id="header-inner" class="container ten columns">
 					<nav id="main-nav">
 						<ul id="main-nav-menu" class="nav-menu">'''
     ret += create_link('menu-item-1', 'Accueil', titre,'index.py')
@@ -79,18 +79,20 @@ def afficherFormulaireConnexion(error=''):
          </form>
         '''
     else: # utilisateur connecte
-        ret='''<table style="height=50%"><td>
-         <div id="deconnect" style="display:inline; text-align:center" >
+        ret='''<table><tbody><tr><td>
+         <div id="deconnect" style="display:inline; text-align:center">
         <div>Bonjour</div>
-        <h2 style="display:inline-block;">'''+Session()['nom']+'''</h1><br />
+        <div><h2 style="display: inherit;text-align:center;width:100%;">ADMINISTRATEUR</h2></div>
+           <div style="display: inline-flex;">
          <form action="../page_profil.py">
             <input type="submit" value="Profil" />
          </form>
-         <form action="traiterFormulaireConnexion" METHOD="POST">
-             <input type="submit" name="choix" value="Déconnecter" />
+         <form action="traiterFormulaireConnexion" method="POST">
+             <input type="submit" name="choix" value="Déconnecter">
          </form>
+           </div>
          </div>
-         </td></table>
+         </td></tr></tbody></table>
          '''
     return ret
 
