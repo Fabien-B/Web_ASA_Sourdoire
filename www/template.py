@@ -33,7 +33,7 @@ def afficherHautPage(error = '', titre=''):
                     </div>
                     <div class="eight columns alpha">
                 </div>
-                <div id="login" class="five columns omega" style="float:right;height:80px;">
+                <div id="login" class="five columns alpha" style="float:right;height:80px;">
                 '''+afficherFormulaireConnexion(error)+'''
                 </div>
             </div>
@@ -69,15 +69,17 @@ def afficherFormulaireConnexion(error=''):
         ret='''
         <form id="connect" action="traiterFormulaireConnexion" METHOD="POST">
             <br />
-                <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />'''
-        if error == 'error':
-            ret += '<div class="input-error">login ou mot de passe incorrect</div>'
-        ret+= '''<input type="submit" name="choix" value="Ok" />
-                <div>
-                    <input name="password" type="password" placeholder="Mot de passe" required />
-                </div>
+            <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
+        <table style="border:0px">
+        <tr>
+        <td><input name="password" type="password" placeholder="Mot de passe" required /></td>
+        <td><input type="submit" name="choix" value="Ok" /></td>
+        </tr>
+        </table>
          </form>
         '''
+        if error == 'error':
+            ret += '<div class="input-error">login ou mot de passe incorrect</div>'
     else: # utilisateur connecte
         ret='''<table style="height=50%"><td>
          <div id="deconnect" style="display:inline; text-align:center" >
