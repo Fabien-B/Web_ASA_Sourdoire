@@ -284,7 +284,7 @@
 					margin-bottom:10px;}
 	#connect input[type="password"] {width: 90%;
 					margin-bottom:10px;}
-	#deconnect form{margin-bottom:0px;}
+	#deconnect form{margin-bottom:0px;margin-left:15px;margin-right:15px;}
 	#deconnect button{margin-bottom:0px;}
 	#deconnect input[type="submit"]{margin-bottom:0px;}
 
