@@ -16,6 +16,7 @@ def afficherHautPage(error = '', titre=''):
             <link rel="stylesheet" href="../stylesheets/flexslider.css">
             <link rel="stylesheet" href="../stylesheets/prettyPhoto.css">
             <link rel="stylesheet" href="../stylesheets/perso.css">
+<<<<<<< Updated upstream
             <link rel="stylesheet" href="../stylesheets/leaflet.css">
         <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css">
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
@@ -24,6 +25,13 @@ def afficherHautPage(error = '', titre=''):
             <script type="text/javascript" src="../js/scripts.js"></script>
             <script type="text/javascript" src="../js/leaflet.js"></script>
         <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+=======
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+            <script src="../js/jquery.flexslider-min.js"></script>
+            <script src="../js/scripts.js"></script>
+            <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+>>>>>>> Stashed changes
         </head>
         <body>
             <header id="header" class="site-header" role="banner">
