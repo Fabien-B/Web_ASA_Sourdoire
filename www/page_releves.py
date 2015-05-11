@@ -17,7 +17,20 @@ def corps_page():
         <p>Compteur :  <select name="Combo">1</select></p>
 	<p>Index début :<input type="number"></p>
 	<p>Index fin :<input type="number"></p>
-	<p>Date :<input type="datetime"></p>
+
+
+<div>
+	    <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css">
+  <script src="../js/jquery-1.10.2.js"></script>
+  <script src="../js/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+ 
+<p>Date: <input type="text" id="datepicker"></p></div>
+	
         </div>        
         </aside>
         <!-- End Left Sidebar -->

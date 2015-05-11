@@ -17,15 +17,17 @@ def afficherHautPage(error = '', titre=''):
             <link rel="stylesheet" href="../stylesheets/prettyPhoto.css">
             <link rel="stylesheet" href="../stylesheets/perso.css">
             <link rel="stylesheet" href="../stylesheets/leaflet.css">
+	    <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css">
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
             <script type="text/javascript" src="../js/jquery-2.1.3.js"></script>
             <script type="text/javascript" src="../js/jquery.flexslider-min.js"></script>
             <script type="text/javascript" src="../js/scripts.js"></script>
             <script type="text/javascript" src="../js/leaflet.js"></script>
+	    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
         </head>
         <body>
             <header id="header" class="site-header" role="banner">
-                <div class="sixteen columns over" style="height:0px;">
+                <div class="sixteen columns over" style="height:80px;">
                     <div class="tree columns alpha" style="float:left; margin-top:10px;height:80px;">
                             <a href="../index.py" id="logo"><img src="../images/logo.png" alt="Icebrrrg logo" height="100" /></a>
                     </div>
