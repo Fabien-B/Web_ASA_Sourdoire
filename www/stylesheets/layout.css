@@ -39,7 +39,7 @@ h1 a { text-indent: -9999px; }
 /* #Navigation
 ================================================== */
 
-#main-nav {width: 100%;display: -webkit-box;}
+#main-nav {width: 100%;display: -webkit-box;float:left;}
 #main-nav ul, #main-nav li { list-style: none; padding: 0; margin: 0; display: inline; } 
 #main-nav ul li { float: left; position: relative; }
 #main-nav ul li a { display: inline-block; padding: 48px 5px 20px 5px; margin: 0px; text-decoration: none; font-size: 15px; border-bottom: 3px solid transparent; }

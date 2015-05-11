@@ -17,13 +17,13 @@ def afficherHautPage(error = '', titre=''):
             <link rel="stylesheet" href="../stylesheets/prettyPhoto.css">
             <link rel="stylesheet" href="../stylesheets/perso.css">
             <link rel="stylesheet" href="../stylesheets/leaflet.css">
-	    <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css">
+        <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css">
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
             <script type="text/javascript" src="../js/jquery-2.1.3.js"></script>
             <script type="text/javascript" src="../js/jquery.flexslider-min.js"></script>
             <script type="text/javascript" src="../js/scripts.js"></script>
-            <script type="text/javascript" src="../js/leaflet.js"></script>
-	    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+            <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
         </head>
         <body>
             <header id="header" class="site-header" role="banner">
@@ -37,9 +37,9 @@ def afficherHautPage(error = '', titre=''):
                 '''+afficherFormulaireConnexion(error)+'''
                 </div>
             </div>
-            <div id="header-inner" class="container sixteen columns over">
-					<nav id="main-nav">
-						<ul id="main-nav-menu" class="nav-menu">'''
+            <div id="header-inner" class="container ten columns alpha">
+                    <nav id="main-nav">
+                        <ul id="main-nav-menu" class="nav-menu">'''
     ret += create_link('menu-item-1', 'Accueil', titre,'index.py')
     ret += create_link('menu-item-2', 'Ma Conso', titre,'page_conso.py')
     ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
@@ -79,18 +79,20 @@ def afficherFormulaireConnexion(error=''):
          </form>
         '''
     else: # utilisateur connecte
-        ret='''<table style="height=50%"><td>
-         <div id="deconnect" style="display:inline; text-align:center" >
+        ret='''<table><tbody><tr><td>
+         <div id="deconnect" style="display:inline; text-align:center">
         <div>Bonjour</div>
-        <h2 style="display:inline-block;">'''+Session()['nom']+'''</h1><br />
+        <div><h2 style="display: inherit;text-align:center;width:100%;">ADMINISTRATEUR</h2></div>
+           <div style="display: inline-flex;">
          <form action="../page_profil.py">
             <input type="submit" value="Profil" />
          </form>
-         <form action="traiterFormulaireConnexion" METHOD="POST">
-             <input type="submit" name="choix" value="Déconnecter" />
+         <form action="traiterFormulaireConnexion" method="POST">
+             <input type="submit" name="choix" value="Déconnecter">
          </form>
+           </div>
          </div>
-         </td></table>
+         </td></tr></tbody></table>
          '''
     return ret
 
