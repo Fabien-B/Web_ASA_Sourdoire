@@ -74,23 +74,23 @@
 	h5 { font-size: 17px; line-height: 24px; }
 	h6 { font-size: 14px; line-height: 21px; }
 	.subheader { color: #777; }
-	#contactform {display: block;
+	.contactform {display: block;
 						width: 900px;
 						margin: 50px auto;
 						padding: 35px;
 						border: 1px solid #CBCBCB;
 						background-color: #FFF;}
-	#contacttable {width: 800px;
-	margin: 50px auto; padding: 35px}
-	#contactformtitle {font-size: 50px; text-align: center; }
+	.contacttable {width: 800px;
+		margin: 50px auto; padding: 35px}
+	.contactformtitle {font-size: 50px; text-align: center; }
 	#numtel {font-size: 30px; margin-top: 30px; text-align: center; }
-	#objetdemande {float: left; margin-bottom: 20px}
-	#formobjetdemande {position: relative; left: 20px;}
+	.objetdemande {float: left; margin-bottom: 20px}
+	.formobjetdemande {position: relative; left: 20px;}
 	#tr2 {position: relative; top: 35px;}
 	#topicinput {width: 400px;}
-	#topicarea {width: 700px;}
+	.topicarea {width: 700px;}
 	.captchadiv {text-align: center; position: relative; top: 20px;}
-	#captchainput {display: inline;}
+	.captchainput {display: inline;}
 
 	p { margin: 0 0 20px 0; }
 	p img { margin: 0; }

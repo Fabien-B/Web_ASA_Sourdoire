@@ -19,72 +19,81 @@ def traiterFormulaireConnexion(choix, login='',password=''):
 
 def afficherFormulaireContact_connecte():
     html = """
-    <h1 id=contactformtitle>Formulaire de contact</h1>
+    <div class="container">
+        <div class="sixteen columns main-content">
+    <h1 class=contactformtitle>Formulaire de contact</h1>
     <br>
     <h2 id=numtel>Numéro de téléphone de l'administrateur : """ + str(exploitant.Exploitant(0).tel) + """</h2>
-    <form id=contactform action=../page_contact.py/traiterFormulaireContact METHOD="get">
-    <table id = contacttable>
+    <form class=contactform action=../page_contact.py/traiterFormulaireContact METHOD="POST">
+    <table class = contacttable style="border:0px;">
     <tr>
-    <td id = objetdemande><strong>Objet de la Demande :</strong></td><td id = formobjetdemande>
+    <td class = objetdemande><strong>Objet de la Demande :</strong></td><td id = formobjetdemande>
     <input id=topicinput name="topic" size=20 maxlength=70 type="text" value="" placeholder="Objet de la demande" required />
     </td></tr>
     <tr id = tr2><td colspan=2>
-    <textarea id=topicarea NAME="demande" ROWS="10" cols="500" placeholder="Votre demande ici"></textarea>
+    <textarea class=topicarea NAME="demande" ROWS="10" cols="500" placeholder="Votre demande ici"></textarea>
     </td></tr></table>
     <br />
     <div class=captchadiv>Combien font 2+2 ? <br />
-    <input id = captchainput type="text" name="captcha" size=5 maxlength=5 value="" placeholder="Captcha" required /></div>
+    <input class = captchainput type="text" name="captcha" size=5 maxlength=5 value="" placeholder="Captcha" required /></div>
     <br />
     <div class=captchadiv>
     <input type=submit value=Envoyer>
     <input type=reset value=Annuler>
     </div>
     </form>
+        </div>
+    </div>
     """
     return html
 
 
 def afficherFormulaireContact_non_connecte():
     html = """
-    <h2>Formulaire de contact</h2>
+    <div class="container">
+        <div class="sixteen columns main-content">
+    <h1 class=contactformtitle style="margin-top:40px">Formulaire de contact</h1>
     <br />
-    <form id=contact action=../page_contact.py/traiterFormulaireContact METHOD="get">
-    <table>
+    <form class=contactform action=../page_contact.py/traiterFormulaireContact METHOD="POST" class="two-thirds.column" style="margin:25px">
+    <table class = contacttable style="border:0px;">
     <tr>
-    <td> Votre Nom : </td>
-    <td>
-    <input name="nom" size=15 maxlength=40 type="text" value="Votre nom + prénom" placeholder="Name" required />
+    <td class = objetdemande> Votre Nom : </td>
+    <td class = formobjetdemande>
+        <input name="nom" size=15 maxlength=40 type="text" placeholder="Nom + prénom" placeholder="Name" required />
     </td>
     </tr>
     <tr>
-    <td> Votre numéro de téléphone </td>
-    <td>
-    <input name="numero" size=10 maxlength=15 type="text" value="Votre numéro de téléphone" placeholder="NumeroTel" />
+    <td class = objetdemande> Votre numéro de téléphone </td>
+    <td class = formobjetdemande>
+        <input name="numero" size=10 maxlength=15 type="text" placeholder="Numéro de téléphone" placeholder="NumeroTel" />
     </td>
     </tr>
     <tr>
-    <td> L'objet de votre demande </td>
-    <td>
-    <input name="topic" size=20 maxlength=50 type="text" value="Objet de la demande" placeholder="Topic" required />
+    <td class = objetdemande> L'objet de votre demande </td>
+    <td class = formobjetdemande>
+        <input name="topic" size=20 maxlength=50 type="text" placeholder="Objet de la demande" required />
     </td>
     </tr>
     <tr><td colspan=2>Votre demande<br>
-    <textarea name="demande" rows="6" cols="200"></textarea>
+    <textarea class=topicarea name="demande" placeholder="Votre demande ici" rows="10" cols="500" style="margin=20px"></textarea>
     </td></tr>
     </table>
     <br />
-    <div>Combien font 2+2 ?</div>
-    <input type="number" name="captcha" size=5 maxlength=5 value="" placeholder="Captcha" required />
+    <div class=captchadiv>Combien font 2+2 ?</div>
+    <input class = captchainput type="number" name="captcha" size=5 maxlength=5 value="" placeholder="Captcha" required />
     <br />
     <input type=submit value=Envoyer>
     <input type=reset value=Annuler>
     </form>
+        </div>
+    </div>
     """
     return html
 
 
-def traiterFormulaireContact(page, nom='', numero='', topic='', demande='', captcha=''):
-    if captcha == 4:
+def traiterFormulaireContact(nom='', numero='', topic='', demande='', captcha=''):
+    result=""
+    if captcha == '4':
 
         if len(nom) >=1:
             """requête SQL"""
