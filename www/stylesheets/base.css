@@ -89,7 +89,7 @@
 	#tr2 {position: relative; top: 35px;}
 	#topicinput {width: 400px;}
 	.topicarea {width: 700px;}
-	.captchadiv {text-align: center; position: relative; top: 20px;}
+	.captchadiv {text-align:center; position: relative; top: 20px;}
 	.captchainput {display: inline;}
 
 	p { margin: 0 0 20px 0; }
