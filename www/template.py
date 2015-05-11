@@ -70,7 +70,7 @@ def afficherFormulaireConnexion(error=''):
         <form id="connect" action="traiterFormulaireConnexion" METHOD="POST">
             <br />
             <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
-        <table style="border:0px">
+        <table class="login">
         <tr>
         <td><input name="password" type="password" placeholder="Mot de passe" required /></td>
         <td><input type="submit" name="choix" value="Ok" /></td>
@@ -84,7 +84,7 @@ def afficherFormulaireConnexion(error=''):
         ret='''<table><tbody><tr><td>
          <div id="deconnect" style="display:inline; text-align:center">
         <div>Bonjour</div>
-        <div><h2 style="display: inherit;text-align:center;width:100%;">ADMINISTRATEUR</h2></div>
+        <div><h2 style="display: inherit;text-align:center;width:100%;">'''+Session()['nom']+'''</h2></div>
            <div style="display: inline-flex;">
          <form action="../page_profil.py">
             <input type="submit" value="Profil" />
