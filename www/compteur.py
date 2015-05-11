@@ -41,6 +41,20 @@ class Compteur(object):
         self.lon = lon
         self.altitude = altitude
 
+    @staticmethod
+    def get_compteurs_id(id_ex):
+        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
+        curseur = connection.cursor()
+        if id_ex == -1:
+            requete = 'select Id_compteur FROM Compteur;'
+        else:
+            requete = 'select Compteur FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Id_exploitant = {};'.format(id_ex)
+        curseur.execute(requete)
+        id_compt_tuple = curseur.fetchall()
+        id_compt_list = []
+        for (id_compt,) in id_compt_tuple:
+            id_compt_list.append(id_compt)
+        return id_compt_list
 
 class CompteurError(Exception):
     pass

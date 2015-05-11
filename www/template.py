@@ -17,13 +17,13 @@ def afficherHautPage(error = '', titre=''):
             <link rel="stylesheet" href="../stylesheets/prettyPhoto.css">
             <link rel="stylesheet" href="../stylesheets/perso.css">
             <link rel="stylesheet" href="../stylesheets/leaflet.css">
-	    <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css">
+        <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css">
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
             <script type="text/javascript" src="../js/jquery-2.1.3.js"></script>
             <script type="text/javascript" src="../js/jquery.flexslider-min.js"></script>
             <script type="text/javascript" src="../js/scripts.js"></script>
             <script type="text/javascript" src="../js/leaflet.js"></script>
-	    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
         </head>
         <body>
             <header id="header" class="site-header" role="banner">
@@ -38,8 +38,8 @@ def afficherHautPage(error = '', titre=''):
                 </div>
             </div>
             <div id="header-inner" class="container sixteen columns over">
-					<nav id="main-nav">
-						<ul id="main-nav-menu" class="nav-menu">'''
+                    <nav id="main-nav">
+                        <ul id="main-nav-menu" class="nav-menu">'''
     ret += create_link('menu-item-1', 'Accueil', titre,'index.py')
     ret += create_link('menu-item-2', 'Ma Conso', titre,'page_conso.py')
     ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
