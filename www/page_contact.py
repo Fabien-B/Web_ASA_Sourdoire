@@ -95,13 +95,13 @@ def afficherFormulaireContact_non_connecte():
 
 def traiterFormulaireContact(nom='', numero='', topic='', demande='', captcha=''):
     result=""
+
     if captcha == '4':
 
-        if len(nom) >=1:
-            """requête SQL"""
-            result = Session()["nom"] + Session()["Id_exploitant"]
+        if "login" in Session():
+            result += "Nom : " + str(Session()["nom"]) + "\n ;  Identifiant : " + str(Session()["Id_exploitant"])
         else:
-            result = """<br />Infos : <br />"""
+            result += """<br />Infos : <br />"""
             result += nom + numero + topic + demande
     return result
 
