@@ -84,7 +84,7 @@
 		margin: 50px auto; padding: 35px}
 	.contactformtitle {font-size: 50px; text-align: center; }
 	#numtel {font-size: 30px; margin-top: 30px; text-align: center; }
-	.objetdemande {float: left; margin-bottom: 20px}
+	.objetdemande {float: left}
 	.formobjetdemande {position: relative; left: 20px;}
 	#tr2 {position: relative; top: 35px;}
 	#topicinput {width: 400px;}
@@ -93,7 +93,7 @@
 	.captchadiv2 {text-align: center; position: relative; top: 20px;}
 	.captchainput {display: inline;}
 
-	p { margin: 0 0 20px 0; }
+	p { margin: 0 0 35px 0;  }
 	p img { margin: 0; }
 	p.lead { font-size: 21px; line-height: 27px; color: #777;  }
 
