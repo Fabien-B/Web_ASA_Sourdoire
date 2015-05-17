@@ -2,7 +2,7 @@ template = Import('template.py' ) # import du fichier template (entete, pieds de
 connexion = Import('gestion_session.py')
 
 def index(error=''):
-    ret=template.afficherHautPage(error, titre='Ma Conso')
+    ret=template.afficherHautPage(error, titre='Entrer un relevé')
     if "login" in Session():
         ret += corps_page_connecte()
     else:
