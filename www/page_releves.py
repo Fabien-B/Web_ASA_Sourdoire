@@ -23,8 +23,12 @@ def corps_page_deconnecte():
 
 
 def corps_page_connecte():
-    option = recup_options()
-
+    option = recup_options()[0]
+    nom_compteur = recup_options()[1]
+    try:
+        index_debut = get_last_index(nom_compteur[0])
+    except IndexError:
+        index_debut = 0
     script = '''<script>
   $(function() {
     $( "#datepicker" ).datepicker();
@@ -51,7 +55,8 @@ def corps_page_connecte():
         <select name="compteur">
         {0}
         </select></p>
-    <p>Index début :<input name="index_debut" type="text"></p>
+    <p>Index début :
+    <input name="index_debut" type="text" placeholder="{3}" /></p>
     <p>Index fin :<input name="index_fin" type="text"></p>
 
 <p>Date : <input name="date" type="text" id="datepicker"></p>
@@ -85,9 +90,9 @@ def corps_page_connecte():
         </article>
         <!-- End main Content -->
       
-    
+
     </div>
-    """.format(option, script, style)
+    """.format(option, script, style, index_debut)
     return html
 
 
@@ -96,7 +101,7 @@ def ajout_releve(compteur , index_debut, index_fin, date, time, submit):
     time = time.split(":")
     ts = datetime.datetime(int(date[2]), int(date[1]), int(date[0]), int(time[0]), int(time[1]), 0)
     ts = datetime.datetime.timestamp(ts)
-    
+
     myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
     id_compteur = get_id_compteur_from_nom(compteur)
     myreleve = releve.Releve(0)
@@ -114,11 +119,13 @@ def recup_options():
     myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
     login = myexploitant.login
     option = []
+    compteurs = []
     info = exploitant.Exploitant.get_his_parcelle(login)
     for (x, y) in info:
-        option.append('<option> '+x + ', ' + str.capitalize(str(y)) + ' </option>')
+        option.append('<option> ' + x + ', ' + str.capitalize(str(y)) + ' </option>')
+        compteurs.append(str(x))
     option = str(option).replace("',", "'\n").replace("'", "").replace("[", "").replace("]", "")
-    return option
+    return option, compteurs
 
 
 def traiterFormulaireConnexion(choix, login='',password=''):
@@ -132,3 +139,11 @@ def get_id_compteur_from_nom(nom):
     curseur.execute(requete)
     id = curseur.fetchall()[0][0]
     return id
+
+def get_last_index(nom_compteur):
+        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
+        curseur = connection.cursor()
+        requete ='''select max(Index_fin) from Releve where Compteur in (select Id_compteur as id from Compteur where Nom="{}");'''.format(nom_compteur)
+        curseur.execute(requete)
+        result = curseur.fetchall()[0][0]
+        return result

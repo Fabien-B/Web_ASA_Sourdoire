@@ -28,13 +28,18 @@ def afficherHautPage(error = '', titre=''):
         <body>
             <header id="header" class="site-header" role="banner">
                 <div class="sixteen columns over" style="height:80px;">
+
                     <div class="tree columns alpha" style="float:left; margin-top:10px;height:80px;">
-                            <a href="../index.py" id="logo"><img src="../images/logo.png" alt="Icebrrrg logo" height="100" /></a>
+                        <a href="../index.py" id="logo"><img src="../images/logo.png" alt="Icebrrrg logo" height="100" /></a>
                     </div>
-                    <div class="eight columns alpha">
-                </div>
-                <div id="login" class="five columns alpha" style="float:right;height:80px;">
-                '''+afficherFormulaireConnexion(error)+'''
+
+                    <div class="nine columns alpha">
+                    </div>
+
+                    <div id="login" class="four columns alpha" style="float:right;height:80px;margin-top:10px;">
+                    '''+afficherFormulaireConnexion(error)+'''
+                    </div>
+
                 </div>
             </div>
             <div id="header-inner" class="container ten columns alpha">
@@ -81,26 +86,31 @@ def afficherFormulaireConnexion(error=''):
         '''
         if error == 'error':
             ret += '<div class="input-error">login ou mot de passe incorrect</div>'
+
+
     else: # utilisateur connecte
-        ret='''
-        <style> #connect td {
-  border: 1px solid black;
-  padding: 15px;
-}</style>
-        <table id ='connect'><tbody><tr><td>
-         <div id="deconnect" style="display:inline; text-align:center">
-        <div>Bonjour</div>
-        <div><h2 style="display: inherit;text-align:center;width:100%;">'''+Session()['nom']+'''</h2></div>
-           <div style="display: inline-flex;">
-         <form action="../page_profil.py">
-            <input type="submit" value="Profil" />
-         </form>
-         <form action="traiterFormulaireConnexion" method="POST">
-             <input type="submit" name="choix" value="Déconnecter">
-         </form>
-           </div>
-         </div>
-         </td></tr></tbody></table>
+        ret = '''
+        <style> #connect tr {border: 1px solid black;} #connect td {padding: 15px;}</style>
+
+
+         <table id ='connect'>
+
+            <tr>
+                <td>
+                <div></div>
+                <h2 style="display: inherit;text-align:center;width:100%;">'''+Session()['nom']+'''</h2>
+                </td>
+
+                <td style="text-align:center;">
+                    <form style="margin-bottom:10px;" action="../page_profil.py">
+                        <input type="submit" value="Profil" />
+                    </form>
+                    <form action="traiterFormulaireConnexion" method="POST">
+                        <input type="submit" name="choix" value="Déconnecter">
+                    </form>
+                </td>
+            </tr>
+        </table>
          '''
     return ret
 
