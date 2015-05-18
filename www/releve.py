@@ -49,16 +49,16 @@ class Releve(object):
     @staticmethod
     def get_releves_id(id_exploitant,youger_date=None, older_date=None):
         '''return a list of tuples: [(id_releve, id_parcelle), ... ]'''
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
+        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1',database='asa')
         curseur = connection.cursor()
 
         if youger_date:
-            youger_date="'{}'".format(youger_date)
+            youger_date = "'{}'".format(youger_date)
         else:
             youger_date = 'NULL'
 
         if older_date:
-            older_date="'{}'".format(older_date)
+            older_date = "'{}'".format(older_date)
         else:
             older_date = 'NULL'
 

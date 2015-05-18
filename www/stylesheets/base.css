@@ -281,8 +281,7 @@
 	#connect div { overflow: hidden; 
 			padding-right: .5em; }
 	#connect input[type="text"]{margin-bottom:10px;}
-	#connect input[type="submit"] {float: right;
-					margin-bottom:10px;}
+	#connect input[type="submit"] {margin-bottom:10px;}
 	#connect input[type="password"] {width: 90%;
 					margin-bottom:10px;}
 	#deconnect form{margin-bottom:0px;margin-left:15px;margin-right:15px;}

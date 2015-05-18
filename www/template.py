@@ -67,6 +67,7 @@ def afficherFormulaireConnexion(error=''):
 
     if "login" not in Session():
         ret='''
+
         <form id="connect" action="traiterFormulaireConnexion" METHOD="POST">
             <br />
             <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
@@ -81,7 +82,12 @@ def afficherFormulaireConnexion(error=''):
         if error == 'error':
             ret += '<div class="input-error">login ou mot de passe incorrect</div>'
     else: # utilisateur connecte
-        ret='''<table><tbody><tr><td>
+        ret='''
+        <style> #connect td {
+  border: 1px solid black;
+  padding: 15px;
+}</style>
+        <table id ='connect'><tbody><tr><td>
          <div id="deconnect" style="display:inline; text-align:center">
         <div>Bonjour</div>
         <div><h2 style="display: inherit;text-align:center;width:100%;">'''+Session()['nom']+'''</h2></div>

@@ -1,7 +1,9 @@
 exploitant = Import('Exploitant.py')
-
+releve = Import('releve.py')
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 connexion = Import('gestion_session.py')
+import mysql.connector
+import datetime
 
 def index(error=''):
     ret=template.afficherHautPage(error, titre='Entrer un relevé')
@@ -12,36 +14,50 @@ def index(error=''):
     ret += template.afficherBasPage()
     return ret
 
+
 def corps_page_deconnecte():
     html = """
     <p>Bonjour! Veuillez vous connecter.</p>
     """
     return html
 
+
 def corps_page_connecte():
     option = recup_options()
-    script='''<script>
+
+    script = '''<script>
   $(function() {
     $( "#datepicker" ).datepicker();
   });
-  </script>'''
+  </script>
+  <script>
+  $(function() {
+    $( "#timepicker" ).timepicker();
+  });
+  </script>
+'''
+
     style='''<style> input[type="text"] { float: right; margin-right: 20px;} select{ float: right; margin-right: 20px;}</style>'''
+
     html = """
     {2}
     <div class="container">
     <h1 class="container sixteen columns over" style="text-align: center;margin-bottom:15px;">Entrer un relevé</h1>
         <aside class="six columns left-sidebar">
+        <form action="ajout_releve" method="GET">
         <div class="sidebar-widget">
         <h2 style='margin-bottom:30px'>Informations du relevé :</h2>
         <p>Compteur :  
-        <select name="Combo">
+        <select name="compteur">
         {0}
         </select></p>
-    <p>Index début :<input type="text"></p>
-    <p>Index fin :<input type="text"></p>
-{1}
-<p>Date : <input type="text" id="datepicker"></p>
+    <p>Index début :<input name="index_debut" type="text"></p>
+    <p>Index fin :<input name="index_fin" type="text"></p>
+
+<p>Date : <input name="date" type="text" id="datepicker"></p>
+<p>Heure : <input name="time" type="text" id="timepicker"></p>
 <p style='float:right; margin-right:20px;'><input type="submit" name="submit" value="Valider" /></p>
+</form>
         </aside>
         <!-- End Left Sidebar -->
 
@@ -59,10 +75,10 @@ def corps_page_connecte():
         <script type="text/javascript" src="../js/map.js"></script>
         <script type="text/javascript" src="../js/map_content.js"></script>
     </div>
-        <link rel="stylesheet" href="../datepicker/jquery-ui.min.css">
-  <script src="../datepicker/jquery-1.10.2.js"></script>
-  <script src="../datepicker/jquery-ui.min.js"></script>
-
+        <link rel="stylesheet" href="../stylesheets/jquery-ui.min.css">
+        <link rel="stylesheet" href="../stylesheets/jquery.ui.timepicker.css">
+        <script src="../js/jquery-ui.min.js"></script>
+        <script src="../js/jquery.ui.timepicker.js"></script>
 {1}
 </html>
       
@@ -73,6 +89,25 @@ def corps_page_connecte():
     </div>
     """.format(option, script, style)
     return html
+
+
+def ajout_releve(compteur , index_debut, index_fin, date, time, submit):
+    date = date.split("/")
+    time = time.split(":")
+    ts = datetime.datetime(int(date[2]), int(date[1]), int(date[0]), int(time[0]), int(time[1]), 0)
+    ts = datetime.datetime.timestamp(ts)
+    
+    myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
+    id_compteur = get_id_compteur_from_nom(compteur)
+    myreleve = releve.Releve(0)
+    myreleve.id = 0
+    myreleve.compteur = id_compteur
+    myreleve.index_deb = index_debut
+    myreleve.index_fin = index_fin
+    myreleve.date = ts
+    myreleve.exploitant = myexploitant.id
+    myreleve.save()
+    return index('Profil actualisé')
 
 
 def recup_options():
@@ -88,3 +123,12 @@ def recup_options():
 
 def traiterFormulaireConnexion(choix, login='',password=''):
     return connexion.Connexion(index, choix, login, password)
+
+def get_id_compteur_from_nom(nom):
+    nom = nom.split()[0].replace(",", "")
+    connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
+    curseur = connection.cursor()
+    requete = 'select Id_compteur as id from Compteur where Nom="{}";'.format(nom)
+    curseur.execute(requete)
+    id = curseur.fetchall()[0][0]
+    return id
