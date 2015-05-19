@@ -12,13 +12,20 @@ def index(error=''):
 def corps_page():
     html = """
     <div id="map" style="height: 700px"></div>
+    <script type="text/javascript" src="../js/map.js"></script>
 	<script type="text/javascript" src="../js/map_network.js"></script>
-	<script type="text/javascript" src="../js/network_content.js"></script>
     """
     return html
 
-def get_json_compteurs(id_ex=-1):
+def get_json_compteurs(ex=not None):
+    if ex and "login" in Session():     #une recherche ciblée necessite d'être connecté pour aboutir
+        id_ex = Session()["Id_exploitant"]
+    else:
+        id_ex = 0
     list_compteurs = compteur.Compteur.get_compteurs_id(id_ex)
+    return compteurs_to_json(list_compteurs)
+
+def compteurs_to_json(list_compteurs):
     dico = {}
     dico["type"]="FeatureCollection"
     list_json = []
@@ -33,7 +40,6 @@ def get_json_compteurs(id_ex=-1):
             list_json.append(dico_current)
     dico["features"] = list_json
     objects = json.dumps(dico)
-
     return objects
 
 

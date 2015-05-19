@@ -78,7 +78,7 @@ def corps_page_connecte():
     <div>
         <div id="map" style="width: 100%; height: 400px"></div>
         <script type="text/javascript" src="../js/map.js"></script>
-        <script type="text/javascript" src="../js/map_content.js"></script>
+        <script type="text/javascript" src="../js/map_releves.js"></script>
     </div>
         <link rel="stylesheet" href="../stylesheets/jquery-ui.min.css">
         <link rel="stylesheet" href="../stylesheets/jquery.ui.timepicker.css">

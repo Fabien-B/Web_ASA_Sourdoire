@@ -45,7 +45,7 @@ class Compteur(object):
     def get_compteurs_id(id_ex):
         connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
         curseur = connection.cursor()
-        if id_ex == -1:
+        if id_ex == 0:
             requete = 'select Id_compteur FROM Compteur;'
         else:
             requete = 'select Compteur FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Id_exploitant = {};'.format(id_ex)
