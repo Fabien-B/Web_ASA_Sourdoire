@@ -13,11 +13,11 @@ def index(error=''):
     ret += template.afficherBasPage()
     return ret
 
-def corps_page_connecte(date_debut=None, date_fin=None):
+def corps_page_connecte():
     html = """
         <div class="container">
 <style>
-table, th, td {
+#conso_content table, #conso_content th, #conso_content td {
     border: 1px solid black;
     padding: 15px;
 }</style>

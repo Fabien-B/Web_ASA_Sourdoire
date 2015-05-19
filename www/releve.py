@@ -11,7 +11,7 @@ class Releve(object):
             curseur = connection.cursor()
             requete = 'select max(Id_Releve) from Releve;'
             curseur.execute(requete)
-            (maxId,)=curseur.fetchall()[0]
+            (maxId,) = curseur.fetchall()[0]
             self.id = maxId + 1
             self.compteur = compteur
             self.exploitant = exploitant
@@ -23,9 +23,9 @@ class Releve(object):
         if self.compteur == None or self.exploitant == None or self.index_deb == None or self.index_fin == None or self.date == None:
             raise ReleveError("All attributes must be completed")
 
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
+        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
         curseur = connection.cursor()
-        requete = "INSERT INTO Releve VALUES ({0},{1},{2},{3},{4},{5});".format(self.id, self.compteur, self.exploitant, self.index_deb, self.index_fin, self.date)
+        requete = "INSERT INTO Releve VALUES ({0},{1},{2},{3},{4},'{5}');".format(self.id, self.compteur, self.exploitant, self.index_deb, self.index_fin, self.date)
         curseur.execute(requete)
         connection.commit()
 
@@ -49,16 +49,16 @@ class Releve(object):
     @staticmethod
     def get_releves_id(id_exploitant,youger_date=None, older_date=None):
         '''return a list of tuples: [(id_releve, id_parcelle), ... ]'''
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
+        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1',database='asa')
         curseur = connection.cursor()
 
         if youger_date:
-            youger_date="'{}'".format(youger_date)
+            youger_date = "'{}'".format(youger_date)
         else:
             youger_date = 'NULL'
 
         if older_date:
-            older_date="'{}'".format(older_date)
+            older_date = "'{}'".format(older_date)
         else:
             older_date = 'NULL'
 

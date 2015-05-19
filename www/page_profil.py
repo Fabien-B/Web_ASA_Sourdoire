@@ -99,7 +99,7 @@ def updateProfile(nom, tel, login, password, password_confirm, email, old_passwo
             return index()
         else:
             password = bcrypt.hashpw(password, myexploitant.salt)
-        if not email: email=myexploitant.mail
+        if not email: email = myexploitant.mail
         salt = myexploitant.salt
         myexploitant.update(myexploitant.id, nom, email, tel, login, password, salt)
         Session()["login"] = login

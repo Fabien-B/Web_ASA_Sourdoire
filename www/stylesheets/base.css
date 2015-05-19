@@ -29,8 +29,7 @@
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		font: inherit;
-		vertical-align: baseline; }
+		font: inherit;}
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block; }
 	body {
@@ -84,7 +83,7 @@
 		margin: 50px auto; padding: 35px}
 	.contactformtitle {font-size: 50px; text-align: center; }
 	#numtel {font-size: 30px; margin-top: 30px; text-align: center; }
-	.objetdemande {float: left; margin-bottom: 20px}
+	.objetdemande {float: left}
 	.formobjetdemande {position: relative; left: 20px;}
 	#tr2 {position: relative; top: 35px;}
 	#topicinput {width: 400px;}
@@ -93,7 +92,7 @@
 	.captchadiv2 {text-align: center; position: relative; top: 20px;}
 	.captchainput {display: inline;}
 
-	p { margin: 0 0 20px 0; }
+	p { margin: 0 0 35px 0;  }
 	p img { margin: 0; }
 	p.lead { font-size: 21px; line-height: 27px; color: #777;  }
 
@@ -171,7 +170,6 @@
 	  text-decoration: none;
 	  text-shadow: 0 1px rgba(255, 255, 255, .75);
 	  cursor: pointer;
-	  margin-bottom: 20px;
 	  line-height: normal;
 	  padding: 8px 10px;
 	  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
@@ -228,8 +226,7 @@
 /* #Forms
 ================================================== */
 
-	form {
-		margin-bottom: 20px; }
+	
 	fieldset {
 		margin-bottom: 20px; }
 	input[type="text"],
@@ -280,11 +277,7 @@
 		color: #444; }
 	#connect div { overflow: hidden; 
 			padding-right: .5em; }
-	#connect input[type="text"]{margin-bottom:10px;}
-	#connect input[type="submit"] {float: right;
-					margin-bottom:10px;}
-	#connect input[type="password"] {width: 90%;
-					margin-bottom:10px;}
+	#connect input[type="password"] {width: 90%;}
 	#deconnect form{margin-bottom:0px;margin-left:15px;margin-right:15px;}
 	#deconnect button{margin-bottom:0px;}
 	#deconnect input[type="submit"]{margin-bottom:0px;}
