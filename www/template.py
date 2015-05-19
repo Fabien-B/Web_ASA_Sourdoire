@@ -29,22 +29,23 @@ def afficherHautPage(error = '', titre=''):
         </head>
         <body>
             <header id="header" class="site-header" role="banner">
-                <div class="sixteen columns over" style="height:80px;">
+                <div class="sixteen columns over" style="height:120px;">
 
-                    <div class="tree columns alpha" style="float:left; margin-top:10px;height:80px;">
+                    <div class="tree columns alpha" style="float:left; margin-top:10px;">
                         <a href="../index.py" id="logo"><img src="../images/logo.png" alt="Icebrrrg logo" height="100" /></a>
                     </div>
 
                     <div class="nine columns alpha">
                     </div>
 
-                    <div id="login" class="four columns alpha" style="float:right;height:80px;margin-top:10px;">
+                    <div id="login" class="four columns alpha" style="float:right;margin-top:10px;">
+
                     '''+afficherFormulaireConnexion(error)+'''
                     </div>
 
                 </div>
             </div>
-            <div id="header-inner" class="container ten columns alpha">
+            <div id="header-inner" class="containner sixteen columns over" style="position: relative; margin: 0 auto; padding: 0;">
                     <nav id="main-nav">
                         <ul id="main-nav-menu" class="nav-menu">'''
     ret += create_link('menu-item-1', 'Accueil', titre,'index.py')
@@ -74,17 +75,21 @@ def afficherFormulaireConnexion(error=''):
 
     if "login" not in Session():
         ret='''
-
+        <style> #connect td {padding: 10px;}</style>
         <form id="connect" action="traiterFormulaireConnexion" METHOD="POST">
-            <br />
-            <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" required />
-        <table class="login">
-        <tr>
-        <td><input name="password" type="password" placeholder="Mot de passe" required /></td>
-        <td><input type="submit" name="choix" value="Ok" /></td>
-        </tr>
-        </table>
-         </form>
+            <table id ='connect' style="border-style: solid; border-width: 5px 5px 5px 5px; -moz-border-image: url(bordure.png) 5 5 5 5round; -webkit-border-image: url(bordure.png) 5 5 5 5 round; -o-border-image: url(bordure.png) 5 5 5 5 round; border-image: url(bordure.png) 5 5 5 5 fill round;background: rgba(2,0,1,0.3);">
+                <tr>
+                    <td>
+                    <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" style="margin-bottom:10px;" required />
+                    <input name="password" type="password" placeholder="Mot de passe" required />
+                    </td>
+
+                    <td style="text-align:center;">
+                        <input type="submit" name="choix" value="Ok" />
+                    </td>
+                </tr>
+            </table>
+        </form>
         '''
         if error == 'error':
             ret += '<div class="input-error">login ou mot de passe incorrect</div>'
@@ -92,11 +97,16 @@ def afficherFormulaireConnexion(error=''):
 
     else: # utilisateur connecte
         ret = '''
-        <style> #connect tr {border: 1px solid black;} #connect td {padding: 15px;}</style>
+        <style> #connect td {padding: 15px;}</style>
 
 
-         <table id ='connect'>
-
+         <table id ='connect' style="
+                    border-style: solid;
+border-width: 5px 5px 5px 5px;
+-moz-border-image: url(bordure.png) 5 5 5 5round;
+-webkit-border-image: url(bordure.png) 5 5 5 5 round;
+-o-border-image: url(bordure.png) 5 5 5 5 round;
+border-image: url(bordure.png) 5 5 5 5 fill round;background: rgba(2,0,1,0.3);">
             <tr>
                 <td>
                 <div></div>
@@ -105,7 +115,7 @@ def afficherFormulaireConnexion(error=''):
 
                 <td style="text-align:center;">
                     <form style="margin-bottom:10px;" action="../page_profil.py">
-                        <input type="submit" value="Profil" />
+                        <input style="width:100%;" type="submit" value="Profil" />
                     </form>
                     <form action="traiterFormulaireConnexion" method="POST">
                         <input type="submit" name="choix" value="Déconnecter">
