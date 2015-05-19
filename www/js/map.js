@@ -10,22 +10,15 @@ L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(my_map);
 };
 
-function get_network(map,ex) {
+function get_network(map,fctonfeature,ex) {
    $.ajax({
 		type:"get",
 		url:'../page_reseau.py/get_json_compteurs',   // fonction python appelée
 		data: {'ex':ex}, // parametres passes a cette fonction
 		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
 			var donns = $.parseJSON(reponse);
-			L.geoJson(donns, {onEachFeature: onEachFeature}).addTo(map);
+			L.geoJson(donns, {onEachFeature: fctonfeature}).addTo(map);
 		},
 		error:function(){ alert("erreur lors de la recuperation des données");}
 	});
-}
-
-function onEachFeature(feature, layer) {
-    if (feature.properties && feature.properties["altitude"]) {
-    	var texte = String("Altitude: " + feature.properties["altitude"] + "m");
-		layer.bindPopup(texte);
-    }
 }
