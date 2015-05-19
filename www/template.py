@@ -23,6 +23,8 @@ def afficherHautPage(error = '', titre=''):
             <script type="text/javascript" src="../js/jquery.flexslider-min.js"></script>
             <script type="text/javascript" src="../js/scripts.js"></script>
             <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+            <script type="text/javascript" src="../js/jssor.js"></script>
+            <script type="text/javascript" src="../js/jssor.slider.js"></script>
         <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
         </head>
         <body>

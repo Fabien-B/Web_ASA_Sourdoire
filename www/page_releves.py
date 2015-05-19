@@ -56,11 +56,11 @@ def corps_page_connecte():
         {0}
         </select></p>
     <p>Index début :
-    <input name="index_debut" type="text" placeholder="{3}" /></p>
-    <p>Index fin :<input name="index_fin" type="text"></p>
+    <input name="index_debut" type="text" value="{3}" required></p>
+    <p>Index fin :<input name="index_fin" type="text" required></p>
 
-<p>Date : <input name="date" type="text" id="datepicker"></p>
-<p>Heure : <input name="time" type="text" id="timepicker"></p>
+<p>Date : <input name="date" type="text" id="datepicker" required></p>
+<p>Heure : <input name="time" type="text" id="timepicker" required></p>
 <p style='float:right; margin-right:20px;'><input type="submit" name="submit" value="Valider" /></p>
 </form>
         </aside>
