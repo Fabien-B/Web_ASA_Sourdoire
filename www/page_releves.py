@@ -97,11 +97,6 @@ def corps_page_connecte():
 
 
 def ajout_releve(compteur , index_debut, index_fin, date, time, submit):
-    date = date.split("/")
-    time = time.split(":")
-    ts = datetime.datetime(int(date[2]), int(date[1]), int(date[0]), int(time[0]), int(time[1]), 0)
-    ts = datetime.datetime.timestamp(ts)
-
     myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
     id_compteur = get_id_compteur_from_nom(compteur)
     myreleve = releve.Releve(0)
@@ -109,7 +104,7 @@ def ajout_releve(compteur , index_debut, index_fin, date, time, submit):
     myreleve.compteur = id_compteur
     myreleve.index_deb = index_debut
     myreleve.index_fin = index_fin
-    myreleve.date = ts
+    myreleve.date = str(date + ' ' + time)
     myreleve.exploitant = myexploitant.id
     myreleve.save()
     return index('Profil actualisé')
@@ -133,7 +128,7 @@ def traiterFormulaireConnexion(choix, login='',password=''):
 
 def get_id_compteur_from_nom(nom):
     nom = nom.split()[0].replace(",", "")
-    connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
+    connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
     curseur = connection.cursor()
     requete = 'select Id_compteur as id from Compteur where Nom="{}";'.format(nom)
     curseur.execute(requete)
