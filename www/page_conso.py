@@ -45,37 +45,40 @@ def conso_table(date_debut=None, date_fin=None):
     dico_parc_rels = get_releves(Session()["Id_exploitant"], date_debut, date_fin)    #TODO: ajouter la date de début et celle de fin.
     debut = date_debut if date_debut else 'plus ancien'
     fin = date_fin if date_fin else 'plus récent'
-    html="""<table id="conso_content">
+    html="""
+
+    <table id="conso_content">
     <caption>Votre consommation depuis le {} jusqu'au {} :</caption>
-    <tr>
+    <tr id="titre">
         <th>Parcelle</th>
         <th>Compteur</th>
         <th>Consommation</th>
     </tr>""".format(debut,fin)
-    conso_parcelles = {}
-    for champ in dico_parc_rels.keys():
-        (line,conso) = add_line(champ,dico_parc_rels[champ])
-        conso_parcelles[conso] = line
+    for (i, champ) in enumerate(dico_parc_rels.keys()):
+        (line,conso) = add_line(champ, dico_parc_rels[champ], i)
+        html += line
 
-    conso_sorted = sorted(conso_parcelles.keys())
-
-    for conso in reversed(conso_sorted):
-        html += conso_parcelles[conso]
     html += '</table>'
     return html
 
-def add_line(parc, rels):
+
+def add_line(parc, rels, i):
     '''add_line(<Parcelle>, [<Releve1>,<Releve2>, ...]'''
     conso = 0
     nom_compteur = compteur.Compteur(parc.compteur).nom
     for rel in rels:
         conso += 10 * (rel.index_fin - rel.index_deb)
-    line = """
-    <tr>
-        <td>{}</td>
-        <td>{}</td>
-        <td>{}</td>
-    </tr>""".format(parc.nom,nom_compteur,conso)
+        if i%2 == 1:
+            parite = "impair"
+        else:
+            parite="pair"
+
+        line = """
+        <tr id="{}">
+            <td>{}</td>
+            <td>{}</td>
+            <td>{}</td>
+        </tr>""".format(parite, str.capitalize(parc.nom), nom_compteur, conso)
     return (line,conso)
 
 def get_releves(Id_exploitant, date_debut=None, date_fin=None):

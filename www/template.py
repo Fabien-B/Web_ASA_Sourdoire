@@ -57,7 +57,7 @@ def afficherHautPage(error = '', titre=''):
     ret += create_link('menu-item-7', 'Contacter l\'Admin', titre, 'page_contact.py')
 
     ret += '''          </ul>
-					</nav>
+                    </nav>
             </div>
         </header>'''
     return ret
