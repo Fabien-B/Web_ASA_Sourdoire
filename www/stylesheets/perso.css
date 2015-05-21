@@ -4,7 +4,10 @@ visibility: hidden;
 
 .input-error{
     color:#ff0000;
-}l
+}
+
+#greetings{
+	color:#0E9A17
 
 #conso_content {
     display: table;

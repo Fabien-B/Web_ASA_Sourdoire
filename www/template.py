@@ -63,7 +63,7 @@ def create_link(position, titre, current_page,fichier):
 
 
 
-def afficherFormulaireConnexion(error=''):
+def afficherFormulaireConnexion(option=''):
 
     if "login" not in Session():
         ret='''
@@ -79,8 +79,8 @@ def afficherFormulaireConnexion(error=''):
         </table>
          </form>
         '''
-        if error == 'error':
-            ret += '<div class="input-error">login ou mot de passe incorrect</div>'
+        if option == 'error':
+            ret += '<div class="input-error">Login ou mot de passe incorrect</div>'
     else: # utilisateur connecte
         ret='''
         <style> #connect td {
@@ -102,6 +102,10 @@ def afficherFormulaireConnexion(error=''):
          </div>
          </td></tr></tbody></table>
          '''
+        if option == "profilUpdated":
+            ret+='''
+            <div class="greetings">Profil mis à jour</div>
+            '''
     return ret
 
 
