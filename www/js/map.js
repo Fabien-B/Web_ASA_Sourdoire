@@ -1,5 +1,4 @@
-var map = L.map('map').setView([44.92863,1.72367], 13);
-
+function create_map(my_map) {
 //L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
 L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18,
@@ -8,16 +7,18 @@ L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		//'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		'Imagery © <a href="http://openstreetmap.org">OpenSteetMap</a>',
 	id: 'examples.map-i875mjb7'
-}).addTo(map);
+}).addTo(my_map);
+};
 
-
-var popup = L.popup();
-
-function onMapClick(e) {
-	popup
-		.setLatLng(e.latlng)
-		.setContent("Tu as cliqué ici: " + e.latlng.lat.toString() + ', ' + e.latlng.lng.toString())
-		.openOn(map);
+function get_network(map,fctonfeature,ex) {
+   $.ajax({
+		type:"get",
+		url:'../page_reseau.py/get_json_compteurs',   // fonction python appelée
+		data: {'ex':ex}, // parametres passes a cette fonction
+		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
+			var donns = $.parseJSON(reponse);
+			L.geoJson(donns, {onEachFeature: fctonfeature}).addTo(map);
+		},
+		error:function(){ alert("erreur lors de la recuperation des données");}
+	});
 }
-
-map.on('click', onMapClick);

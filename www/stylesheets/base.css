@@ -29,8 +29,7 @@
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		font: inherit;
-		vertical-align: baseline; }
+		font: inherit;}
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block; }
 	body {
@@ -171,7 +170,6 @@
 	  text-decoration: none;
 	  text-shadow: 0 1px rgba(255, 255, 255, .75);
 	  cursor: pointer;
-	  margin-bottom: 20px;
 	  line-height: normal;
 	  padding: 8px 10px;
 	  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
@@ -228,8 +226,7 @@
 /* #Forms
 ================================================== */
 
-	form {
-		margin-bottom: 20px; }
+	
 	fieldset {
 		margin-bottom: 20px; }
 	input[type="text"],
@@ -249,7 +246,6 @@
 		width: 210px;
 		max-width: 100%;
 		display: block;
-		margin-bottom: 20px;
 		background: #fff; }
 	select {
 		padding: 0; }
@@ -280,10 +276,6 @@
 		color: #444; }
 	#connect div { overflow: hidden; 
 			padding-right: .5em; }
-	#connect input[type="text"]{margin-bottom:10px;}
-	#connect input[type="submit"] {margin-bottom:10px;}
-	#connect input[type="password"] {width: 90%;
-					margin-bottom:10px;}
 	#deconnect form{margin-bottom:0px;margin-left:15px;margin-right:15px;}
 	#deconnect button{margin-bottom:0px;}
 	#deconnect input[type="submit"]{margin-bottom:0px;}

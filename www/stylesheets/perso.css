@@ -16,3 +16,8 @@ visibility: hidden;
     border-color: gray;
     with=500px
 }
+
+tr#titre {background: rgba(10,200,10,0.5);}
+tr#impair {background: rgba(10,200,10,0.2);}
+tr#pair {background: rgba(10,200,10,0.1);}
+
