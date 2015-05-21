@@ -54,7 +54,10 @@ def afficherHautPage(error = '', titre=''):
     ret += create_link('menu-item-4', 'Mes parcelles', titre,'page_parcelles.py')
     ret += create_link('menu-item-5', 'Signaler un évenement', titre,'page_evenements.py')
     ret += create_link('menu-item-6', 'Voir le réseau', titre,'page_reseau.py')
-    ret += create_link('menu-item-7', 'Contacter l\'Admin', titre, 'page_contact.py')
+    if "login" in Session() and Session()['Id_exploitant'] == 0:
+        ret += create_link('menu-item-7', 'Gérer les membres', titre, 'page_gestion_exploitant.py')
+    else:
+        ret += create_link('menu-item-7', 'Contacter l\'Admin', titre, 'page_contact.py')
 
     ret += '''          </ul>
                     </nav>
