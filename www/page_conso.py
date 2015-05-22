@@ -3,6 +3,7 @@ connexion = Import('gestion_session.py')
 releve = Import('releve.py')
 parcelle = Import('parcelle.py')
 compteur = Import('compteur.py')
+exploitant = Import('Exploitant.py')
 
 def index(error=''):
     ret=template.afficherHautPage(error, titre='Ma Conso')
@@ -17,9 +18,17 @@ def corps_page_connecte():
     html = """
         <div class="container">
 
-            <div class="sixteen columns main-content">
-    <h2>Ma Consommation</h2>
-    <form>
+            <div class="sixteen columns main-content">"""
+    if Session()["Id_exploitant"]:
+        html +='''<h2>Ma Consommation</h2>'''
+    else:
+        html += '''<h2>Consommation</h2>'''
+        options = get_exploitant_options()
+        html += '''<select id="combo_ex_conso" name="exploitants" onchange="change_exploitant_conso(this,this.selectedIndex)">
+        {0}
+        </select></p>'''.format(options)
+
+    html += """<form>
         <label for="date_debut">Date de début:</label>
         <input type="date" name="date_debut" id="date_debut">
         <label for="date_fin" placeholder="2020-01-01">date de fin:</label>
@@ -37,8 +46,10 @@ def corps_page_deconnecte():
     """
     return html
 
-def conso_table(date_debut=None, date_fin=None):
-    dico_parc_rels = get_releves(Session()["Id_exploitant"], date_debut, date_fin)    #TODO: ajouter la date de début et celle de fin.
+def conso_table(date_debut=None, date_fin=None, id_ex = None):
+    if not id_ex:
+        id_ex = Session()["Id_exploitant"]
+    dico_parc_rels = get_releves(id_ex, date_debut, date_fin)    #TODO: ajouter la date de début et celle de fin.
     debut = date_debut if date_debut else 'plus ancien'
     fin = date_fin if date_fin else 'plus récent'
     html = """
@@ -91,3 +102,11 @@ def get_releves(Id_exploitant, date_debut=None, date_fin=None):
 
 def traiterFormulaireConnexion(choix, login='',password=''):
     return connexion.Connexion(index, choix, login, password)
+
+def get_exploitant_options():
+    exploits = exploitant.Exploitant.get_all_exploitants()
+    options = ''
+    for ex in exploits:
+        line = '<option value="{}" >'.format(ex.id) + ex.nom + '</option>\n'
+        options += line
+    return options
