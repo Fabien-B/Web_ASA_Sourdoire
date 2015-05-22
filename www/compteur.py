@@ -61,7 +61,7 @@ class Compteur(object):
         connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
         curseur = connection.cursor()
         if id_ex == 0:
-            requete = 'select Id_compteur FROM Compteur;'
+            requete = 'select Compteur,Id_parcelle FROM Parcelle;'
         else:
             requete = 'select Compteur, Parcelle.Id_parcelle FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Id_exploitant = {};'.format(id_ex)
         curseur.execute(requete)
