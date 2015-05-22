@@ -3,6 +3,7 @@ compteur = Import('compteur.py')
 releve = Import('releve.py')
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 connexion = Import('gestion_session.py')
+parcelle = Import('parcelle.py')
 import mysql.connector
 import datetime
 
@@ -112,12 +113,13 @@ def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit):
 
 def recup_options():
     options = ''
-    compteurs_id = compteur.Compteur.get_compteurs_id(Session()["Id_exploitant"])
-    for id in compteurs_id:
-        line = '<option value="{}"> '.format(id) + str(id) + ', ' + compteur.Compteur(id).nom + ' </option>' + '\n'
+    compteurs_parc_id = compteur.Compteur.get_compteurs_parcelle_id(Session()["Id_exploitant"])
+    for (id_compt, id_parc) in compteurs_parc_id:
+        current_parc = parcelle.Parcelle(id_parc)
+        current_compt = compteur.Compteur(id_compt)
+        line = '<option value="{}"> '.format(id_compt) + str(id_compt) + ', ' + current_compt.nom + ': ' + current_parc.nom.capitalize() + ' </option>' + '\n'
         options += line
     return options
 
 def traiterFormulaireConnexion(choix, login='',password=''):
     return connexion.Connexion(index, choix, login, password)
-
