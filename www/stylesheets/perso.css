@@ -18,3 +18,5 @@ tr#titre {background: rgba(10,200,10,0.5);}
 tr#impair {background: rgba(10,200,10,0.2);}
 tr#pair {background: rgba(10,200,10,0.1);}
 
+#releve input[type="text"] { float: right; margin-right: 20px;} 
+#releve select{ float: right; margin-right: 20px;}

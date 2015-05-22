@@ -16,6 +16,7 @@ def index(error=''):
 def corps_page_connecte():
     html = """
         <div class="container">
+
 <style>
 #conso_content table, #conso_content th, #conso_content td {
     border: 1px solid black;
@@ -45,18 +46,18 @@ def conso_table(date_debut=None, date_fin=None):
     dico_parc_rels = get_releves(Session()["Id_exploitant"], date_debut, date_fin)    #TODO: ajouter la date de début et celle de fin.
     debut = date_debut if date_debut else 'plus ancien'
     fin = date_fin if date_fin else 'plus récent'
-    html="""
-
+    html = """
     <table id="conso_content">
     <caption>Votre consommation depuis le {} jusqu'au {} :</caption>
     <tr id="titre">
         <th>Parcelle</th>
         <th>Compteur</th>
         <th>Consommation</th>
-    </tr>""".format(debut,fin)
+    </tr>""".format(debut, fin)
     for (i, champ) in enumerate(dico_parc_rels.keys()):
         (line,conso) = add_line(champ, dico_parc_rels[champ], i)
         html += line
+
 
     html += '</table>'
     return html
@@ -71,7 +72,7 @@ def add_line(parc, rels, i):
         if i%2 == 1:
             parite = "impair"
         else:
-            parite="pair"
+            parite = "pair"
 
         line = """
         <tr id="{}">
@@ -79,7 +80,7 @@ def add_line(parc, rels, i):
             <td>{}</td>
             <td>{}</td>
         </tr>""".format(parite, str.capitalize(parc.nom), nom_compteur, conso)
-    return (line,conso)
+    return (line, conso)
 
 def get_releves(Id_exploitant, date_debut=None, date_fin=None):
     releves_list = releve.Releve.get_releves_id(Id_exploitant,date_debut,date_fin)
