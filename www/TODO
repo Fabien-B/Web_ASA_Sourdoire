@@ -1,0 +1,8 @@
+Pied de page
+voir le réseau: indiquer le nom des exploitants dans l'inspecteur.
+Ma Conso:       trier par conso décroissante ?
+                admin: bug si on change la date
+Entrer un relevé: vérifier qu'il est positif, sauf pour l'admin
+                  créer un litige en cas d'incohérence (changement de l'index de fin)
+                  admin: combo box pour choisir en quel nom le relevé est fait.
+Évènements ...
