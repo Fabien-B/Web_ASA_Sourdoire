@@ -8,7 +8,7 @@ import bcrypt
 def index(error=''):
     ret=template.afficherHautPage(error, titre='Contacter l\'Admin')
     if "login" in Session():
-        if Session()["Id_exploitant"] == "0":
+        if Session()["Id_exploitant"] == 0:
             ret += afficherContact_admin()
         else:
             ret += afficherFormulaireContact_connecte()
@@ -24,7 +24,6 @@ def traiterFormulaireConnexion(choix, login='',password=''):
 
 def afficherFormulaireContact_connecte():
     html = """
-    <div class="container">
         <div class="sixteen columns main-content">
     <h1 class=contactformtitle>Formulaire de contact</h1>
     <br />
@@ -48,14 +47,12 @@ def afficherFormulaireContact_connecte():
     </div>
     </form>
         </div>
-    </div>
     """
     return html
 
 
 def afficherFormulaireContact_non_connecte():
     html = """
-    <div class="container">
         <div class="sixteen columns main-content">
     <h1 class=contactformtitle style="margin-top:40px">Formulaire de contact</h1>
     <br />
@@ -93,7 +90,6 @@ def afficherFormulaireContact_non_connecte():
     </div>
     </form>
         </div>
-    </div>
     """
     return html
 
@@ -104,15 +100,15 @@ def traiterFormulaireContact(nom='', numero='', topic='', demande='', captcha=''
     if captcha == '4':
 
         if "login" in Session():
-            result += "Nom : " + str(Session()["nom"]) + "\n ;  Identifiant : " + str(Session()["Id_exploitant"])
-            result += "\n ; Sujet : " + topic + "\n ; Demande : " + demande
+            result += "Nom : " + str(Session()["nom"]) + ";\nIdentifiant : " + str(Session()["Id_exploitant"])
+            result += ";\nSujet : " + topic + ";\nDemande : " + demande
         else:
             result += """<br />Infos : <br />"""
             result += nom + numero + topic + demande
-        final = str(time.asctime() + result)
+        final = str("""\n \n """ + time.asctime() + """ ;\n""" +  result)
 
         with open("contact.txt", "a") as f:
-            f.write(final)
+            f.write(final)      #Doesn't seem to work properly
             f.close()
     else:
         return index()
@@ -123,37 +119,43 @@ def traiterFormulaireContact(nom='', numero='', topic='', demande='', captcha=''
 def remerciements(error=''):
     ret=template.afficherHautPage(error, titre='Remerciements')
     ret += """
-    <div class="container">
         <div class="sixteen columns main-content">
             Merci de votre requête, l'administrateur du réseau d'irrigation vous contactera sous peu
         </div>
-    </div>
     """
     ret += template.afficherBasPage()
     return ret
 
 def afficherContact_admin():
-    result = """
-    <div class="container">
+    html = """
         <div class="sixteen columns main-content">
             <div>Le numéro de l'administrateur affiché est : """ + str(exploitant.Exploitant(0).tel) + """</div>
             <form action=../page_contact.py/changerNumero METHOD="POST" class="two-thirds.column" style="margin:25px">
             <div style="margin-top = 40px;">
                 <div>Changer le numéro affiché : <input name="tel" size=10 maxlength=10 type="tel" value="" placeholder="Nouveau numéro de téléphone" required />
                 </div>
+                <br />
             <div>
                 <input name="mdp" size=20 maxlength=40 type="password" placeholder="Mot de passe administrateur" required />
             </div>
+            <br />
             <div>
                 <input type=submit value=Envoyer>
                 <input type=reset value=Annuler>
             </div>
+            </form>
+            <form action="../page_contact.py/consulter_contact" class="two-thirds.column" style="margin:25px">
+            <div>
+                <input type="submit" value="Consulter les demandes de contact" style="margin:30px;">
+            </form>
         </div>
-    </div>"""
+    """
+    return html
 
 
-def changerNumero(mdp='', tel=''):
+def changerNumero(mdp='', tel='', error=''):
     myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
+
     if bcrypt.hashpw(mdp, myexploitant.salt) == myexploitant.password:
         nom = myexploitant.nom
         login = myexploitant.login
@@ -165,11 +167,9 @@ def changerNumero(mdp='', tel=''):
 
         result = template.afficherHautPage(error, titre='Contacter l\'Admin')
         result += """
-        <div class="container">
             <div class="sixteen columns main-content">
                 Merci de votre mise à jour, les utilisateurs du réseau pourront à nouveau vous contacter par téléphone
             </div>
-        </div>
         """
         result += template.afficherBasPage()
         return result
@@ -177,4 +177,14 @@ def changerNumero(mdp='', tel=''):
         return index()
 
 
+def consulter_contact(error=''):
+    ret = template.afficherHautPage(error, titre='Contacter l\'Admin')
+    ret += """<div class="sixteen columns main-content">"""""
+    with open("contact.txt", "r") as f:
+        for line in f:
+            ret += """<table class="sixteen columns main-content" style="margin:30px;"><tr><td>""" + line + """</td></tr></table>"""
+        f.close()
+    ret += """</div>"""
+    ret += template.afficherBasPage()
 
+    return ret
