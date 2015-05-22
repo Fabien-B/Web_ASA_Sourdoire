@@ -32,6 +32,7 @@ def afficherHautPage(error = '', titre=''):
 
                     <div class="tree columns alpha" style="float:left; margin-top:10px;">
                         <a href="../index.py" id="logo"><img src="../images/logo.png" alt="Icebrrrg logo" height="100" /></a>
+                        {0}
                     </div>
 
                     <div class="nine columns alpha">
@@ -39,7 +40,7 @@ def afficherHautPage(error = '', titre=''):
 
                     <div id="login" class="four columns alpha" style="float:right;margin-top:10px;">
 
-                    '''+afficherFormulaireConnexion(error)+'''
+                    '''.format(error) + afficherFormulaireConnexion(error) + '''
                     </div>
 
                 </div>
