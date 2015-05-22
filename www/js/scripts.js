@@ -72,4 +72,18 @@ function update_index_deb_releve(id_compteur) {
 		error:function(){ alert("erreur lors de la recuperation de la page");}
 	}); 
 }
+
+function change_combo_box(id_compteur){
+	combo = document.getElementById('combo_compteur_releves')
+	var l = combo.options.length;
+	var index_combo = 0;
+	for (var i=0; i < l; i++){
+		var val =  combo.options[i].value;
+		if (val == id_compteur) {
+			index_combo = i;
+		}
+	}
+	combo.options[index_combo].selected=true;
+}
+
 //End document.ready

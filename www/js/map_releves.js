@@ -13,5 +13,6 @@ function onEach_upReleve(feature, layer) {
 
 //modifier cette fonction pour mettre à jour la borne quand on entre un relevé.
 function oncompteurClick(id_compteur) {
+	change_combo_box(id_compteur);
 	update_index_deb_releve(id_compteur);
 }
