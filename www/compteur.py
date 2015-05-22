@@ -66,10 +66,10 @@ class Compteur(object):
         return id
 
     @staticmethod
-    def get_last_index(nom_compteur):
+    def get_last_index(id_compteur):
         connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
         curseur = connection.cursor()
-        requete ='''select max(Index_fin) from Releve where Compteur in (select Id_compteur as id from Compteur where Nom="{}");'''.format(nom_compteur)
+        requete ="select max(Index_fin) from Releve where Compteur={};".format(id_compteur)
         curseur.execute(requete)
         result = curseur.fetchall()[0][0]
         return result
