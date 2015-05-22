@@ -13,21 +13,22 @@ def index(error=''):
     ret += template.afficherBasPage()
     return ret
 
-
 def corps_page_connecte():
-    html = """<div class="container">
+    html = """
+        <div class="container">
+
             <div class="sixteen columns main-content">
     <h2>Ma Consommation</h2>
     <form>
         <label for="date_debut">Date de début:</label>
         <input type="date" name="date_debut" id="date_debut">
-        <label for="date_fin" placeholder="2020-01-01">Date de fin:</label>
-        <input type="date" name="date_fin" id="date_fin">
+        <label for="date_fin" placeholder="2020-01-01">date de fin:</label>
+        <input type="date" name="Date_fin" id="date_fin">
         <button type="button" id="update_releves" >Ok</button>
-    </form>
-
-    """
+    </form>"""
     html += conso_table()
+    html += """</div>
+    </div>"""
     return html
 
 def corps_page_deconnecte():
@@ -54,18 +55,6 @@ def conso_table(date_debut=None, date_fin=None):
 
 
     html += '</table>'
-    html += """<div><link rel="stylesheet" href="../stylesheets/jquery-ui.min.css">
-        <link rel="stylesheet" href="../stylesheets/jquery.ui.timepicker.css">
-        <script src="../js/jquery-ui.min.js"></script>
-        <script src="../js/jquery.ui.timepicker.js"></script>
-        <script>
-  $(function() {
-    $( "#date_debut" ).datepicker();
-  });
-  $(function() {
-    $( "#date_fin" ).datepicker();
-  });
-  </script></div>"""
     return html
 
 
