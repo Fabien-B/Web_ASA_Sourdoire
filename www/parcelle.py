@@ -22,7 +22,6 @@ class Parcelle(object):
     def save(self):
         if self.compteur == None:
             raise ParcelleError("compteur missing for create parcelle")
-
         connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
         curseur = connection.cursor()
         requete = "INSERT INTO Parcelle VALUES ({0},{1},{2},{3},{4},{5});".format(self.id, self.compteur, self.nom, self.lat, self.lon, self.altitude)
@@ -45,6 +44,21 @@ class Parcelle(object):
         self.lat = lat
         self.lon = lon
         self.altitude = altitude
+
+    @staticmethod
+    def get_exploitant_parcelle_id(id_ex):
+        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
+        curseur = connection.cursor()
+        if id_ex == 0:
+            requete = 'select Id_parcelle FROM Parcelle;'
+        else:
+            requete = 'select Parcelle.Id_parcelle FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Id_exploitant = {};'.format(id_ex)
+        curseur.execute(requete)
+        id_parc = curseur.fetchall()
+        id_parc_list = []
+        for (id,) in id_parc:
+            id_parc_list.append(id)
+        return id_parc_list
 
 
 class ParcelleError(Exception):
