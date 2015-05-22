@@ -49,7 +49,7 @@ def compteurs_to_json(list_compteurs):
         if current_com.lon != None and current_com.lat != None:
             dico_current = {}
             dico_current["type"] = "Feature"
-            dico_current["properties"] = {"altitude": altitude}
+            dico_current["properties"] = {"id":current_com.id,"altitude": altitude}
             dico_current["geometry"]= {"type": "Point", "coordinates": [current_com.lon, current_com.lat]}
             list_json.append(dico_current)
     dico["features"] = list_json
