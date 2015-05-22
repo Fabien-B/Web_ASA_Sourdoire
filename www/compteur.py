@@ -57,6 +57,21 @@ class Compteur(object):
         return id_compt_list
 
     @staticmethod
+    def get_compteurs_parcelle_id(id_ex):
+        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
+        curseur = connection.cursor()
+        if id_ex == 0:
+            requete = 'select Id_compteur FROM Compteur;'
+        else:
+            requete = 'select Compteur, Parcelle.Id_parcelle FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Id_exploitant = {};'.format(id_ex)
+        curseur.execute(requete)
+        id_compt_parc_tuple = curseur.fetchall()
+        id_compt_parc_list = []
+        for (id_compt,id_parc) in id_compt_parc_tuple:
+            id_compt_parc_list.append((id_compt,id_parc))
+        return id_compt_parc_list
+
+    @staticmethod
     def get_id_from_name(name):
         connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
         curseur = connection.cursor()
