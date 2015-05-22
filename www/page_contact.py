@@ -178,13 +178,26 @@ def changerNumero(mdp='', tel='', error=''):
 
 
 def consulter_contact(error=''):
-    ret = template.afficherHautPage(error, titre='Contacter l\'Admin')
+    ret = template.afficherHautPage(error, titre='Demandes à l\'administrateur')
     ret += """<div class="sixteen columns main-content">"""""
     with open("contact.txt", "r") as f:
         for line in f:
             ret += """<table class="sixteen columns main-content" style="margin:30px;"><tr><td>""" + line + """</td></tr></table>"""
         f.close()
-    ret += """</div>"""
+    ret += """
+    </div>
+    <div>
+        <form action = "../page_contact.py/effacer_demandes" class="two-thirds.column" style="margin:25px">
+            <input type="submit" value="Effacer les anciennes demandes" style="margin:30px;">
+        </form>
+    </div>
+    """
     ret += template.afficherBasPage()
 
     return ret
+
+def effacer_demandes(error=''):
+    with open("contact.txt", "w") as f:
+        f.write("""Demandes plus vieilles effacées le """ + str(time.asctime()))
+        f.close()
+    return consulter_contact()
