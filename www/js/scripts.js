@@ -86,4 +86,17 @@ function change_combo_box(id_compteur){
 	combo.options[index_combo].selected=true;
 }
 
+
+function update_details_compteur(id_compteur) {
+   $.ajax({
+		type:"get",
+		url:'../page_reseau.py/detail',   // fonction python appelée
+		data: {'id_compteur':id_compteur}, // parametres passes a cette fonction
+		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
+			$("#detail_compteur").html(reponse);   // maj sur la page 
+		},
+		error:function(){ alert("erreur lors de la recuperation de la page");}
+	}); 
+}
+
 //End document.ready
