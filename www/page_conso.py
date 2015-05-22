@@ -17,18 +17,13 @@ def corps_page_connecte():
     html = """
         <div class="container">
 
-<style>
-#conso_content table, #conso_content th, #conso_content td {
-    border: 1px solid black;
-    padding: 15px;
-}</style>
             <div class="sixteen columns main-content">
     <h2>Ma Consommation</h2>
     <form>
-        <label for="date_debut">date de début:</label>
+        <label for="date_debut">Date de début:</label>
         <input type="date" name="date_debut" id="date_debut">
         <label for="date_fin" placeholder="2020-01-01">date de fin:</label>
-        <input type="date" name="date_fin" id="date_fin">
+        <input type="date" name="Date_fin" id="date_fin">
         <button type="button" id="update_releves" >Ok</button>
     </form>"""
     html += conso_table()
@@ -49,7 +44,7 @@ def conso_table(date_debut=None, date_fin=None):
     html = """
     <table id="conso_content">
     <caption>Votre consommation depuis le {} jusqu'au {} :</caption>
-    <tr id="titre">
+    <tr class="titre">
         <th>Parcelle</th>
         <th>Compteur</th>
         <th>Consommation</th>
@@ -75,7 +70,7 @@ def add_line(parc, rels, i):
             parite = "pair"
 
         line = """
-        <tr id="{}">
+        <tr class="{}">
             <td>{}</td>
             <td>{}</td>
             <td>{}</td>

@@ -6,20 +6,17 @@ visibility: hidden;
     color:#ff0000;
 }
 
-#greetings{
-	color:#0E9A17
+#greetings{color:#0E9A17}
 
-#conso_content {
-    display: table;
-    border-collapse: separate;
-    border-spacing: 1px;
-    border-color: gray;
-    with=500px
-}
+#conso_content table, #conso_content th, #conso_content td {
+    border: 1px solid rgba(1,1,1,0.2);
+    padding: 15px;}
 
-tr#titre {background: rgba(10,200,10,0.5);}
-tr#impair {background: rgba(10,200,10,0.2);}
-tr#pair {background: rgba(10,200,10,0.1);}
+.titre {background: rgba(10,200,10,0.5);}
+.impair {background: rgba(10,200,10,0.2);}
+.pair {background: rgba(10,200,10,0.1);}
+div#map{border: solid 1px rgba(1,1,1,0.2);}
 
 #releve input[type="text"] { float: right; margin-right: 20px;} 
 #releve select{ float: right; margin-right: 20px;}
+
