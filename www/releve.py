@@ -63,8 +63,10 @@ class Releve(object):
             older_date = 'NULL'
 
         requete = '''SELECT Releve.Id_releve,Parcelle.Id_parcelle FROM Releve,Parcelle,Propriete
-                    WHERE Releve.Compteur = Parcelle.Compteur
+                    WHERE Releve.Exploitant = {2}
+                    AND Releve.Compteur = Parcelle.Compteur
                     AND Parcelle.Id_parcelle = Propriete.Id_parcelle
+                    AND Propriete.Id_exploitant = {2}
                     AND (Propriete.date_debut < Releve.Date OR Propriete.date_debut IS NULL)
                     AND (Propriete.date_fin > Releve.Date OR Propriete.date_fin IS NULL)
                     AND (Releve.Date < {0} OR {0} IS NULL)
