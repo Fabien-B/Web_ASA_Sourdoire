@@ -49,15 +49,18 @@ def afficherHautPage(error = '', titre=''):
                     <nav id="main-nav">
                         <ul id="main-nav-menu" class="nav-menu">'''
     ret += create_link('menu-item-1', 'Accueil', titre,'index.py')
-    ret += create_link('menu-item-2', 'Ma Conso', titre,'page_conso.py')
-    ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
-    ret += create_link('menu-item-4', 'Mes parcelles', titre,'page_parcelles.py')
-    ret += create_link('menu-item-5', 'Signaler un évenement', titre,'page_evenements.py')
-    ret += create_link('menu-item-6', 'Voir le réseau', titre,'page_reseau.py')
     if "login" in Session() and Session()['Id_exploitant'] == 0:
+        ret += create_link('menu-item-2', 'Consos', titre,'page_conso.py')
+        ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
+        ret += create_link('menu-item-5', 'Signaler un évenement', titre,'page_evenements.py')
+        ret += create_link('menu-item-6', 'Voir le réseau', titre,'page_reseau.py')
         ret += create_link('menu-item-8', 'Gérer les membres', titre, 'page_gestion_exploitant.py')
         ret += create_link('menu-item-7', 'Demandes à l\'administrateur', titre, 'page_contact.py')
     else:
+        ret += create_link('menu-item-2', 'Ma Conso', titre,'page_conso.py')
+        ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
+        ret += create_link('menu-item-5', 'Signaler un évenement', titre,'page_evenements.py')
+        ret += create_link('menu-item-6', 'Voir le réseau', titre,'page_reseau.py')
         ret += create_link('menu-item-7', 'Contacter l\'Admin', titre, 'page_contact.py')
 
     ret += '''          </ul>

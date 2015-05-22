@@ -6,7 +6,10 @@ import bcrypt
 
 
 def index(error=''):
-    ret=template.afficherHautPage(error, titre='Contacter l\'Admin')
+    if "login" in Session() and not Session()["Id_exploitant"]:
+        ret=template.afficherHautPage(error, titre='Demandes à l\'administrateur')
+    else:
+        ret=template.afficherHautPage(error, titre='Contacter l\'Admin')
     if "login" in Session():
         if Session()["Id_exploitant"] == 0:
             ret += afficherContact_admin()

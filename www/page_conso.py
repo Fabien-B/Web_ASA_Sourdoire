@@ -6,7 +6,10 @@ compteur = Import('compteur.py')
 exploitant = Import('Exploitant.py')
 
 def index(error=''):
-    ret=template.afficherHautPage(error, titre='Ma Conso')
+    if "login" in Session() and not Session()["Id_exploitant"]:
+        ret=template.afficherHautPage(error, titre='Consos')
+    else:
+        ret=template.afficherHautPage(error, titre='Ma Conso')
     if "login" in Session():
         ret += corps_page_connecte()
     else:
