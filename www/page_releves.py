@@ -26,7 +26,6 @@ def corps_page_deconnecte():
 
 def corps_page_connecte():
     id_compteurs =compteur.Compteur.get_compteurs_id(Session()["Id_exploitant"])
-    options = recup_options()
     script = '''<script>
   $(function() {
     $( "#datepicker" ).datepicker();
@@ -48,15 +47,23 @@ def corps_page_connecte():
         <aside class="six columns left-sidebar">
         <form action="ajout_releve" method="GET">
         <div class="sidebar-widget">
-        <h2 style='margin-bottom:30px'>Informations du relevé :</h2>
-        <p>Compteur :
-        <select id="combo_compteur_releves" name="id_compteur" onchange="update_index_deb_releve(this.selectedIndex)">
-        {1}
-        </select></p>""".format(style,options)
+        <h2 style='margin-bottom:30px'>Informations du relevé :</h2>""".format(style)
+
+    if not Session()["Id_exploitant"]:
+        options_exploitant = get_options_exploitant()
+        html +='''<p>Exploitant :
+            <select id="combo_exploitant_releves" name="id_exploitant" onchange="update_exploitant_releve(this,this.selectedIndex)">
+            {0}
+            </select></p>'''.format(options_exploitant)
+
+    html += get_compteur_combo_box(Session()["Id_exploitant"])
 
     html += part_index_debut(id_compteurs[0])
+    verif = ''
+    if Session()["Id_exploitant"]:
+        verif = ' required onblur="verif_releve(this)"'
 
-    html += '''<p>Index fin :<input name="index_fin" type="text" required></p>
+    html += '''<p>Index fin :<input name="index_fin" type="text"{0}></p>
             <p>Date : <input name="date" type="text" id="datepicker" required></p>
             <p>Heure : <input name="time" type="text" id="timepicker" required></p>
             <p style='float:right; margin-right:20px;'><input type="submit" name="submit" value="Valider" /></p>
@@ -82,38 +89,42 @@ def corps_page_connecte():
         <link rel="stylesheet" href="../stylesheets/jquery.ui.timepicker.css">
         <script src="../js/jquery-ui.min.js"></script>
         <script src="../js/jquery.ui.timepicker.js"></script>
-{0}
+{1}
 </html>
       
         </article>
         <!-- End main Content -->
-      
-
     </div>
-    '''.format(script)
+    '''.format(verif,script)
     return html
 
 def part_index_debut(id_compteur=0):
     index = compteur.Compteur.get_last_index(id_compteur)
     html = '''
     <p id="index_debut_releves">Index début :
-    <input name="index_debut" type="text" value="{0}" required></p>
+    <input id="index_debut" name="index_debut" type="text" value="{0}" required></p>
     '''.format(index)
     return html
 
 def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit):
+    (index_debut,index_fin) = (int(index_debut),int(index_fin))
+    if (index_fin - index_debut) < 0 and Session()["Id_exploitant"]:    #releve négatif autorisé pour l'admin.
+        return index('IndexError')
     myreleve = releve.Releve(0)
     myreleve.compteur = int(id_compteur)
-    myreleve.index_deb = index_debut    #todo: vérifier la cohérence
+    myreleve.index_deb = index_debut
     myreleve.index_fin = index_fin
     myreleve.date = str(date + ' ' + time)
-    myreleve.exploitant = Session()["Id_exploitant"]
+    if Session()["Id_exploitant"]:
+        myreleve.exploitant = Session()["Id_exploitant"]
+    else:   #administrateur
+        myreleve.exploitant = 0#################################################################################################################################################################################
     myreleve.save()
     return index('Profil actualisé')
 
-def recup_options():
+def recup_options(id_ex):
     options = ''
-    compteurs_parc_id = compteur.Compteur.get_compteurs_parcelle_id(Session()["Id_exploitant"])
+    compteurs_parc_id = compteur.Compteur.get_compteurs_parcelle_id(id_ex)
     for (id_compt, id_parc) in compteurs_parc_id:
         current_parc = parcelle.Parcelle(id_parc)
         current_compt = compteur.Compteur(id_compt)
@@ -121,5 +132,19 @@ def recup_options():
         options += line
     return options
 
+def get_options_exploitant():
+    options = '<option value="0">0 - ADMINISTRATEUR</option>\n'
+    exploitant_list = exploitant.Exploitant.get_all_exploitants()
+    for exploit in exploitant_list:
+        options += '<option value="'+str(exploit.id)+'">'+str(exploit.id)+' - '+exploit.nom+'</option>\n'
+    return options
+
 def traiterFormulaireConnexion(choix, login='',password=''):
     return connexion.Connexion(index, choix, login, password)
+
+def get_compteur_combo_box(id_ex):
+    html = """<p>Compteur :
+        <select id="combo_compteur_releves" name="id_compteur" onchange="update_index_deb_releve(this.selectedIndex)">
+        {0}
+        </select></p>""".format(recup_options(id_ex))
+    return html

@@ -130,4 +130,31 @@ function change_exploitant_conso(selec,index) {
 		error:function(){ alert("erreur lors de la recuperation de la page");}
 	});
 }
+
+function verif_releve(fin_input){
+	debut_input = document.getElementById('index_debut')
+	var conso = parseInt(fin_input.value) - parseInt(debut_input.value);
+	if (conso < 0) {
+		alert("Attention, l'index de fin est inférieur à celui de début. Ce relevé n'est pas valide !");
+	}
+}
+
+function update_exploitant_releve(selec,index){
+	var id_ex =  selec.options[index].value;
+	//alert(id_ex);
+	$.ajax({
+		type:"get",
+		url:'../page_releves.py/get_compteur_combo_box',   // fonction python appelée
+		data: {'id_ex':parseInt(id_ex)}, // parametres passes a cette fonction
+		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
+			$("#combo_compteur_releves").html(reponse);   // maj sur la page 
+		},
+		error:function(){ alert("erreur lors de la recuperation de la page");}
+	});
+	
+	var combo = document.getElementById('combo_compteur_releves')
+	var id_compteur = parseInt(combo.options[0].value);
+	alert(id_compteur);
+	update_index_deb_releve(id_compteur);
+}
 //End document.ready
