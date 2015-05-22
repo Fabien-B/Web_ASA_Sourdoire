@@ -13,29 +13,22 @@ def index(error=''):
     ret += template.afficherBasPage()
     return ret
 
-
 def corps_page_connecte():
     html = """
-
         <div class="container">
+
             <div class="sixteen columns main-content">
     <h2>Ma Consommation</h2>
     <form>
-        <label for="date_debut">date de début:</label>
+        <label for="date_debut">Date de début:</label>
         <input type="date" name="date_debut" id="date_debut">
         <label for="date_fin" placeholder="2020-01-01">date de fin:</label>
-        <input type="date" name="date_fin" id="date_fin">
+        <input type="date" name="Date_fin" id="date_fin">
         <button type="button" id="update_releves" >Ok</button>
-    </form>
-    """
+    </form>"""
     html += conso_table()
     html += """</div>
-    </div>
-    <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>"""
+    </div>"""
     return html
 
 def corps_page_deconnecte():
