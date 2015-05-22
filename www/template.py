@@ -54,7 +54,10 @@ def afficherHautPage(error = '', titre=''):
     ret += create_link('menu-item-4', 'Mes parcelles', titre,'page_parcelles.py')
     ret += create_link('menu-item-5', 'Signaler un évenement', titre,'page_evenements.py')
     ret += create_link('menu-item-6', 'Voir le réseau', titre,'page_reseau.py')
-    ret += create_link('menu-item-7', 'Contacter l\'Admin', titre, 'page_contact.py')
+    if "login" in Session() and Session()['Id_exploitant'] == 0:
+        ret += create_link('menu-item-7', 'Gérer les membres', titre, 'page_gestion_exploitant.py')
+    else:
+        ret += create_link('menu-item-7', 'Contacter l\'Admin', titre, 'page_contact.py')
 
     ret += '''          </ul>
                     </nav>
@@ -71,7 +74,7 @@ def create_link(position, titre, current_page,fichier):
 
 
 
-def afficherFormulaireConnexion(error=''):
+def afficherFormulaireConnexion(option=''):
 
     if "login" not in Session():
         ret='''
@@ -91,9 +94,9 @@ def afficherFormulaireConnexion(error=''):
             </table>
         </form>
         '''
-        if error == 'error':
-            ret += '<div class="input-error">login ou mot de passe incorrect</div>'
 
+        if option == 'error':
+            ret += '<div class="input-error">Login ou mot de passe incorrect</div>'
 
     else: # utilisateur connecte
         ret = '''
@@ -124,6 +127,10 @@ border-image: url(bordure.png) 5 5 5 5 fill round;background: rgba(2,0,1,0.3);">
             </tr>
         </table>
          '''
+        if option == "profilUpdated":
+            ret+='''
+            <div class="greetings">Profil mis à jour</div>
+            '''
     return ret
 
 

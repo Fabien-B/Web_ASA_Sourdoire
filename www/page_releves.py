@@ -1,4 +1,5 @@
 exploitant = Import('Exploitant.py')
+compteur = Import('compteur.py')
 releve = Import('releve.py')
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 connexion = Import('gestion_session.py')
@@ -8,7 +9,7 @@ import datetime
 def index(error=''):
     ret=template.afficherHautPage(error, titre='Entrer un relevé')
     if "login" in Session():
-        ret += corps_page_connecte()
+            ret += corps_page_connecte()
     else:
         ret += corps_page_deconnecte()
     ret += template.afficherBasPage()
@@ -23,12 +24,8 @@ def corps_page_deconnecte():
 
 
 def corps_page_connecte():
-    option = recup_options()[0]
-    nom_compteur = recup_options()[1]
-    try:
-        index_debut = get_last_index(nom_compteur[0])
-    except IndexError:
-        index_debut = 0
+    id_compteurs =compteur.Compteur.get_compteurs_id(Session()["Id_exploitant"])
+    options = recup_options()
     script = '''<script>
   $(function() {
     $( "#datepicker" ).datepicker();
@@ -44,26 +41,26 @@ def corps_page_connecte():
     style='''<style> input[type="text"] { float: right; margin-right: 20px;} select{ float: right; margin-right: 20px;}</style>'''
 
     html = """
-    {2}
+    {0}
     <div class="container">
     <h1 class="container sixteen columns over" style="text-align: center;margin-bottom:15px;">Entrer un relevé</h1>
         <aside class="six columns left-sidebar">
         <form action="ajout_releve" method="GET">
         <div class="sidebar-widget">
         <h2 style='margin-bottom:30px'>Informations du relevé :</h2>
-        <p>Compteur :  
-        <select name="compteur">
-        {0}
-        </select></p>
-    <p>Index début :
-    <input name="index_debut" type="text" value="{3}" required></p>
-    <p>Index fin :<input name="index_fin" type="text" required></p>
+        <p>Compteur :
+        <select id="combo_compteur_releves" name="id_compteur" onchange="update_index_deb_releve(this.selectedIndex)">
+        {1}
+        </select></p>""".format(script,options)
 
-<p>Date : <input name="date" type="text" id="datepicker" required></p>
-<p>Heure : <input name="time" type="text" id="timepicker" required></p>
-<p style='float:right; margin-right:20px;'><input type="submit" name="submit" value="Valider" /></p>
-</form>
-        </aside>
+    html += part_index_debut(id_compteurs[0])
+
+    html += '''<p>Index fin :<input name="index_fin" type="text" required></p>
+            <p>Date : <input name="date" type="text" id="datepicker" required></p>
+            <p>Heure : <input name="time" type="text" id="timepicker" required></p>
+            <p style='float:right; margin-right:20px;'><input type="submit" name="submit" value="Submit" /></p>
+            </form>
+            </aside>
         <!-- End Left Sidebar -->
 
 
@@ -84,7 +81,7 @@ def corps_page_connecte():
         <link rel="stylesheet" href="../stylesheets/jquery.ui.timepicker.css">
         <script src="../js/jquery-ui.min.js"></script>
         <script src="../js/jquery.ui.timepicker.js"></script>
-{1}
+{0}
 </html>
       
         </article>
@@ -92,53 +89,35 @@ def corps_page_connecte():
       
 
     </div>
-    """.format(option, script, style, index_debut)
+    '''.format(script, style)
     return html
 
+def part_index_debut(id_compteur=0):
+    index = compteur.Compteur.get_last_index(id_compteur)
+    html = '''
+    <p id="index_debut_releves">Index début :
+    <input name="index_debut" type="text" value="{0}" required></p>
+    '''.format(index)
+    return html
 
-def ajout_releve(compteur , index_debut, index_fin, date, time, submit):
-    myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
-    id_compteur = get_id_compteur_from_nom(compteur)
+def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit):
     myreleve = releve.Releve(0)
-    myreleve.id = 0
-    myreleve.compteur = id_compteur
-    myreleve.index_deb = index_debut
+    myreleve.compteur = int(id_compteur)
+    myreleve.index_deb = index_debut    #todo: vérifier la cohérence
     myreleve.index_fin = index_fin
     myreleve.date = str(date + ' ' + time)
-    myreleve.exploitant = myexploitant.id
+    myreleve.exploitant = Session()["Id_exploitant"]
     myreleve.save()
     return index('Profil actualisé')
 
-
 def recup_options():
-    myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
-    login = myexploitant.login
-    option = []
-    compteurs = []
-    info = exploitant.Exploitant.get_his_parcelle(login)
-    for (x, y) in info:
-        option.append('<option> ' + x + ', ' + str.capitalize(str(y)) + ' </option>')
-        compteurs.append(str(x))
-    option = str(option).replace("',", "'\n").replace("'", "").replace("[", "").replace("]", "")
-    return option, compteurs
-
+    options = ''
+    compteurs_id = compteur.Compteur.get_compteurs_id(Session()["Id_exploitant"])
+    for id in compteurs_id:
+        line = '<option value="{}"> '.format(id) + str(id) + ', ' + compteur.Compteur(id).nom + ' </option>' + '\n'
+        options += line
+    return options
 
 def traiterFormulaireConnexion(choix, login='',password=''):
     return connexion.Connexion(index, choix, login, password)
 
-def get_id_compteur_from_nom(nom):
-    nom = nom.split()[0].replace(",", "")
-    connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
-    curseur = connection.cursor()
-    requete = 'select Id_compteur as id from Compteur where Nom="{}";'.format(nom)
-    curseur.execute(requete)
-    id = curseur.fetchall()[0][0]
-    return id
-
-def get_last_index(nom_compteur):
-        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
-        curseur = connection.cursor()
-        requete ='''select max(Index_fin) from Releve where Compteur in (select Id_compteur as id from Compteur where Nom="{}");'''.format(nom_compteur)
-        curseur.execute(requete)
-        result = curseur.fetchall()[0][0]
-        return result

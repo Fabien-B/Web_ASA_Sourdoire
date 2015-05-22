@@ -56,5 +56,23 @@ class Compteur(object):
             id_compt_list.append(id_compt)
         return id_compt_list
 
+    @staticmethod
+    def get_id_from_name(name):
+        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
+        curseur = connection.cursor()
+        requete = 'select Id_compteur as id from Compteur where Nom="{}";'.format(name)
+        curseur.execute(requete)
+        id = curseur.fetchall()[0][0]
+        return id
+
+    @staticmethod
+    def get_last_index(id_compteur):
+        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
+        curseur = connection.cursor()
+        requete ="select max(Index_fin) from Releve where Compteur={};".format(id_compteur)
+        curseur.execute(requete)
+        result = curseur.fetchall()[0][0]
+        return result
+
 class CompteurError(Exception):
     pass

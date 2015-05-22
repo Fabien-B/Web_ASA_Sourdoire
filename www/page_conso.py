@@ -23,7 +23,7 @@ def corps_page_connecte():
     padding: 15px;
 }</style>
             <div class="sixteen columns main-content">
-    <p>Bonjour!</p>
+    <h2>Ma Consommation</h2>
     <form>
         <label for="date_debut">date de début:</label>
         <input type="date" name="date_debut" id="date_debut">

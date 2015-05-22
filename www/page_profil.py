@@ -101,10 +101,10 @@ def updateProfile(nom, tel, login, password, password_confirm, email, old_passwo
             password = bcrypt.hashpw(password, myexploitant.salt)
         if not email: email = myexploitant.mail
         salt = myexploitant.salt
-        myexploitant.update(myexploitant.id, nom, email, tel, login, password, salt)
+        myexploitant.update(nom, email, tel, login, password, salt)
         Session()["login"] = login
         Session()["nom"] = nom
-        return index('Profil actualisé')
+        return index('ProfilUpdated')
     else:
         return index()
 
