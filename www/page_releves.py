@@ -24,11 +24,8 @@ def corps_page_deconnecte():
 
 
 def corps_page_connecte():
-    nom_compteur =compteur.Compteur.get_compteurs_id(Session()["Id_exploitant"])
-    try:
-        index_debut = compteur.Compteur.get_last_index(nom_compteur[0])
-    except IndexError:
-        index_debut = 0
+    id_compteurs =compteur.Compteur.get_compteurs_id(Session()["Id_exploitant"])
+    options = recup_options()
     script = '''<script>
   $(function() {
     $( "#datepicker" ).datepicker();
@@ -44,14 +41,26 @@ def corps_page_connecte():
     style='''<style> input[type="text"] { float: right; margin-right: 20px;} select{ float: right; margin-right: 20px;}</style>'''
 
     html = """
-    {1}
+    {0}
     <div class="container">
     <h1 class="container sixteen columns over" style="text-align: center;margin-bottom:15px;">Entrer un relevé</h1>
-        <aside class="six columns left-sidebar">"""
+        <aside class="six columns left-sidebar">
+        <form action="ajout_releve" method="GET">
+        <div class="sidebar-widget">
+        <h2 style='margin-bottom:30px'>Informations du relevé :</h2>
+        <p>Compteur :
+        <select id="combo_compteur_releves" name="id_compteur" onchange="update_index_deb_releve(this.selectedIndex)">
+        {1}
+        </select></p>""".format(script,options)
 
-    html += form_releve(index_debut)
+    html += part_index_debut(id_compteurs[0])
 
-    html += """</aside>
+    html += '''<p>Index fin :<input name="index_fin" type="text" required></p>
+            <p>Date : <input name="date" type="text" id="datepicker" required></p>
+            <p>Heure : <input name="time" type="text" id="timepicker" required></p>
+            <p style='float:right; margin-right:20px;'><input type="submit" name="submit" value="Submit" /></p>
+            </form>
+            </aside>
         <!-- End Left Sidebar -->
 
 
@@ -80,34 +89,21 @@ def corps_page_connecte():
       
 
     </div>
-    """.format(script, style)
+    '''.format(script, style)
     return html
 
-def form_releve(index_debut=0):
-    option = recup_options()
-    html = '''<form action="ajout_releve" method="GET">
-        <div class="sidebar-widget">
-        <h2 style='margin-bottom:30px'>Informations du relevé :</h2>
-        <p>Compteur :
-        <select name="mycompteur">
-        {0}
-        </select></p>
-    <p>Index début :
-    <input name="index_debut" type="text" value="{1}" required></p>
-    <p>Index fin :<input name="index_fin" type="text" required></p>
-
-<p>Date : <input name="date" type="text" id="datepicker" required></p>
-<p>Heure : <input name="time" type="text" id="timepicker" required></p>
-<p style='float:right; margin-right:20px;'><input type="submit" name="submit" value="Valider" /></p>
-</form>'''.format(option,index_debut)
+def part_index_debut(id_compteur=0):
+    index = compteur.Compteur.get_last_index(id_compteur)
+    html = '''
+    <p id="index_debut_releves">Index début :
+    <input name="index_debut" type="text" value="{0}" required></p>
+    '''.format(index)
     return html
 
-def ajout_releve(mycompteur, index_debut, index_fin, date, time, submit):
-    mycompteur = mycompteur.split()[1].replace(",", "")
-    id_compteur = compteur.Compteur.get_id_from_name(mycompteur)
+def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit):
     myreleve = releve.Releve(0)
     myreleve.compteur = int(id_compteur)
-    myreleve.index_deb = index_debut
+    myreleve.index_deb = index_debut    #todo: vérifier la cohérence
     myreleve.index_fin = index_fin
     myreleve.date = str(date + ' ' + time)
     myreleve.exploitant = Session()["Id_exploitant"]
@@ -118,7 +114,7 @@ def recup_options():
     options = ''
     compteurs_id = compteur.Compteur.get_compteurs_id(Session()["Id_exploitant"])
     for id in compteurs_id:
-        line = '<option> ' + str(id) + ', ' + compteur.Compteur(id).nom + ' </option>' + '\n'
+        line = '<option value="{}"> '.format(id) + str(id) + ', ' + compteur.Compteur(id).nom + ' </option>' + '\n'
         options += line
     return options
 
