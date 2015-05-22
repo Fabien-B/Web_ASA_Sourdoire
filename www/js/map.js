@@ -22,3 +22,16 @@ function get_network(map,fctonfeature,ex) {
 		error:function(){ alert("erreur lors de la recuperation des données");}
 	});
 }
+
+
+var selectedIcon = L.icon({
+    iconUrl: '../img/pin_selected.png',
+    //iconRetinaUrl: 'my-icon@2x.png',
+    iconSize: [39, 70],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+    //shadowUrl: 'my-icon-shadow.png',
+    //shadowRetinaUrl: 'my-icon-shadow@2x.png',
+    //shadowSize: [68, 95],
+    //shadowAnchor: [22, 94]
+});
