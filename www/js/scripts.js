@@ -49,6 +49,7 @@ directionNav: true,
 	
 });
 
+/*filter conso by date*/
 function update_conso() {
    $.ajax({
 		type:"get",
@@ -61,6 +62,7 @@ function update_conso() {
 	});	   
 }
 
+/*change default text inputf for index debut releve*/
 function update_index_deb_releve(id_compteur) {
    $.ajax({
 		type:"get",
@@ -73,6 +75,7 @@ function update_index_deb_releve(id_compteur) {
 	}); 
 }
 
+/*Change selected compteur in combo box*/
 function change_combo_box(id_compteur){
 	combo = document.getElementById('combo_compteur_releves')
 	var l = combo.options.length;
@@ -86,7 +89,7 @@ function change_combo_box(id_compteur){
 	combo.options[index_combo].selected=true;
 }
 
-
+/*update detail compteur on page "Le réseau d'irrigation"*/
 function update_details_compteur(id_compteur) {
    $.ajax({
 		type:"get",
@@ -99,6 +102,7 @@ function update_details_compteur(id_compteur) {
 	}); 
 }
 
+/*update info exploitant on page "Gestion des membres"*/
 function update_info_exploitant(selec,index) {
 	var id_ex =  selec.options[index].value;
    $.ajax({
@@ -112,6 +116,7 @@ function update_info_exploitant(selec,index) {
 	});
 }
 
+/*change exploitant to see conso (for the administrator)*/
 function change_exploitant_conso(selec,index) {
 	var id_ex =  selec.options[index].value;
 	alert(id_ex);
