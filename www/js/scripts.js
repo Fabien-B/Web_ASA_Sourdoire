@@ -99,4 +99,17 @@ function update_details_compteur(id_compteur) {
 	}); 
 }
 
+function update_info_exploitant(selec,index) {
+	var id_ex =  selec.options[index].value;
+   $.ajax({
+		type:"get",
+		url:'../page_gestion_exploitant.py/get_details',   // fonction python appelée
+		data: {'id_ex':id_ex}, // parametres passes a cette fonction
+		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
+			$("#infosexploitant").html(reponse);   // maj sur la page 
+		},
+		error:function(){ alert("erreur lors de la recuperation de la page");}
+	});
+}
+
 //End document.ready
