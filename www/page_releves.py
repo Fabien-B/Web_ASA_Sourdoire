@@ -52,14 +52,14 @@ def corps_page_connecte():
         <p>Compteur :
         <select id="combo_compteur_releves" name="id_compteur" onchange="update_index_deb_releve(this.selectedIndex)">
         {1}
-        </select></p>""".format(script,options)
+        </select></p>""".format(style,options)
 
     html += part_index_debut(id_compteurs[0])
 
     html += '''<p>Index fin :<input name="index_fin" type="text" required></p>
             <p>Date : <input name="date" type="text" id="datepicker" required></p>
             <p>Heure : <input name="time" type="text" id="timepicker" required></p>
-            <p style='float:right; margin-right:20px;'><input type="submit" name="submit" value="Submit" /></p>
+            <p style='float:right; margin-right:20px;'><input type="submit" name="submit" value="Valider" /></p>
             </form>
             </aside>
         <!-- End Left Sidebar -->
@@ -90,7 +90,7 @@ def corps_page_connecte():
       
 
     </div>
-    '''.format(script, style)
+    '''.format(script)
     return html
 
 def part_index_debut(id_compteur=0):
