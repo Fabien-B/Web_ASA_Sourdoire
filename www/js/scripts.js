@@ -163,7 +163,7 @@ function update_exploitant_releve(selec,index){
 function change_combo_box(opt_check){
 	$.ajax({
 		type:"get",
-		url:'../page_evenement.py/get_combo_box',   // fonction python appelée
+		url:'../page_evenements.py/get_combo_box',   // fonction python appelée
 		data: {'opt_check':opt_check}, // parametres passes a cette fonction
 		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
 			$("#combo_compteur_evenement").html(reponse);   // maj sur la page 
