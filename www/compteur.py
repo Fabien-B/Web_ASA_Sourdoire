@@ -69,7 +69,7 @@ class Compteur(object):
     def get_last_index(id_compteur):
         connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
         curseur = connection.cursor()
-        requete ="select max(Index_fin) from Releve where Compteur={};".format(id_compteur)
+        requete ="select Index_fin from Releve where Id_releve = (select max(Id_releve) from Releve where Compteur = {});".format(id_compteur)
         curseur.execute(requete)
         result = curseur.fetchall()[0][0]
         return result
