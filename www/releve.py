@@ -49,6 +49,7 @@ class Releve(object):
     @staticmethod
     def get_releves_id(id_exploitant,youger_date=None, older_date=None):
         '''return a list of tuples: [(id_releve, id_parcelle), ... ]'''
+        id_exploitant = int(id_exploitant)
         connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1',database='asa')
         curseur = connection.cursor()
 
@@ -62,16 +63,22 @@ class Releve(object):
         else:
             older_date = 'NULL'
 
-        requete = '''SELECT Releve.Id_releve,Parcelle.Id_parcelle FROM Releve,Parcelle,Propriete
+        if id_exploitant:
+            requete = '''SELECT Releve.Id_releve,Parcelle.Id_parcelle FROM Releve,Parcelle,Propriete
                     WHERE Releve.Exploitant = {2}
+                    AND Propriete.Id_exploitant = Releve.Exploitant
                     AND Releve.Compteur = Parcelle.Compteur
                     AND Parcelle.Id_parcelle = Propriete.Id_parcelle
-                    AND Propriete.Id_exploitant = {2}
                     AND (Propriete.date_debut < Releve.Date OR Propriete.date_debut IS NULL)
                     AND (Propriete.date_fin > Releve.Date OR Propriete.date_fin IS NULL)
                     AND (Releve.Date < {0} OR {0} IS NULL)
                     AND (Releve.Date > {1} OR {1} IS NULL)
-                    AND Id_exploitant={2}
+                    ORDER BY Releve.Date;'''.format(older_date,youger_date,id_exploitant)
+        else:
+            requete = '''SELECT Id_releve,-1 FROM Releve
+                    WHERE Releve.Exploitant = {2}
+                    AND (Releve.Date < {0} OR {0} IS NULL)
+                    AND (Releve.Date > {1} OR {1} IS NULL)
                     ORDER BY Releve.Date;'''.format(older_date,youger_date,id_exploitant)
         curseur.execute(requete)
         id_rel_tuple = curseur.fetchall()
@@ -83,3 +90,4 @@ class Releve(object):
 
 class ReleveError(Exception):
     pass
+#                    'AND Id_exploitant={2}'

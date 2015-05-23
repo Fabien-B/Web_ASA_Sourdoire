@@ -96,6 +96,8 @@ def get_releves(Id_exploitant, date_debut=None, date_fin=None):
     dico = {}           #{<Parcelle>:[<Releve1>,<Releve2>], ... }
     parcelles = {}      #{id:<Parcelle> , ...}
     for (id_releve,id_parcelle) in releves_list:
+        if id_parcelle == -1:
+            return dico
         if id_parcelle in parcelles.keys():
             dico[parcelles[id_parcelle]].append(releve.Releve(id_releve))
         else:
