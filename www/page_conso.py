@@ -38,7 +38,7 @@ def corps_page_connecte():
         <input type="date" name="Date_fin" id="date_fin">
         <button type="button" id="update_releves" >Ok</button>
     </form>"""
-    html += conso_table()
+    html += conso_table(id_ex=1)
     html += """</div>
     </div>"""
     return html
