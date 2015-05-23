@@ -1,6 +1,7 @@
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 connexion = Import('gestion_session.py')
 compteur = Import('compteur.py')
+exploitant = Import('Exploitant.py')
 import json
 import os
 
@@ -42,12 +43,21 @@ def detail(id_compteur=1):
     latitude = selected_comp.lat if selected_comp.lat else 'Donnée manquante'
     longitude = selected_comp.lon if selected_comp.lon else'Donnée manquante'
     altitude = str(selected_comp.altitude) + ' m' if selected_comp.altitude else'Donnée manquante'
+
+    Ids_ex = exploitant.Exploitant.get_compteur_exploitants_id(id_compteur)
+    exploits = '</br>'
+    for id_ex in Ids_ex:
+        name = exploitant.Exploitant(id_ex).nom
+        exploits += '    - ' + name + '</br>'
+    conjug = '' if len(Ids_ex)==1 else 's'
+
     html = '''<span id="detail_compteur">
                 <img src="{0}" height=100px style="border:2px; border-color:#004A4D; border-style:groove; padding:5px;"></img>
                  <h3>Nom : {1}</h3>
                  <h3>position : {2}, {3}</h3>
                  <h3>Altitude : {4}</h3>
-            </span>'''.format(path,nom,latitude,longitude,altitude)
+                 <h3>Exploitant{5} : {6}</h3>
+            </span>'''.format(path,nom,latitude,longitude,altitude,conjug,exploits)
     return html
 
 def get_json_compteurs(ex=not None):
