@@ -6,7 +6,7 @@ get_network(map_releves,onEach_upReleve);
 function onEach_upReleve(feature, layer) {
     if (feature.properties && feature.properties["altitude"]) {
     	var texte = String("Altitude: " + feature.properties["altitude"] + "m");
-		layer.bindPopup(texte).on('click', function(e) {oncompteurClick(this,feature.properties["id"]);});
+		layer.on('click', function(e) {oncompteurClick(this,feature.properties["id"]);});
     }
 }
 
