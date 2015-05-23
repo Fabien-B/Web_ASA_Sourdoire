@@ -57,21 +57,6 @@ class Compteur(object):
         return id_compt_list
 
     @staticmethod
-    def get_compteurs_parcelle_id(id_ex):
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database='asa')
-        curseur = connection.cursor()
-        if id_ex == 0:
-            requete = 'select Compteur,Id_parcelle FROM Parcelle;'
-        else:
-            requete = 'select Compteur, Parcelle.Id_parcelle FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Id_exploitant = {};'.format(id_ex)
-        curseur.execute(requete)
-        id_compt_parc_tuple = curseur.fetchall()
-        id_compt_parc_list = []
-        for (id_compt,id_parc) in id_compt_parc_tuple:
-            id_compt_parc_list.append((id_compt,id_parc))
-        return id_compt_parc_list
-
-    @staticmethod
     def get_id_from_name(name):
         connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
         curseur = connection.cursor()
@@ -84,7 +69,7 @@ class Compteur(object):
     def get_last_index(id_compteur):
         connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database='asa')
         curseur = connection.cursor()
-        requete ="select max(Index_fin) from Releve where Compteur={};".format(id_compteur)
+        requete ="select Index_fin from Releve where Id_releve = (select max(Id_releve) from Releve where Compteur = {});".format(id_compteur)
         curseur.execute(requete)
         result = curseur.fetchall()[0][0]
         return result

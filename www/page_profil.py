@@ -22,7 +22,7 @@ def corps_page():
                 <div class="sixteen columns">
                     <h2 style="text-align:center;">Votre profil</h2>
                 </div>
-                <form action="updateProfile" method="GET">
+                <form action="updateProfile" method="POST">
                     <div class="one-third column alpha">
                         <label>Votre nom :</label>
                         <h3>{0}</h3>
@@ -87,7 +87,7 @@ def get_info_exploitant():
     if not tel: tel = "Non renseigné"
     return nom, login, email, tel
 
-def updateProfile(nom, tel, login, password, password_confirm, email, old_password, submit):
+def updateProfile(nom=0, tel=0, login=0, password=0, password_confirm=0, email=0, old_password=0, submit=0):
     myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
     if bcrypt.hashpw(old_password, myexploitant.salt) == myexploitant.password:
         if not nom: nom = myexploitant.nom
@@ -104,9 +104,9 @@ def updateProfile(nom, tel, login, password, password_confirm, email, old_passwo
         myexploitant.update(nom, email, tel, login, password, salt)
         Session()["login"] = login
         Session()["nom"] = nom
-        return index('ProfilUpdated')
+        return index('Profil mis à jour')
     else:
-        return index()
+        return index("Mot de passe incorrect, modifications annulées")
 
 def traiterFormulaireConnexion(choix, login='',password=''):
     return connexion.Connexion(index, choix, login, password)
