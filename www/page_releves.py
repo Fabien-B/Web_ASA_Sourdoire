@@ -107,15 +107,11 @@ def part_index_debut(id_compteur=0):
     '''.format(index)
     return html
 
-<<<<<<< HEAD
 
-def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit):
-=======
 def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit, id_exploitant = 0):
     (index_debut,index_fin) = (int(index_debut),int(index_fin))
     if (index_fin - index_debut) < 0 and Session()["Id_exploitant"]:    #releve négatif autorisé pour l'admin.
         return index('IndexError')
->>>>>>> 7a75ec17a77b5617a1487e20563294a6c4a345d6
     myreleve = releve.Releve(0)
     myreleve.compteur = int(id_compteur)
     myreleve.index_deb = index_debut
@@ -128,12 +124,8 @@ def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit, id_exp
     myreleve.save()
     return index('Profil actualisé')
 
-<<<<<<< HEAD
 
-def recup_options():
-=======
 def recup_options(id_ex):
->>>>>>> 7a75ec17a77b5617a1487e20563294a6c4a345d6
     options = ''
     compteurs_parc_id = compteur.Compteur.get_compteurs_parcelle_id(id_ex)
     for (id_compt, id_parc) in compteurs_parc_id:
@@ -143,10 +135,7 @@ def recup_options(id_ex):
         options += line
     return options
 
-<<<<<<< HEAD
 
-def traiterFormulaireConnexion(choix, login='', password=''):
-=======
 def get_options_exploitant():
     options = '<option value="0">0 - ADMINISTRATEUR</option>\n'
     exploitant_list = exploitant.Exploitant.get_all_exploitants()
@@ -155,7 +144,6 @@ def get_options_exploitant():
     return options
 
 def traiterFormulaireConnexion(choix, login='',password=''):
->>>>>>> 7a75ec17a77b5617a1487e20563294a6c4a345d6
     return connexion.Connexion(index, choix, login, password)
 
 def get_compteur_combo_box(id_ex):
