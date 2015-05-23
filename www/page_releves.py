@@ -106,7 +106,7 @@ def part_index_debut(id_compteur=0):
     '''.format(index)
     return html
 
-def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit):
+def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit, id_exploitant = 0):
     (index_debut,index_fin) = (int(index_debut),int(index_fin))
     if (index_fin - index_debut) < 0 and Session()["Id_exploitant"]:    #releve négatif autorisé pour l'admin.
         return index('IndexError')
@@ -118,7 +118,7 @@ def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit):
     if Session()["Id_exploitant"]:
         myreleve.exploitant = Session()["Id_exploitant"]
     else:   #administrateur
-        myreleve.exploitant = 0#################################################################################################################################################################################
+        myreleve.exploitant = id_exploitant
     myreleve.save()
     return index('Profil actualisé')
 
@@ -143,6 +143,7 @@ def traiterFormulaireConnexion(choix, login='',password=''):
     return connexion.Connexion(index, choix, login, password)
 
 def get_compteur_combo_box(id_ex):
+    id_ex = int(id_ex)
     html = """<p>Compteur :
         <select id="combo_compteur_releves" name="id_compteur" onchange="update_index_deb_releve(this.selectedIndex)">
         {0}

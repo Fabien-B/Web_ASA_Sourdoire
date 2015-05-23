@@ -141,11 +141,10 @@ function verif_releve(fin_input){
 
 function update_exploitant_releve(selec,index){
 	var id_ex =  selec.options[index].value;
-	//alert(id_ex);
 	$.ajax({
 		type:"get",
 		url:'../page_releves.py/get_compteur_combo_box',   // fonction python appelée
-		data: {'id_ex':parseInt(id_ex)}, // parametres passes a cette fonction
+		data: {'id_ex':id_ex}, // parametres passes a cette fonction
 		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
 			$("#combo_compteur_releves").html(reponse);   // maj sur la page 
 		},
@@ -154,7 +153,6 @@ function update_exploitant_releve(selec,index){
 	
 	var combo = document.getElementById('combo_compteur_releves')
 	var id_compteur = parseInt(combo.options[0].value);
-	alert(id_compteur);
 	update_index_deb_releve(id_compteur);
 }
 //End document.ready
