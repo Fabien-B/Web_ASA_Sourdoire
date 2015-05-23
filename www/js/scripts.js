@@ -63,9 +63,11 @@ function update_conso() {
 }
 
 /*change default text inputf for index debut releve*/
-function update_index_deb_releve(index) {
+function update_index_deb_releve(index,id_compteur) {
 	var selec = document.getElementById('combo_compteur_releves');
-	var id_compteur =  selec.options[index].value;
+	if (index != -1) {
+		var id_compteur =  selec.options[index].value;
+	}
    $.ajax({
 		type:"get",
 		url:'../page_releves.py/part_index_debut',   // fonction python appelée
