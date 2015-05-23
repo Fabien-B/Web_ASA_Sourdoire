@@ -51,10 +51,17 @@ directionNav: true,
 
 /*filter conso by date*/
 function update_conso() {
+	var select_ex = document.getElementById('combo_ex_conso')
+	if (select_ex) {
+		var id_ex = select_ex.options[select_ex.selectedIndex].value
+	}
+	else {
+		var id_ex = null;
+	}
    $.ajax({
 		type:"get",
 		url:'../page_conso.py/conso_table',   // fonction python appelée
-		data: {'date_debut':document.getElementById('date_debut').value, 'date_fin':document.getElementById('date_fin').value}, // parametres passes a cette fonction
+		data: {'date_debut':document.getElementById('date_debut').value, 'date_fin':document.getElementById('date_fin').value,'id_ex':id_ex}, // parametres passes a cette fonction
 		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
 			$("#conso_content").html(reponse);   // maj sur la page 
 		},
@@ -123,7 +130,6 @@ function update_info_exploitant(selec,index) {
 /*change exploitant to see conso (for the administrator)*/
 function change_exploitant_conso(selec,index) {
 	var id_ex =  selec.options[index].value;
-	alert(id_ex);
    $.ajax({
 		type:"get",
 		url:'../page_conso.py/conso_table',   // fonction python appelée
