@@ -1,4 +1,3 @@
-rep = 'asa/'  # sous-repertoire d'installation de cet exemple dans www
 
 def afficherHautPage(error = '', titre=''):
     ret = '''
@@ -33,6 +32,7 @@ def afficherHautPage(error = '', titre=''):
 
                     <div class="tree columns alpha" style="float:left; margin-top:10px;">
                         <a href="../index.py" id="logo"><img src="../images/logo.png" alt="Icebrrrg logo" height="100" /></a>
+                        {0}
                     </div>
 
                     <div class="nine columns alpha">
@@ -40,7 +40,7 @@ def afficherHautPage(error = '', titre=''):
 
                     <div id="login" class="four columns alpha" style="float:right;margin-top:10px;">
 
-                    '''+afficherFormulaireConnexion(error)+'''
+                    '''.format(error) + afficherFormulaireConnexion(error) + '''
                     </div>
 
                 </div>
@@ -49,6 +49,7 @@ def afficherHautPage(error = '', titre=''):
                     <nav id="main-nav">
                         <ul id="main-nav-menu" class="nav-menu">'''
     ret += create_link('menu-item-1', 'Accueil', titre,'index.py')
+<<<<<<< HEAD
     if "login" in Session() and Session()['Id_exploitant'] == 0:
         ret += create_link('menu-item-2', 'Consos', titre,'page_conso.py')
         ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
@@ -56,12 +57,25 @@ def afficherHautPage(error = '', titre=''):
         ret += create_link('menu-item-6', 'Voir le réseau', titre,'page_reseau.py')
         ret += create_link('menu-item-8', 'Gérer les membres', titre, 'page_gestion_exploitant.py')
         ret += create_link('menu-item-7', 'Demandes à l\'administrateur', titre, 'page_contact.py')
+=======
+    if "login" in Session():
+        if Session()['Id_exploitant'] == 0:
+            ret += create_link('menu-item-2', 'Consos', titre,'page_conso.py')
+            ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
+            ret += create_link('menu-item-4', 'Signaler un évenement', titre,'page_evenements.py')
+            ret += create_link('menu-item-5', 'Voir le réseau', titre,'page_reseau.py')
+            ret += create_link('menu-item-6', 'Gérer les membres', titre, 'page_gestion_exploitant.py')
+            ret += create_link('menu-item-7', 'Demandes à l\'administrateur', titre, 'page_contact.py')
+        else:
+            ret += create_link('menu-item-2', 'Ma Conso', titre,'page_conso.py')
+            ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
+            ret += create_link('menu-item-4', 'Signaler un évenement', titre,'page_evenements.py')
+            ret += create_link('menu-item-5', 'Voir le réseau', titre,'page_reseau.py')
+            ret += create_link('menu-item-6', 'Contacter l\'Admin', titre, 'page_contact.py')
+>>>>>>> 7a75ec17a77b5617a1487e20563294a6c4a345d6
     else:
-        ret += create_link('menu-item-2', 'Ma Conso', titre,'page_conso.py')
-        ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
-        ret += create_link('menu-item-5', 'Signaler un évenement', titre,'page_evenements.py')
-        ret += create_link('menu-item-6', 'Voir le réseau', titre,'page_reseau.py')
-        ret += create_link('menu-item-7', 'Contacter l\'Admin', titre, 'page_contact.py')
+        ret += create_link('menu-item-2', 'Voir le réseau', titre,'page_reseau.py')
+        ret += create_link('menu-item-3', 'Contacter l\'Admin', titre, 'page_contact.py')
 
     ret += '''          </ul>
                     </nav>
