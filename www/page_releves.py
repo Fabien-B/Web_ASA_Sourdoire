@@ -39,7 +39,7 @@ def corps_page_connecte():
   </script>
 '''
 
-    style='''<style> input[type="text"] { float: right; margin-right: 20px;} select{ float: right; margin-right: 20px;}</style>'''
+    style='''<style> input[type="text"] { float: right; margin-right: 20px;} select{ float: right; margin-right: 20px;} p{margin-bottom:35px;}</style>'''
 
     html = """
     {0}
@@ -93,6 +93,7 @@ def corps_page_connecte():
     '''.format(script)
     return html
 
+
 def part_index_debut(id_compteur=0):
     index = compteur.Compteur.get_last_index(id_compteur)
     html = '''
@@ -100,6 +101,7 @@ def part_index_debut(id_compteur=0):
     <input name="index_debut" type="text" value="{0}" required></p>
     '''.format(index)
     return html
+
 
 def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit):
     myreleve = releve.Releve(0)
@@ -111,6 +113,7 @@ def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit):
     myreleve.save()
     return index('Profil actualisé')
 
+
 def recup_options():
     options = ''
     compteurs_parc_id = compteur.Compteur.get_compteurs_parcelle_id(Session()["Id_exploitant"])
@@ -121,5 +124,6 @@ def recup_options():
         options += line
     return options
 
-def traiterFormulaireConnexion(choix, login='',password=''):
+
+def traiterFormulaireConnexion(choix, login='', password=''):
     return connexion.Connexion(index, choix, login, password)

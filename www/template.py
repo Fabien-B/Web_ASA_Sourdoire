@@ -52,7 +52,7 @@ def afficherHautPage(error = '', titre=''):
     if "login" in Session() and Session()['Id_exploitant'] == 0:
         ret += create_link('menu-item-2', 'Consos', titre,'page_conso.py')
         ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
-        ret += create_link('menu-item-5', 'Signaler un évenement', titre,'page_evenements.py')
+        ret += create_link('menu-item-5', 'Signaler un évènement', titre,'page_evenements.py')
         ret += create_link('menu-item-6', 'Voir le réseau', titre,'page_reseau.py')
         ret += create_link('menu-item-8', 'Gérer les membres', titre, 'page_gestion_exploitant.py')
         ret += create_link('menu-item-7', 'Demandes à l\'administrateur', titre, 'page_contact.py')
