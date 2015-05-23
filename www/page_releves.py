@@ -127,7 +127,7 @@ def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit, id_exp
 
 def recup_options(id_ex):
     options = ''
-    compteurs_parc_id = compteur.Compteur.get_compteurs_parcelle_id(id_ex)
+    compteurs_parc_id = exploitant.Exploitant.get_compteurs_parcelle_id(id_ex)
     for (id_compt, id_parc) in compteurs_parc_id:
         current_parc = parcelle.Parcelle(id_parc)
         current_compt = compteur.Compteur(id_compt)
