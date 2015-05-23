@@ -4,6 +4,7 @@ releve = Import('releve.py')
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 connexion = Import('gestion_session.py')
 parcelle = Import('parcelle.py')
+litige = Import('litige.py')
 import mysql.connector
 import datetime
 
@@ -100,7 +101,7 @@ def corps_page_connecte():
 
 
 def part_index_debut(id_compteur=0):
-    index = compteur.Compteur.get_last_index(id_compteur)
+    index = compteur.Compteur.get_last_index(id_compteur)[0]
     html = '''
     <p id="index_debut_releves">Index début :
     <input id="index_debut" name="index_debut" type="text" value="{0}" required></p>
@@ -112,6 +113,7 @@ def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit, id_exp
     (index_debut,index_fin) = (int(index_debut),int(index_fin))
     if (index_fin - index_debut) < 0 and Session()["Id_exploitant"]:    #releve négatif autorisé pour l'admin.
         return index('IndexError')
+    (last_index_fin,id_last_releve) = compteur.Compteur.get_last_index(id_compteur)
     myreleve = releve.Releve(0)
     myreleve.compteur = int(id_compteur)
     myreleve.index_deb = index_debut
@@ -122,6 +124,10 @@ def ajout_releve(id_compteur, index_debut, index_fin, date, time, submit, id_exp
     else:   #administrateur
         myreleve.exploitant = id_exploitant
     myreleve.save()
+    if last_index_fin != int(index_debut):
+        mylitige = litige.Litige(-1,True,id_last_releve,myreleve.id)
+        mylitige.save()
+        return index("Profil actualisé</br> l'index de début n'est pas cohérent avec le précedent relevé.</br>Cet incident sera reporté à l'administrateur. ")
     return index('Profil actualisé')
 
 
