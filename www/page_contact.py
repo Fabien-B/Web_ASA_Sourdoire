@@ -3,7 +3,7 @@ connexion = Import('gestion_session.py')
 exploitant = Import('Exploitant.py')
 import time
 import bcrypt
-
+#RIEN DU TOUT
 
 def index(error=''):
     if "login" in Session() and not Session()["Id_exploitant"]:
@@ -160,6 +160,7 @@ def changerNumero(mdp='', tel='', error=''):
     myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
 
     if bcrypt.hashpw(mdp, myexploitant.salt) == myexploitant.password:
+    #if mdp == myexploitant.password:
         nom = myexploitant.nom
         login = myexploitant.login
         password = myexploitant.password
