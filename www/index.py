@@ -35,15 +35,17 @@ def afficherAccueil():
             <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block;
                 top: 0px; left: 0px; width: 100%; height: 100%;">
             </div>
-            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+            <div style="position: absolute; display: block; background: url(../images/accueil/picture_slider/loading.gif) no-repeat center center;
                 top: 0px; left: 0px; width: 100%; height: 100%;">
             </div>
         </div>
         <!-- Slides Container -->
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1300px;
             height: 300px; overflow: hidden;">
+
+
             <div>
-                <img u="image" src="../img/1920/red.jpg" />
+                <img u="image" src="../images/accueil/pousses.jpg" />
                 <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
                     text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
                         color: #FFFFFF;">Touch Swipe Slider
@@ -54,8 +56,9 @@ def afficherAccueil():
                         Build your slider with anything, includes image, content, text, html, photo, picture
                 </div>
             </div>
+
             <div>
-                <img u="image" src="../img/1920/purple.jpg" />
+                <img u="image" src="../images/accueil/bles.jpg" />
                 <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
                     text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
                         color: #FFFFFF;">Touch Swipe Slider
@@ -66,8 +69,9 @@ def afficherAccueil():
                         Build your slider with anything, includes image, content, text, html, photo, picture
                 </div>
             </div>
+
             <div>
-                <img u="image" src="../img/1920/blue.jpg" />
+                <img u="image" src="../images/accueil/jardin.jpg" />
                 <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
                     text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
                         color: #FFFFFF;">Touch Swipe Slider
@@ -78,6 +82,34 @@ def afficherAccueil():
                         Build your slider with anything, includes image, content, text, html, photo, picture
                 </div>
             </div>
+
+            <div>
+                <img u="image" src="../images/accueil/noyers1.jpg" />
+                <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
+                    text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
+                        color: #FFFFFF;">Touch Swipe Slider
+                </div>
+                <div style="position: absolute; width: 480px; height: 120px; top: 300px; left: 30px; padding: 5px;
+                    text-align: left; line-height: 36px; font-size: 30px;
+                        color: #FFFFFF;">
+                        Build your slider with anything, includes image, content, text, html, photo, picture
+                </div>
+            </div>
+
+            <div>
+                <img u="image" src="../images/accueil/noyers2.jpg" />
+                <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
+                    text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
+                        color: #FFFFFF;">Touch Swipe Slider
+                </div>
+                <div style="position: absolute; width: 480px; height: 120px; top: 300px; left: 30px; padding: 5px;
+                    text-align: left; line-height: 36px; font-size: 30px;
+                        color: #FFFFFF;">
+                        Build your slider with anything, includes image, content, text, html, photo, picture
+                </div>
+            </div>
+
+
         </div>
 
         <!--#region Bullet Navigator Skin Begin -->
@@ -103,7 +135,7 @@ def afficherAccueil():
                 line-height: 19px;
                 color: white;
                 font-size: 12px;
-                background: url(../img/b21.png) no-repeat;
+                background: url(../images/accueil/picture_slider/b21.png) no-repeat;
                 overflow: hidden;
                 cursor: pointer;
             }
@@ -138,7 +170,7 @@ def afficherAccueil():
                 width: 55px;
                 height: 55px;
                 cursor: pointer;
-                background: url(../img/a21.png) center center no-repeat;
+                background: url(../images/accueil/picture_slider/a21.png) center center no-repeat;
                 overflow: hidden;
             }
             .jssora21l { background-position: -3px -33px; }
