@@ -61,7 +61,7 @@ def conso_table(date_debut=None, date_fin=None, id_ex = None):
     <tr class="titre">
         <th>Parcelle</th>
         <th>Compteur</th>
-        <th>Consommation</th>
+        <th>Consommation (m<sup>3</sup>)</th>
     </tr>""".format(debut, fin)
     for (i, champ) in enumerate(dico_parc_rels.keys()):
         (line,conso) = add_line(champ, dico_parc_rels[champ], i)
