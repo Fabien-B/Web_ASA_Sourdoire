@@ -35,7 +35,7 @@ def detail(id_compteur=1):
     id_compteur = int(id_compteur)
     selected_comp = compteur.Compteur(id_compteur)
 
-    path = '../images/compteur_{0}.jpg'.format(id_compteur)
+    path = '../images/Compteurs/compteur_{0}.jpg'.format(id_compteur)
 
     nom = selected_comp.nom if selected_comp.nom else 'Donnée manquante'
     latitude = selected_comp.lat if selected_comp.lat else 'Donnée manquante'
