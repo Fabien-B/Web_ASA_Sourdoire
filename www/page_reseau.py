@@ -50,7 +50,7 @@ def detail(id_compteur=1):
     conjug = '' if len(Ids_ex)==1 else 's'
 
     html = '''<span id="detail_compteur">
-                <img src="{0}" alt="pas de photo" height=100px padding:5px;"></img>
+                <img src="{0}" alt="pas de photo" height=150px padding:5px;"></img>
                  <h3>Nom : {1}</h3>
                  <h3>position : {2}, {3}</h3>
                  <h3>Altitude : {4}</h3>
