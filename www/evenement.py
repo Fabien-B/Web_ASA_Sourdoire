@@ -4,7 +4,7 @@ class Evenement(object):
     database = 'asa'
 
     def __init__(self,id_event,desciptif=None,createur=None,compteur=None,photo1=None,photo2=None,):
-        if  id_event>=0:
+        if id_event > 0:
             self.load(id_event)
         else:
             maxId = self.get_last_id()
@@ -30,7 +30,7 @@ class Evenement(object):
         else:
             photo2 = 'NULL'
 
-        descriptif = "'{}'".format(self.descriptif)
+        descriptif = "{}".format(self.descriptif)
         createur = "'{}'".format(self.createur)
         compteur = "'{}'".format(self.compteur)
 
@@ -46,7 +46,7 @@ class Evenement(object):
         requete = 'select * from Evenement where Id_event={};'.format(id_event)
         curseur.execute(requete)
         try:
-            (_, descriptif, createur, compteur, photo1, photo2)=curseur.fetchall()[0]
+            (_, descriptif, createur, compteur, photo1, photo2) = curseur.fetchall()[0]
         except IndexError:
             raise EvenementError("Evenement with id {} doesn't exist".format(id_event))
 
@@ -66,7 +66,7 @@ class Evenement(object):
 
     @staticmethod
     def get_last_id():
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=Exploitant.database)
+        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=Evenement.database)
         curseur = connection.cursor()
         requete = 'select max(Id_Event) from Evenement;'
         curseur.execute(requete)

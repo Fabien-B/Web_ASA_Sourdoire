@@ -2,6 +2,7 @@ exploitant = Import('Exploitant.py')
 compteur = Import('compteur.py')
 releve = Import('releve.py')
 parcelle = Import('parcelle.py')
+evenement = Import('evenement.py')
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 connexion = Import('gestion_session.py')
 
@@ -27,33 +28,33 @@ def corps_page_connecte():
     html = '''
     <div class="container">
     <div class="container" ><h1 style="text-align: center;margin-bottom:15px;">Signaler un évènement</h1></div>
-
         <div id="choose_compteur" style="margin-bottom:25px;">
             <h3>
                 L'évènement concerne:
             </h3>
             <div style="display:inline-flex; width:100%;text-align:center;font-weight: bold;" >
-                <form>
+
                     <div class="alpha" style="float:left;width:50%;text-decoration:bold;"><INPUT TYPE="radio" NAME= "choix" VALUE="0" CHECKED onclick="change_combo_box(this.value)">Un de vos compteur / parcelles </div>
                     <div class="alpha" style="float:right;width:50%;"><INPUT TYPE="radio" NAME= "choix" VALUE="1" onclick="change_combo_box(this.value)">Un autre compteur / parcelle </div>
-                </form>
+
             </div>
-        </div>'''
+        </div>
+        <form method="post" action="Upload" method="GET">'''
 
     html+=get_combo_box(0)
 
-    html+='''<form method="post" action="Upload" method="GET">
-        <label for="description">Description de l'évènement :</label>
+    html+='''
+            <label for="description">Description de l'évènement :</label>
 
-        <textarea name="description" id="description"></textarea>
+            <textarea name="description" id="description" REQUIRED></textarea>
 
-        <label for="mon_fichier">Photo (tous formats | max. 5 Mo) :</label>
-        <input type="file" name="mon_fichier" id="mon_fichier" />
+            <label for="mon_fichier">Photo (tous formats | max. 5 Mo) :</label>
+            <input type="file" name="mon_fichier" id="mon_fichier" />
 
-        <br /><br />
+            <br /><br />
 
-        <input type="submit" name="submit" value="Envoyer" />
-    </form>
+            <input type="submit" name="submit" value="Envoyer" />
+        </form>
     </div>
     '''
     return html
@@ -85,16 +86,25 @@ def get_combo_box(opt_check = None):
         options = recup_options(0)
 
     html='''
-    <p id="combo_compteur_evenement"> Selectionner le compteur concerné :<select name="id_compteur">
+    <p id="combo_compteur_evenement"> Selectionner le compteur concerné :
+    <select name="id_compteur">
     {0}
     </select></p>'''.format(options)
     return html
 
 
-def Upload (description, mon_fichier, submit):
-    from PIL import Image
-    if mon_fichier.filename != "" :
-        f = mon_fichier.file # file-like object
-        dest_name = "../img_event/mon_image.jpg"
-        im = Image.open(f)
-        im.save(dest_name)
+def Upload (id_compteur, description, submit, mon_fichier = 0):
+    myevent = evenement.Evenement(0)
+    myevent.descriptif = description
+    myevent.createur = Session()["Id_exploitant"]
+    myevent.compteur = int(id_compteur)
+    if not mon_fichier: mon_fichier = "NULL"
+    #if mon_fichier is not None:
+     #   from PIL import Image
+      #  if mon_fichier.filename != "" :
+       #     f = mon_fichier.file # file-like object
+        #    dest_name = "../img_event/mon_image.jpg"
+         #   im = Image.open(f)
+         #   im.save(dest_name)
+    myevent.save()
+    return index('Profil actualisé')
