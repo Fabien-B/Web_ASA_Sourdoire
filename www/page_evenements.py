@@ -6,6 +6,7 @@ template = Import('template.py' ) # import du fichier template (entete, pieds de
 connexion = Import('gestion_session.py')
 
 
+
 def index(error=''):
     ret=template.afficherHautPage(error, titre='Signaler un évènement')
     if "login" in Session():
@@ -14,7 +15,6 @@ def index(error=''):
         ret += corps_page_deconnecte()
     ret += template.afficherBasPage()
     return ret
-
 
 def corps_page_deconnecte():
     html = """
@@ -27,7 +27,7 @@ def corps_page_connecte():
     html = '''
     <div class="container">
     <div class="container" ><h1 style="text-align: center;margin-bottom:15px;">Signaler un évènement</h1></div>
-    <form method="post" action="reception">
+
         <div id="choose_compteur" style="margin-bottom:25px;">
             <h3>
                 L'évènement concerne:
@@ -42,15 +42,12 @@ def corps_page_connecte():
 
     html+=get_combo_box(0)
 
-    html+='''
+    html+='''<form method="post" action="Upload" method="GET">
         <label for="description">Description de l'évènement :</label>
 
         <textarea name="description" id="description"></textarea>
 
         <label for="mon_fichier">Photo (tous formats | max. 5 Mo) :</label>
-
-        <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
-
         <input type="file" name="mon_fichier" id="mon_fichier" />
 
         <br /><br />
@@ -92,3 +89,12 @@ def get_combo_box(opt_check = None):
     {0}
     </select></p>'''.format(options)
     return html
+
+
+def Upload (description, mon_fichier, submit):
+    from PIL import Image
+    if mon_fichier.filename != "" :
+        f = mon_fichier.file # file-like object
+        dest_name = "../img_event/mon_image.jpg"
+        im = Image.open(f)
+        im.save(dest_name)
