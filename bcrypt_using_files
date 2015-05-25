@@ -1,0 +1,5 @@
+remplacer dans ces fichiers les lignes utilisant bcrypt par les ligne commentées en dessous.
+page_contact.py
+gestion_session.py
+page_gestion_exploitant.py
+page_profil.py

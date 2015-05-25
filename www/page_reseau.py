@@ -35,9 +35,7 @@ def detail(id_compteur=1):
     id_compteur = int(id_compteur)
     selected_comp = compteur.Compteur(id_compteur)
 
-    path = '../images/compteur_{0}.png'.format(id_compteur)
-    if not os.path.exists(path):
-        path = '../images/pompe.png'
+    path = '../images/Compteurs/compteur_{0}.jpg'.format(id_compteur)
 
     nom = selected_comp.nom if selected_comp.nom else 'Donnée manquante'
     latitude = selected_comp.lat if selected_comp.lat else 'Donnée manquante'
@@ -52,7 +50,7 @@ def detail(id_compteur=1):
     conjug = '' if len(Ids_ex)==1 else 's'
 
     html = '''<span id="detail_compteur">
-                <img src="{0}" height=100px style="border:2px; border-color:#004A4D; border-style:groove; padding:5px;"></img>
+                <img src="{0}" alt="pas de photo" height=150px padding:5px;"></img>
                  <h3>Nom : {1}</h3>
                  <h3>position : {2}, {3}</h3>
                  <h3>Altitude : {4}</h3>

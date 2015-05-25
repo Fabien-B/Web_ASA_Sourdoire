@@ -2,7 +2,7 @@ template = Import('template.py' ) # import du fichier template (entete, pieds de
 connexion = Import('gestion_session.py')
 exploitant = Import('Exploitant.py')
 import bcrypt
-
+#RIEN DU TOUT
 
 def index(error=''):
     ret=template.afficherHautPage(error)
@@ -90,6 +90,9 @@ def get_info_exploitant():
 def updateProfile(nom=0, tel=0, login=0, password=0, password_confirm=0, email=0, old_password=0, submit=0):
     myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
     if bcrypt.hashpw(old_password, myexploitant.salt) == myexploitant.password:
+    #if old_password == myexploitant.password
+        salt = bcrypt.gensalt()
+        #salt = ''
         if not nom: nom = myexploitant.nom
         if not tel: tel = myexploitant.tel
         if not login: login = myexploitant.login
@@ -98,9 +101,9 @@ def updateProfile(nom=0, tel=0, login=0, password=0, password_confirm=0, email=0
         elif password != password_confirm:
             return index()
         else:
-            password = bcrypt.hashpw(password, myexploitant.salt)
+            password = bcrypt.hashpw(password, salt)
+            #RIEN DU TOUT
         if not email: email = myexploitant.mail
-        salt = myexploitant.salt
         myexploitant.update(nom, email, tel, login, password, salt)
         Session()["login"] = login
         Session()["nom"] = nom
