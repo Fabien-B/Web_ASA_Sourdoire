@@ -39,7 +39,7 @@ def corps_page_connecte():
 
             </div>
         </div>
-        <form method="post" action="Upload" method="GET">'''
+        <form method="post" action="Upload" method="POST", enctype="multipart/form-data">'''
 
     html+=get_combo_box(0)
 
@@ -98,13 +98,21 @@ def Upload (id_compteur, description, submit, mon_fichier = 0):
     myevent.descriptif = description
     myevent.createur = Session()["Id_exploitant"]
     myevent.compteur = int(id_compteur)
-    if not mon_fichier: mon_fichier = "NULL"
-    #if mon_fichier is not None:
-     #   from PIL import Image
-      #  if mon_fichier.filename != "" :
-       #     f = mon_fichier.file # file-like object
-        #    dest_name = "../img_event/mon_image.jpg"
-         #   im = Image.open(f)
-         #   im.save(dest_name)
+    if mon_fichier != 0:
+        photo1 = Upload_2(mon_fichier, myevent.id)
+        myevent.photo1 = photo1
     myevent.save()
     return index('Profil actualisé')
+
+def Upload_2(mon_fichier,id_event):
+    if mon_fichier is not None:
+        from PIL import Image
+        if mon_fichier.filename != "" :
+            file_ext = mon_fichier.filename.split('.').pop()
+            f = mon_fichier.file # file-like object
+            dest_name = "./asa/images/img_event/{}.{}".format(id_event, file_ext)
+            im = Image.open(f)
+            im.save(dest_name)
+            photo = "{}.{}".format(id_event, file_ext)
+    return photo
+
