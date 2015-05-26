@@ -9,7 +9,7 @@ connexion = Import('gestion_session.py')
 
 
 def index(error=''):
-    ret=template.afficherHautPage(error, titre='Signaler un évenement')
+    ret=template.afficherHautPage(error, titre='Signaler un évènement')
     if "login" in Session():
             ret += corps_page_connecte()
     else:
