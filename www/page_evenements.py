@@ -102,7 +102,7 @@ def Upload (id_compteur, description, submit, mon_fichier = 0):
         photo1 = Upload_2(mon_fichier, myevent.id)
         myevent.photo1 = photo1
     myevent.save()
-    return index('Profil actualisé')
+    return index('Évènement envoyer')
 
 def Upload_2(mon_fichier,id_event):
     if mon_fichier is not None:

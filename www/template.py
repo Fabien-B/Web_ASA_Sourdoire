@@ -28,23 +28,16 @@ def afficherHautPage(error = '', titre=''):
         </head>
         <body>
             <header id="header" class="site-header" role="banner">
-                <div class="sixteen columns over" style="height:120px;">
+                <div class="containner sixteen columns over" >
 
-                    <div class="tree columns alpha" style="float:left; margin-top:10px;">
+                    <div class="three columns alpha" style="float:left; margin-top:10px;">
                         <a href="../index.py" id="logo"><img src="../images/logo.png" alt="Icebrrrg logo" height="100" /></a>
-                        {0}
                     </div>
-
-                    <div class="nine columns alpha">
-                    </div>
-
-                    <div id="login" class="four columns alpha" style="float:right;margin-top:10px;">
-
-                    '''.format(error) + afficherFormulaireConnexion(error) + '''
+                    <div id="login" class="four columns omega" style="float:right;margin-top:10px;">
+                    ''' + afficherFormulaireConnexion(error) + '''
                     </div>
 
                 </div>
-            </div>
             <div id="header-inner" class="containner sixteen columns over" style="position: relative; margin: 0 auto; padding: 0;">
                     <nav id="main-nav">
                         <ul id="main-nav-menu" class="nav-menu">'''
@@ -72,6 +65,9 @@ def afficherHautPage(error = '', titre=''):
                     </nav>
             </div>
         </header>'''
+    if error != "":
+        ret +='''<BODY onLoad="alert('{}')">
+'''.format(error)
     return ret
 
 def create_link(position, titre, current_page,fichier):
