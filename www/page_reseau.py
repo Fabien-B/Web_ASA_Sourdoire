@@ -2,6 +2,7 @@ template = Import('template.py' ) # import du fichier template (entete, pieds de
 connexion = Import('gestion_session.py')
 compteur = Import('compteur.py')
 exploitant = Import('Exploitant.py')
+evenement = Import('evenement.py')
 import json
 import os
 
@@ -34,9 +35,7 @@ def corps_page():
 def detail(id_compteur=1):
     id_compteur = int(id_compteur)
     selected_comp = compteur.Compteur(id_compteur)
-
     path = '../images/Compteurs/compteur_{0}.jpg'.format(id_compteur)
-
     nom = selected_comp.nom if selected_comp.nom else 'Donnée manquante'
     latitude = selected_comp.lat if selected_comp.lat else 'Donnée manquante'
     longitude = selected_comp.lon if selected_comp.lon else'Donnée manquante'
@@ -84,6 +83,9 @@ def compteurs_to_json(list_compteurs):
     return objects
 
 
+def get_event(id_compteur):
+    myevent = evenement.Evenement()
+    myevent.load()
 
 
 

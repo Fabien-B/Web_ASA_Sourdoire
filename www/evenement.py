@@ -40,7 +40,7 @@ class Evenement(object):
         curseur.execute(requete)
         connection.commit()
 
-    def load(self,id_event):
+    def load(self, id_event):
         connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=self.database)
         curseur = connection.cursor()
         requete = 'select * from Evenement where Id_event={};'.format(id_event)

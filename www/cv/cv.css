@@ -1,0 +1,106 @@
+@font-face {
+	font-family: 'journal';
+	src: url('police/journal.ttf');
+	}
+	
+@font-face {
+	font-family: 'action';
+	src: url('police/action.ttf');
+	}
+
+* {
+font-family: arial, sans-serif;	
+font-size: 1em;
+	}
+	
+	body {
+		padding-left: 15px;
+		width: 1000px;
+		margin: 0 auto;
+		}
+
+header {
+text-align: center;
+padding-bottom: 25px;
+	}
+	
+header #retour {
+	text-align: left;	
+	}
+	
+	header #retour a {
+		color: blue;
+		text-decoration: underline;
+	}
+
+header #title {
+display: inline-block;	
+vertical-align: bottom;
+color: rgb(0,0,0);
+font-weight: normal;
+font-family: Verdana, "Times New Roman", sans-serif;
+padding-right: 100px;
+	}
+	
+header #photo {
+display: inline-block;		
+vertical-align: bottom;
+border: 4.5px solid #54040D;	
+border-radius: 5px;
+background:#4F0D00;
+	}
+
+header #title h1 {
+	font-size: 2em;
+	color: rgb(0,0,0);
+	font-weight: normal;
+	font-family: "Times New Roman", Verdana, sans-serif;
+	}
+	
+	header p {
+		text-align: left;		
+		font-family: Arial, sans-serif;
+		padding-top: 25px;
+		}
+		
+	header .mail {
+		text-decoration: underline;
+		color: blue;
+		text-align: left;
+			}
+
+			
+	section {
+	padding-bottom: 50px;		
+		}
+			
+ section h1 {
+text-align: left;
+font-size: 2em;
+font-family: "action","Times New Roman", serif;
+font-weight: bold;	
+padding-top: 25px;	
+border-top: rgb(0,0,0) 2px solid;
+		}
+		
+		section table {
+padding-left: 20px;
+			}
+			
+			section p {
+padding-left: 25px;
+				}
+		
+		section table .c1 {		
+padding-right: 20px;
+min-width: 50px;
+			}
+			
+			section table td {
+padding-bottom: 10px;				
+				}
+
+				
+			section li {
+	padding-bottom: 10px;		
+					}
