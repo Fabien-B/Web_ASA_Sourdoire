@@ -11,7 +11,7 @@ def index(error=''):
 
     <body>
     <header>
-        <div id="retour"><br/><a href="../../index.py/index" title="asasourdoire" >Retour au site</a></div>
+        <div id="retour"><br/><a href="../../page_cv.py/index" title="asasourdoire" >Retour au site</a></div>
         <div id="title">
             <h1>DZIECIOL Nicolas<br/><br/>Etudiant à l'ENAC<br/>Première année du cycle ingénieur</h1><br/>
 
