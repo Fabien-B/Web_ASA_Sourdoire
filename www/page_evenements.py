@@ -99,20 +99,26 @@ def Upload (id_compteur, description, submit, mon_fichier = 0):
     myevent.createur = Session()["Id_exploitant"]
     myevent.compteur = int(id_compteur)
     if mon_fichier != 0:
-        photo1 = Upload_2(mon_fichier, myevent.id)
+        photo1 = Upload_img(mon_fichier, myevent.id)
         myevent.photo1 = photo1
     myevent.save()
     return index('Évènement envoyé')
 
-def Upload_2(mon_fichier,id_event):
+def Upload_img(mon_fichier,id_event):
     if mon_fichier is not None:
         from PIL import Image
-        if mon_fichier.filename != "" :
-            file_ext = mon_fichier.filename.split('.').pop()
-            f = mon_fichier.file # file-like object
-            dest_name = "./asa/images/img_event/{}.{}".format(id_event, file_ext)
-            im = Image.open(f)
-            im.save(dest_name)
-            photo = "{}.{}".format(id_event, file_ext)
-    return photo
+        try:
+            if mon_fichier.filename != "" :
+                file_ext = mon_fichier.filename.split('.').pop()
+                f = mon_fichier.file # file-like object
+                dest_name = "./asa/images/img_event/{}.{}".format(id_event, file_ext)
+                im = Image.open(f)
+                im.save(dest_name)
+                photo = "{}.{}".format(id_event, file_ext)
+
+        except AttributeError:
+            photo = "NULL"
+
+        return photo
+
 
