@@ -145,7 +145,7 @@ def afficherBasPage():
 
 <div class="footer-inner container">
 
-<div class="footer-columns sixteen column">
+<div class="footer-columns sixteen columns">
 <h2><i></i>À propos</h2>
 <p>L'Association syndicale autorisée de la sourdoire a été crée en 2532 et irrigue plus de 75356 hectares.</p>
 </div>

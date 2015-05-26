@@ -9,7 +9,7 @@ connexion = Import('gestion_session.py')
 
 
 def index(error=''):
-    ret=template.afficherHautPage(error, titre='Signaler un évènement')
+    ret=template.afficherHautPage(error, titre='Signaler un évenement')
     if "login" in Session():
             ret += corps_page_connecte()
     else:
@@ -102,7 +102,7 @@ def Upload (id_compteur, description, submit, mon_fichier = 0):
         photo1 = Upload_2(mon_fichier, myevent.id)
         myevent.photo1 = photo1
     myevent.save()
-    return index('Évènement envoyer')
+    return index('Évènement envoyé')
 
 def Upload_2(mon_fichier,id_event):
     if mon_fichier is not None:
