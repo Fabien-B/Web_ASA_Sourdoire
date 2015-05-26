@@ -1,0 +1,12 @@
+/* #Navigation
+================================================== */
+
+#main-nav {width: 100%;display: -webkit-box;float:left;}
+#main-nav ul, #main-nav li { list-style: none; padding: 0; margin: 0; display: inline; } 
+#main-nav ul li { float: left; position: relative; }
+#main-nav ul li a { display: inline-block; padding: 25px 5px 20px 5px; margin: 0px; text-decoration: none; font-size: 15px; border-bottom: 3px solid transparent; }
+#main-nav ul li li:hover { border-bottom: 3px solid #006407 !important; }
+.current { font-weight: bold !important; color: #444 !important; border-bottom: 3px solid #006407 !important; }
+a#menu_der{
+visibility:hidden;
+}

@@ -16,7 +16,11 @@ def afficherHautPage(error = '', titre=''):
             <link rel="stylesheet" href="../stylesheets/prettyPhoto.css">
             <link rel="stylesheet" href="../stylesheets/perso.css">
             <link rel="stylesheet" href="../stylesheets/leaflet.css">
-        <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css">
+
+            <link rel="Stylesheet" media="screen and (max-width: 900px)" href="../stylesheets/menu_deroulant.css" />
+            <link rel="Stylesheet" media="screen and (min-width: 900px)" href="../stylesheets/menu.css" />
+
+            <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css">
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
             <script type="text/javascript" src="../js/jquery-2.1.3.js"></script>
             <script type="text/javascript" src="../js/jquery.flexslider-min.js"></script>
@@ -40,7 +44,10 @@ def afficherHautPage(error = '', titre=''):
                 </div>
             <div id="header-inner" class="containner sixteen columns over" style="position: relative; margin: 0 auto; padding: 0;">
                     <nav id="main-nav">
-                        <ul id="main-nav-menu" class="nav-menu">'''
+                        <ul id="main-nav-menu" class="nav-menu">
+                        <li><a href="#" id='menu_der' style="height:0px;">Menu</a>
+                            <a href="#" id='menu'></a>
+                        <ul>'''
     ret += create_link('menu-item-1', 'Accueil', titre,'index.py')
     if "login" in Session():
         if Session()['Id_exploitant'] == 0:
@@ -61,7 +68,7 @@ def afficherHautPage(error = '', titre=''):
         ret += create_link('menu-item-2', 'Voir le réseau', titre,'page_reseau.py')
         ret += create_link('menu-item-3', 'Contacter l\'Admin', titre, 'page_contact.py')
 
-    ret += '''          </ul>
+    ret += '''          </ul></ul>
                     </nav>
             </div>
         </header>'''
