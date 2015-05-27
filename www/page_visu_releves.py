@@ -15,6 +15,8 @@ def index(error=''):
     ret += template.afficherBasPage()
     return ret
 
+def corps_page_deconnecte():
+    return '<p>Veuillez vous connecter en administrateur!</p>'
 
 def corps_page_connecte():
     script = '''<script>
@@ -114,7 +116,7 @@ def get_releve_select(id_compteur = 0):
     return html
 
 
-def inspector(id_rel = 10):
+def inspector(id_rel = 0):
     id_rel = int(id_rel)
     rel = releve.Releve(id_rel)
     html = '<div id="releve_inspector">'
@@ -128,34 +130,5 @@ def inspector(id_rel = 10):
     </div>'''.format(rel.index_fin)
     return html
 
-def update_releves(id_rel,index_deb,index_fin):
-    (id_rel,index_deb,index_fin) = (int(id_rel),int(index_deb),int(index_fin))
-    rel = releve.Releve(id_rel)
-    releve_id_list =releve.Releve.get_releve_id_from_compteur(rel.compteur)
-    try:
-        id_rel_pred = releve_id_list[releve_id_list.index(rel.id)+1]
-    except IndexError:
-        id_rel_pred=0
-    try:
-        index_rel = releve_id_list.index(rel.id)-1
-        id_rel_next = releve_id_list[index_rel] if index_rel>=0 else 0
-    except IndexError:
-        id_rel_next=0
-
-    rel_next = releve.Releve(id_rel_next) if id_rel_next else None
-    rel_pred = releve.Releve(id_rel_pred) if id_rel_pred else None
-
-    rel.index_fin = index_fin
-    rel.index_deb = index_deb
-    rel.update()
-
-    if rel_next:
-        rel_next.index_deb = index_fin
-        rel_next.update()
-    if rel_pred:
-        rel_pred.index_fin = index_deb
-        rel_pred.update()
-
-    return '''Relevés n° {}, {}, {} mis à jour:
-    index début: {}
-    index fin: {}'''.format(id_rel_pred, rel.id ,id_rel_next, rel.index_deb, rel.index_fin)
+def traiterFormulaireConnexion(choix, login='',password=''):
+    return connexion.Connexion(index, choix, login, password)
