@@ -5,12 +5,12 @@ parcelle = Import('parcelle.py')
 compteur = Import('compteur.py')
 exploitant = Import('Exploitant.py')
 litige = Import('litige.py')
+page_reseau = Import('page_reseau.py')
 
-
-def index(error='',id_compteur=12):
+def index(error='',compteur_id=12,submit=None):
     ret=template.afficherHautPage(error, titre='Modifier un compteur')
     if "login" in Session() and not Session()["Id_exploitant"]:
-        ret += corps_page_connecte(id_compteur)
+        ret += corps_page_connecte(compteur_id)
     else:
         ret += corps_page_deconnecte()
     ret += template.afficherBasPage()
@@ -65,4 +65,4 @@ def traiter_modif_compteur(id_compteur, nom_compteur, lat_compteur, lon_compteur
     compt.lon = float(lon_compteur)
     compt.altitude = int(alt_compteur)
     compt.update()
-    return index(error='compteur mis à jour', id_compteur=id_compteur)
+    return page_reseau.index()

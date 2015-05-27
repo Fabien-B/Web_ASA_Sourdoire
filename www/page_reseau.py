@@ -21,8 +21,11 @@ def corps_page():
         <aside class="six columns main-content">
             <h2>Compteur séléctionné</h2>
     '''
+    html += '<form action=../page_modif_compteur.py/index>'
     html+=compteurs_list()
     html += detail(0)
+    html += '''</br><input type="submit" name="submit" value="Modier ce compteur" />
+                </form>'''
     html += '''</aside>
         <article class="ten columns right-sidebar">
             <div id="map" style="height: 700px"></div>
