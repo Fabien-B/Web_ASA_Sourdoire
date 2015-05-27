@@ -173,13 +173,13 @@ def afficherBasPage():
         <p>L'Association syndicale autorisée de la sourdoire a été crée en 1973 et irrigue plus de 75356 hectares.</p>
     </div>
     <div class="footer-columns sixteen columns">
-        <table style="border-collapse: unset; border-spacing: 10px;">
+        <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
             <tr>
                 <td>
                     <a href="../page_tuto.py">Comment utiliser ce site internet ?</a>
                 </td>
                 <td>
-                    <a href="../page_conso.py">Voir ma consommation d'eau sur mes parcelles</aW
+                    <a href="../page_conso.py">Voir ma consommation d'eau </aW
                 </td>
             </tr>
             <tr>
@@ -195,7 +195,7 @@ def afficherBasPage():
                     <a href="../page_parcelles.py">Voir mes parcelles et les compteurs</a>
                 </td>
                 <td>
-                    <a href="../page_litiges.py">Voir les éventuels conflits dans lesquels vous êtes impliqué(e)</a>
+                    <a href="../page_litiges.py">Voir les éventuels conflits</a>
                 </td>
             </tr>
             <tr>
@@ -211,7 +211,7 @@ def afficherBasPage():
                     <a href="../page_profil.py">Voir/Modifier ses informations personnelles</a>
                 </td>
                 <td>
-                    <a href="../page_contact.py">Contacter l'administrateur du réseau d'irrigation</a>
+                    <a href="../page_contact.py">Contacter l'administrateur</a>
                 </td>
             </tr>
         </table>
