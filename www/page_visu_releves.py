@@ -30,8 +30,8 @@ def corps_page_connecte():
 
     <div>
 
-<form>
-        <div class="sidebar-widget">'''.format(style)
+
+        '''.format(style)
 
     html += get_compteur_combo_box(Session()["Id_exploitant"])
 
