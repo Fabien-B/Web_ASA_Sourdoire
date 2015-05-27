@@ -21,6 +21,8 @@ class Parcelle(object):
             self.lat = lat
             self.lon = lon
             self.altitude = altitude
+            curseur.close()
+            connection.close()
     
     def save(self):
         if self.compteur == None:
@@ -30,6 +32,8 @@ class Parcelle(object):
         requete = "INSERT INTO Parcelle VALUES ({0},{1},{2},{3},{4},{5});".format(self.id, self.compteur, self.nom, self.lat, self.lon, self.altitude)
         curseur.execute(requete)
         connection.commit()
+        curseur.close()
+        connection.close()
 
     def load(self,id_parc):
         connection = mysql.connector.connect(user=Parcelle.user, password=Parcelle.password,host=Parcelle.host,database=Parcelle.database)
@@ -40,6 +44,8 @@ class Parcelle(object):
             (_,compteur,nom,lat,lon,altitude)=curseur.fetchall()[0]
         except IndexError:
             raise ParcelleError("Parcelle with id {} doesn't exist".format(id_parc))
+        curseur.close()
+        connection.close()
 
         self.id = id_parc
         self.compteur = compteur
@@ -48,20 +54,34 @@ class Parcelle(object):
         self.lon = lon
         self.altitude = altitude
 
+    def release_my(self):
+        connection = mysql.connector.connect(user=Parcelle.user, password=Parcelle.password,host=Parcelle.host,database=Parcelle.database)
+        curseur = connection.cursor()
+        requete = 'UPDATE Propriete SET Id_exploitant=NULL WHERE Id_parcelle={0};'.format(self.id)
+        curseur.execute(requete)
+        connection.commit()
+        curseur.close()
+        connection.close()
+
     @staticmethod
     def get_exploitant_parcelle_id(id_ex):
         connection = mysql.connector.connect(user=Parcelle.user, password=Parcelle.password,host=Parcelle.host,database=Parcelle.database)
         curseur = connection.cursor()
         if id_ex == 0:
             requete = 'select Id_parcelle FROM Parcelle;'
+        elif id_ex == -1: #parcelles libres
+            requete = 'select Parcelle.Id_parcelle FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Propriete.Id_exploitant IS NULL;'
         else:
             requete = 'select Parcelle.Id_parcelle FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Id_exploitant = {};'.format(id_ex)
         curseur.execute(requete)
         id_parc = curseur.fetchall()
+        curseur.close()
+        connection.close()
         id_parc_list = []
         for (id,) in id_parc:
             id_parc_list.append(id)
         return id_parc_list
+
 
 
 class ParcelleError(Exception):
