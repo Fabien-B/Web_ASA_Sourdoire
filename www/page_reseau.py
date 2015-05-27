@@ -4,7 +4,6 @@ compteur = Import('compteur.py')
 exploitant = Import('Exploitant.py')
 evenement = Import('evenement.py')
 import json
-import os
 
 def index(error=''):
     ret=template.afficherHautPage(error, titre='Voir le réseau')
