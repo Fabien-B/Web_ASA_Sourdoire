@@ -39,9 +39,9 @@ def corps_page_connecte():
 
                 <div class="four columns alpha">
                 <a href="../cv/cv_fabien.py/index">
-                <img src="../images/pompe.png" title="BONNEVAL Fabien" width="75%">
+                <img src="../cv/fabien.png" title="BONNEVAL Fabien" width="75%">
                 </a>
-                <p> CV BONNEVEAL Fabien </p>
+                <p> CV BONNEVAL Fabien </p>
                 </div>
 
                 <div class="four columns alpha">

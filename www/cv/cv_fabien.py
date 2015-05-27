@@ -1,8 +1,7 @@
 from datetime import datetime
 
 def index(error=''):
-    naiss = datetime(1992,12,7)
-    delta = datetime.now() - naiss
+    delta = datetime.now() - datetime(1992,12,7)
     age = delta.days//365
 
     html = '''<!DOCTYPE html>
