@@ -62,14 +62,21 @@ def get_litige_options():
     return options
 
 
-def inspector(id_lit=1):
+def inspector(id_lit=0):
     id_lit = int(id_lit)
-    lit = litige.Litige(id_lit)
-    id_rel1 = lit.id_rel1
-    id_rel2 = lit.id_rel2
-    (id_rel1,id_rel2) = (int(id_rel1),int(id_rel2))
-    rel1 = releve.Releve(id_rel1)
-    rel2 = releve.Releve(id_rel2)
+    if id_lit:
+        lit = litige.Litige(id_lit)
+        id_rel1 = lit.id_rel1
+        id_rel2 = lit.id_rel2
+        (id_rel1,id_rel2) = (int(id_rel1),int(id_rel2))
+        rel1 = releve.Releve(id_rel1)
+        rel2 = releve.Releve(id_rel2)
+
+
+    index_deb1 = rel1.index_deb if id_lit else None
+    index_deb2 = rel2.index_deb if id_lit else None
+    index_fin1 = rel1.index_fin if id_lit else None
+    index_fin2 = rel2.index_fin if id_lit else None
 
     html = '<div id="litige_inspector">'
     html += '''
@@ -78,12 +85,12 @@ def inspector(id_lit=1):
     Index début relevé 1: {0}</br></br>
     Index fin relévé 1 :
     <input id="litige_rel1" name="index_fin_rel1" type="text" value="{1}" required></p></br>
-    '''.format(rel1.index_deb,rel1.index_fin)
+    '''.format(index_deb1,index_fin1)
     html += '''
     <p>Index début relevé 2 :
     <input id="litige_rel2" name="index_debut_rel2"type="text" value="{0}" required></p></br>
     Index fin relévé 2 : {1}</br></br>
-    </div>'''.format(rel2.index_deb, rel2.index_fin)
+    </div>'''.format(index_deb2,index_fin2)
     return html
 
 def update_litige_releves(id_lit, index_fin1, index_deb2):
