@@ -1,11 +1,17 @@
+from datetime import datetime
+
 def index(error=''):
+    naiss = datetime(1992,12,7)
+    delta = datetime.now() - naiss
+    age = delta.days//365
+
     html = '''<!DOCTYPE html>
 
 <html>
 
     <head>
         <meta charset="utf-8"/>
-        <title>CV - DZIECIOL Niolas</title>
+        <title>CV - BONNEVAL Fabien</title>
         <link rel="stylesheet" href="../cv.css" />
     </head>
 
@@ -13,15 +19,18 @@ def index(error=''):
     <header>
         <div id="retour"><br/><a href="../../page_cv.py/index" title="asasourdoire" >Retour au site</a></div>
         <div id="title">
-            <h1>DZIECIOL Nicolas<br/><br/>Etudiant à l'ENAC<br/>Première année du cycle ingénieur</h1><br/>
+            <h1>BONNEVAL Fabien<br/><br/>Etudiant à l'ENAC<br/>Première année du cycle ingénieur</h1><br/>
 
-     </div>
+    </div>
         <div id="photo">
-            <img width="100px" src="../polo.png" alt="Nicolas">
+            <img width="100px" src="../fabien.png" alt="Fabien">
         </div>
-            <p>101 rue Saint Roch<br/>
-            31400 TOULOUSE<br/>
-            <span class="mail" >nicolas.dzieciol@gmail.com</span>
+            <p>Louradour<br/>
+            19120 La Chapelle Aux Saints<br/>
+            <span class="mail" >fabien.bonneval@gmail.com</span></br>
+            Permis B</br>
+            Nationalité française</br>
+            {0} ans
             </p>
     </header>
 
@@ -31,43 +40,44 @@ def index(error=''):
             <li><strong>2013-2015 :</strong> Première année d'école d'ingénieur à l'ENAC à Toulouse.</li>
         </ul>
         <ul>
-            <li><strong>2011-2013 :</strong> Première et deuxième année en CPGE, lycée scientifique et technologique Gustave Eiffel (Dijon), option Technologie et Sciences de l'Ingénieurs.</li>
+            <li><strong>2011-2013 :</strong> Première et deuxième année en CPGE, lycée scientifique et technologique Georges Cabanis, option Technologie et Sciences de l'Ingénieurs.</li>
         </ul>
 
 
         <h1>Diplômes</h1>
         <ul>
-            <li><strong>juin 2011 :</strong> Baccalauréat technologique (STI génie Électrotechnique).</li>
+            <li><strong>juin 2010 :</strong> Baccalauréat technologique (STI génie Mécanique).</li>
         </ul>
 
-        <h1>Expériences Professionnelles</h1>
+        <h1>Expériences</h1>
 
         <ul>
-            <li><strong>2013 (2 mois) : </strong> SEGER : Emploi saisonnier, monteur électricien à Montbard.</li>
+            <li><strong>2014 (1 mois) : </strong> Stage à l'entreprise FGD, Saint Céré</li>
         </ul>
         <ul>
-            <li><strong>2012 (2 mois) :</strong> SNCF : Emploi saisonnier, ASCT (Agent du service commercial trains) à Dijon.</li>
+            <li><strong>2008-2013 : </strong> Travaux agricoles saisonniers : travail de la vigne, récolte du tabac</li>
         </ul>
+
 
 
         <h1>Compétences</h1>
 
         <ul>
         <li><strong>Langues :</strong>  anglais (intermédiaire)</li>
-        <li><strong>Software :</strong> Usage régulier de Windows et Ubuntu. Suite Microsoft Office, Autodesk Inventor, Adobe Photoshop.</li>
+        <li><strong>Software :</strong> Usage régulier de linux (Ubuntu) et Windows, CAO: SolidWorks</li>
         <li><strong>Programmation :</strong> Langage C, Python</li>
-        <li><strong>Divers :</strong> Permis B</li>
         </ul>
 
 
 
         <h1>Loisirs et Associations</h1>
         <ul>
-            <li><strong>Divers :</strong> Informatique, photographie.</li>
+            <li><strong>Technique :</strong>Club robotique: conception et construction d'un robot pour participer à la coupe de France de robotique: conception et programmation de systèmes embarqués.</li>
+            <li><strong>Musique, Associatif :</strong>Trompette, membre d’une société de musique, Fanfare, club Jazz.</li>
         </ul>
     </section>
     </body>
 
     </html>
-    '''
+    '''.format(age)
     return html
