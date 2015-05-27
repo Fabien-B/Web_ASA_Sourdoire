@@ -16,19 +16,19 @@ def index(error=''):
     return ret
 
 def corps_page_connecte():
-    html = """
+    html = '''
         <div class="container">
-
-            <div class="sixteen columns main-content">"""
-    html +='''<h2>Litiges</h2>'''
+            <article class="ten columns main-content">
+                <div>
+                    <h2>Litiges</h2>'''
 
     html += get_litiges()
-
+    html += '''</article>'''
+    html += '''<div class="sidebar-widget">
+                    <aside class="six columns right-sidebar"> '''
     html += inspector()
-    html += '''<input type="submit" name="submit" value="Valider" onclick="get_litige_params()" />'''
-
-    html += """</div>
-    </div>"""
+    html += '''<input type="submit" name="submit" value="Valider" onclick="get_litige_params()" /></aside></div></div>
+    '''
     return html
 
 def corps_page_deconnecte():
@@ -42,7 +42,7 @@ def traiterFormulaireConnexion(choix, login='',password=''):
 
 def get_litiges():
     html ='''
-            <select id="litiges_select" size="10" name="id_litige" onchange="update_inspector_litige(this.value)">
+            <select style="width:60%;min-width:250px;" id="litiges_select" size="10" name="id_litige" onchange="update_inspector_litige(this.value)">
             {0}
             </select>'''.format(get_litige_options())
     return html

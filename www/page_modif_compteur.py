@@ -17,24 +17,23 @@ def index(error='',compteur_id=12,submit=None):
     return ret
 
 def corps_page_connecte(id_compt):
-    html = """
+    html = '''
         <div class="container">
-
-            <div class="sixteen columns main-content">"""
-    html +='''<h2>Modifier un compteur</h2>'''
-
-    html += '''<form action="traiter_modif_compteur" method="GET">
-                <input type="hidden" name="id_compteur"  value="{}" />'''.format(id_compt)
+            <div class="sidebar-widget">
+                <aside class="six columns left-sidebar">
+                    <h2>Modifier un compteur</h2>
+                    <form action="traiter_modif_compteur" method="POST">
+                    <input type="hidden" name="id_compteur"  value="{}" />'''.format(id_compt)
     compt = compteur.Compteur(int(id_compt))
     html += '''Nom: <input name="nom_compteur" type="text" value="{0}"></br>'''.format(compt.nom)
     html += lat_lon(compt.lat, compt.lon)
     html += '''Altitude (m): <input name="alt_compteur" type="text" value="{0}"></br>'''.format(compt.altitude)
     html += '''<input type="submit" name="submit" value="Valider" />
-                </form>'''
+                </form></aside>'''
 
     #MAP! a mettre à droite.
-    html +='''<article>
-            <div id="map" style="height: 700px"></div>
+    html +='''<article class="ten columns main-content">
+            <div id="map" style="height: 400px"></div>
             <script type="text/javascript" src="../js/map.js"></script>
             <script type="text/javascript" src="../js/map_modif_compteur.js"></script>
         </article>'''
