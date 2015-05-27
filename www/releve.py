@@ -2,12 +2,15 @@ import mysql.connector
 
 class Releve(object):
     database = 'asa'
+    user = 'root'
+    password = 'root'
+    host = '127.0.0.1'
 
     def __init__(self,id_rel,compteur=None,exploitant=None,index_deb=None,index_fin=None,date=None):
         if  id_rel>0:
             self.load(id_rel)
         else:
-            connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=self.database)
+            connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
             curseur = connection.cursor()
             requete = 'select max(Id_Releve) from Releve;'
             curseur.execute(requete)
@@ -23,14 +26,23 @@ class Releve(object):
         if self.compteur == None or self.exploitant == None or self.index_deb == None or self.index_fin == None or self.date == None:
             raise ReleveError("All attributes must be completed")
 
-        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database=self.database)
+        connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
         curseur = connection.cursor()
         requete = "INSERT INTO Releve VALUES ({0},{1},{2},{3},{4},'{5}');".format(self.id, self.compteur, self.exploitant, self.index_deb, self.index_fin, self.date)
         curseur.execute(requete)
         connection.commit()
 
+    def update(self):
+        if self.compteur == None or self.exploitant == None or self.index_deb == None or self.index_fin == None or self.date == None:
+            raise ReleveError("All attributes must be completed")
+        connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
+        curseur = connection.cursor()
+        requete = "UPDATE Releve SET Compteur='{0}', Exploitant='{1}', Index_début='{2}', Index_fin='{3}', Date='{4}' WHERE Id_releve={5};".format(self.compteur, self.exploitant, self.index_deb, self.index_fin, self.date, self.id)
+        curseur.execute(requete)
+        connection.commit()
+
     def load(self,id_rel):
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=self.database)
+        connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
         curseur = connection.cursor()
         requete = 'select * from Releve where Id_releve={};'.format(id_rel)
         curseur.execute(requete)
@@ -50,7 +62,7 @@ class Releve(object):
     def get_releves_id(id_exploitant,youger_date=None, older_date=None):
         '''return a list of tuples: [(id_releve, id_parcelle), ... ]'''
         id_exploitant = int(id_exploitant)
-        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1',database=Releve.database)
+        connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
         curseur = connection.cursor()
 
         if youger_date:
@@ -85,6 +97,40 @@ class Releve(object):
         id_rel_list = []
         for (id_rel,id_pacelle) in id_rel_tuple:
             id_rel_list.append((id_rel,id_pacelle))
+
+        return id_rel_list
+
+    @staticmethod
+    def get_releve_id_from_compteur(id_compteur, youger_date=None, older_date=None):
+        '''return a list of id: [id_releve1, id_releve2, ... ]'''
+        connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
+        curseur = connection.cursor()
+
+        if youger_date:
+            youger_date = "'{}'".format(youger_date)
+        else:
+            youger_date = 'NULL'
+
+        if older_date:
+            older_date = "'{}'".format(older_date)
+        else:
+            older_date = 'NULL'
+        if id_compteur:
+            requete = '''SELECT Id_releve FROM Releve
+                WHERE Releve.Compteur = {2}
+                AND (Releve.Date < {0} OR {0} IS NULL)
+                AND (Releve.Date > {1} OR {1} IS NULL)
+                ORDER BY Releve.Date DESC;'''.format(older_date,youger_date,id_compteur)
+        else:
+            requete = '''SELECT Id_releve FROM Releve
+                        WHERE (Releve.Date < {0} OR {0} IS NULL)
+                        AND (Releve.Date > {1} OR {1} IS NULL)
+                        ORDER BY Releve.Date DESC;'''.format(older_date,youger_date)
+        curseur.execute(requete)
+        id_rel_tuple = curseur.fetchall()
+        id_rel_list = []
+        for (id_rel,) in id_rel_tuple:
+            id_rel_list.append(id_rel,)
 
         return id_rel_list
 

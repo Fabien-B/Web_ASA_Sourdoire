@@ -5,8 +5,6 @@ template = Import('template.py' ) # import du fichier template (entete, pieds de
 connexion = Import('gestion_session.py')
 parcelle = Import('parcelle.py')
 litige = Import('litige.py')
-import mysql.connector
-import datetime
 
 def index(error=''):
     ret=template.afficherHautPage(error, titre='Entrer un relevé')

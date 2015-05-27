@@ -64,15 +64,16 @@ def afficherHautPage(error = '', titre=''):
                         <ul>'''
     ret += create_link('menu-item-1', 'Accueil', titre,'index.py')
     if "login" in Session():
-        if Session()['Id_exploitant'] == 0:
+        if Session()['Id_exploitant'] == 0: #admin
             ret += create_link('menu-item-2', 'Consos', titre,'page_conso.py')
             ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
+            ret += create_link('menu-item-3', 'Voir les relevés', titre,'page_visu_releves.py')
             ret += create_link('menu-item-4', 'Signaler un évènement', titre,'page_evenements.py')
             ret += create_link('menu-item-5', 'Voir le réseau', titre,'page_reseau.py')
             ret += create_link('menu-item-6', 'Gérer les membres', titre, 'page_gestion_exploitant.py')
             ret += create_link('menu-item-7', 'Demandes à l\'administrateur', titre, 'page_contact.py')
             ret += create_link('menu-item-8', 'Page cv', titre, 'page_cv.py')
-        else:
+        else:   #utilisateur classique
             ret += create_link('menu-item-2', 'Ma Conso', titre,'page_conso.py')
             ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
             ret += create_link('menu-item-4', 'Signaler un évenement', titre,'page_evenements.py')

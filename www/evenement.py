@@ -2,6 +2,9 @@ import mysql.connector
 
 class Evenement(object):
     database = 'asa'
+    user = 'root'
+    password = 'root'
+    host = '127.0.0.1'
 
     def __init__(self,id_event,desciptif=None,createur=None,compteur=None,photo1=None,photo2=None,):
         if id_event > 0:
@@ -34,14 +37,14 @@ class Evenement(object):
         createur = "'{}'".format(self.createur)
         compteur = "'{}'".format(self.compteur)
 
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=self.database)
+        connection = mysql.connector.connect(user=Evenement.user, password=Evenement.password,host=Evenement.host,database=Evenement.database)
         curseur = connection.cursor()
         requete = "INSERT INTO Evenement VALUES ({0},'{1}',{2},{3},{4},{5});".format(self.id, descriptif, createur, compteur, photo1, photo2)
         curseur.execute(requete)
         connection.commit()
 
     def load(self, id_event):
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=self.database)
+        connection = mysql.connector.connect(user=Evenement.user, password=Evenement.password,host=Evenement.host,database=Evenement.database)
         curseur = connection.cursor()
         requete = 'select * from Evenement where Id_event={};'.format(id_event)
         curseur.execute(requete)
@@ -58,7 +61,7 @@ class Evenement(object):
         self.photo2 = photo2
 
     def update(self, descriptif, createur, compteur, photo1, photo2):
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=self.database)
+        connection = mysql.connector.connect(user=Evenement.user, password=Evenement.password,host=Evenement.host,database=Evenement.database)
         curseur = connection.cursor()
         requete = "UPDATE Evenement SET Descriptif='{0}', Createur='{1}', Compteur='{2}', Photo_1='{3}', Photo_2='{4}', WHERE Id_event={5};".format(descriptif, createur, compteur, photo1, photo2, self.id)
         curseur.execute(requete)
@@ -66,7 +69,7 @@ class Evenement(object):
 
     @staticmethod
     def get_last_id():
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=Evenement.database)
+        connection = mysql.connector.connect(user=Evenement.user, password=Evenement.password,host=Evenement.host,database=Evenement.database)
         curseur = connection.cursor()
         requete = 'select max(Id_Event) from Evenement;'
         curseur.execute(requete)
