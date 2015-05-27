@@ -137,3 +137,48 @@ class Releve(object):
 class ReleveError(Exception):
     pass
 #                    'AND Id_exploitant={2}'
+
+def update_releves(id_rel,index_deb = None,index_fin = None,litige=0):
+    id_rel = int(id_rel)
+    try:
+        index_deb = int(index_deb)
+    except TypeError:
+        pass
+    try:
+        index_fin = int(index_fin)
+    except TypeError:
+        pass
+
+    rel = Releve(id_rel)
+    releve_id_list = Releve.get_releve_id_from_compteur(rel.compteur)
+    try:
+        id_rel_pred = releve_id_list[releve_id_list.index(rel.id)+1]
+    except IndexError:
+        id_rel_pred=0
+    try:
+        index_rel = releve_id_list.index(rel.id)-1
+        id_rel_next = releve_id_list[index_rel] if index_rel>=0 else 0
+    except IndexError:
+        id_rel_next=0
+
+    rel_next = Releve(id_rel_next) if id_rel_next else None
+    rel_pred = Releve(id_rel_pred) if id_rel_pred else None
+
+    if index_fin is not None:
+        rel.index_fin = index_fin
+    if index_deb is not None:
+        rel.index_deb = index_deb
+    rel.update()
+
+    if rel_next and index_fin is not None:
+        rel_next.index_deb = index_fin
+        rel_next.update()
+    if rel_pred and index_deb is not None:
+        rel_pred.index_fin = index_deb
+        rel_pred.update()
+
+    if litige:
+        return '''ok!'''
+    return '''Relevés n° {}, {}, {} mis à jour:
+    index début: {}
+    index fin: {}'''.format(id_rel_pred, rel.id ,id_rel_next, rel.index_deb, rel.index_fin)

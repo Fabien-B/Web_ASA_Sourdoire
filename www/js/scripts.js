@@ -179,7 +179,8 @@ function update_exploitant_releve(selec,index){
 	update_index_deb_releve(id_compteur);
 }
 
-function change_combo_box(opt_check){
+function change_combo_box_event(opt_check){
+	alert(opt_check);
 	$.ajax({
 		type:"get",
 		url:'../page_evenements.py/get_combo_box',   // fonction python appelée
@@ -225,7 +226,7 @@ function get_releves_params() {
 	
 	$.ajax({
 		type:"get",
-		url:'../page_visu_releves.py/update_releves',   // fonction python appelée
+		url:'../releve.py/update_releves',   // fonction python appelée
 		data: {'id_rel':id_rel, 'index_deb':index_deb, 'index_fin':index_fin}, // parametres passes a cette fonction
 		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
 			alert(reponse)
@@ -235,5 +236,56 @@ function get_releves_params() {
 	
 }
 
+function update_inspector_litige(id_lit) {
+	$.ajax({
+		type:"get",
+		url:'../page_litiges.py/inspector',   // fonction python appelée
+		data: {'id_lit':id_lit}, // parametres passes a cette fonction
+		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
+			$("#litige_inspector").html(reponse);
+		},
+		error:function(){ alert("erreur lors de la recuperation de la page");}
+	});
+}
 
+function get_litige_params() {
+	id_lit = document.getElementById('litiges_select').value
+	index_fin1 = document.getElementById('litige_rel1').value
+	index_deb2 = document.getElementById('litige_rel2').value
+	
+	$.ajax({
+		type:"get",
+		url:'../page_litiges.py/update_litige_releves',   // fonction python appelée
+		data: {'id_lit':id_lit, 'index_fin1':index_fin1, 'index_deb2':index_deb2}, // parametres passes a cette fonction
+		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
+			alert(reponse);
+			update_litige_select();
+		},
+		error:function(){ alert("erreur lors de la recuperation de la page");}
+	});
+}
+
+function update_litige_select(){
+	$.ajax({
+		type:"get",
+		url:'../page_litiges.py/get_litiges',   // fonction python appelée
+		data: {}, // parametres passes a cette fonction
+		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
+			$("#litiges_select").html(reponse);
+		},
+		error:function(){ alert("erreur lors de la recuperation de la page");}
+	});
+}
+
+function update_lat_lon_field(lat,lon){
+	$.ajax({
+		type:"get",
+		url:'../page_modif_compteur.py/lat_lon',   // fonction python appelée
+		data: {'lat':lat,'lon':lon}, // parametres passes a cette fonction
+		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
+			$("#input_lat_lon").html(reponse);   // maj sur la page 
+		},
+		error:function(){ alert("erreur lors de la recuperation de la page");}
+	});
+}
 //End document.ready

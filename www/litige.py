@@ -40,10 +40,29 @@ class Litige(object):
         except IndexError:
             raise LitigeError("Litige with id {} doesn't exist".format(id_lit))
 
+        self.id = id_lit
         self.etat = etat
         self.id_rel1 = id_rel1
         self.id_rel2 = id_rel2
 
+    def delete(self):
+        connection = mysql.connector.connect(user=Litige.user, password=Litige.password,host=Litige.host,database=Litige.database)
+        curseur = connection.cursor()
+        requete = "DELETE FROM Litige Where Id_litige={}".format(self.id)
+        curseur.execute(requete)
+        connection.commit()
+
+    @staticmethod
+    def get_all_litiges():
+        connection = mysql.connector.connect(user=Litige.user, password=Litige.password,host=Litige.host,database=Litige.database)
+        curseur = connection.cursor()
+        requete = 'SELECT Id_litige from Litige;'
+        curseur.execute(requete)
+        Id_litige_list = curseur.fetchall()
+        litige_list = []
+        for (id_lit,) in Id_litige_list:
+            litige_list.append(Litige(id_lit))
+        return litige_list
 
 class LitigeError(Exception):
     pass

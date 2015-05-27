@@ -34,7 +34,7 @@ def corps_page_connecte():
             </h3>
             <div style="display:inline-flex; width:100%;text-align:center;font-weight: bold;" >
 
-                    <div class="alpha" style="float:left;width:50%;text-decoration:bold;"><INPUT TYPE="radio" NAME= "choix" VALUE="0" CHECKED onclick="change_combo_box(this.value)">Un de vos compteur / parcelles </div>
+                    <div class="alpha" style="float:left;width:50%;text-decoration:bold;"><INPUT TYPE="radio" NAME= "choix" VALUE="0" CHECKED onclick="change_combo_box_event(this.value)">Un de vos compteur / parcelles </div>
                     <div class="alpha" style="float:right;width:50%;"><INPUT TYPE="radio" NAME= "choix" VALUE="1" onclick="change_combo_box(this.value)">Un autre compteur / parcelle </div>
 
             </div>
@@ -106,13 +106,13 @@ def Upload (id_compteur, description, submit, mon_fichier = 0):
 
 def Upload_img(mon_fichier,id_event):
     if mon_fichier is not None:
-        from PIL import Image
         try:
+            import PIL.Image
             if mon_fichier.filename != "" :
                 file_ext = mon_fichier.filename.split('.').pop()
                 f = mon_fichier.file # file-like object
                 dest_name = "./asa/images/img_event/{}.{}".format(id_event, file_ext)
-                im = Image.open(f)
+                im = PIL.Image.open(f)
                 im.save(dest_name)
                 photo = "{}.{}".format(id_event, file_ext)
 
