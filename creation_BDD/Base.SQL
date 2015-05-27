@@ -46,8 +46,7 @@ CREATE TABLE IF NOT EXISTS `Evenement` (
   `Descriptif` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `Createur` int(11) NOT NULL,
   `Compteur` int(11),
-  `Photo_1` varchar(20) COLLATE utf8_unicode_ci,
-  `Photo_2` varchar(20) COLLATE utf8_unicode_ci,
+  `Photo` varchar(20) COLLATE utf8_unicode_ci,
   PRIMARY KEY (`Id_event`),
   FOREIGN KEY (Createur) REFERENCES Exploitant (Id_exploitant),
   FOREIGN KEY (Compteur) REFERENCES Compteur (Id_compteur)
