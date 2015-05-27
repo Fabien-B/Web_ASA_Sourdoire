@@ -59,7 +59,7 @@ def afficherAccueil():
                 <img u="image" src="../images/accueil/pousses.jpg" />
                 <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
                     text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
-                        color: #FFFFFF;">Touch Swipe Slider
+                        color: #FFFFFF;">Maïs
                 </div>
                 <div style="position: absolute; width: 480px; height: 120px; top: 300px; left: 30px; padding: 5px;
                     text-align: left; line-height: 36px; font-size: 30px;
@@ -72,7 +72,7 @@ def afficherAccueil():
                 <img u="image" src="../images/accueil/bles.jpg" />
                 <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
                     text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
-                        color: #FFFFFF;">Touch Swipe Slider
+                        color: #FFFFFF;">Blé
                 </div>
                 <div style="position: absolute; width: 480px; height: 120px; top: 300px; left: 30px; padding: 5px;
                     text-align: left; line-height: 36px; font-size: 30px;
@@ -85,7 +85,7 @@ def afficherAccueil():
                 <img u="image" src="../images/accueil/jardin.jpg" />
                 <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
                     text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
-                        color: #FFFFFF;">Touch Swipe Slider
+                        color: #FFFFFF;">Potager
                 </div>
                 <div style="position: absolute; width: 480px; height: 120px; top: 300px; left: 30px; padding: 5px;
                     text-align: left; line-height: 36px; font-size: 30px;
@@ -98,7 +98,7 @@ def afficherAccueil():
                 <img u="image" src="../images/accueil/noyers1.jpg" />
                 <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
                     text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
-                        color: #FFFFFF;">Touch Swipe Slider
+                        color: #FFFFFF;">Noyers
                 </div>
                 <div style="position: absolute; width: 480px; height: 120px; top: 300px; left: 30px; padding: 5px;
                     text-align: left; line-height: 36px; font-size: 30px;
@@ -111,7 +111,7 @@ def afficherAccueil():
                 <img u="image" src="../images/accueil/noyers2.jpg" />
                 <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
                     text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
-                        color: #FFFFFF;">Touch Swipe Slider
+                        color: #FFFFFF;">Noyers
                 </div>
                 <div style="position: absolute; width: 480px; height: 120px; top: 300px; left: 30px; padding: 5px;
                     text-align: left; line-height: 36px; font-size: 30px;
