@@ -74,6 +74,8 @@ class Evenement(object):
         requete = 'select max(Id_Event) from Evenement;'
         curseur.execute(requete)
         (maxId,)=curseur.fetchall()[0]
+        if maxId is None:
+            maxId = 0
         return maxId
 
 class EvenementError(Exception):
