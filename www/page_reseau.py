@@ -23,7 +23,7 @@ def corps_page():
     '''
     html += '<form action=../page_modif_compteur.py/index>'
     html+=compteurs_list()
-    html += detail(0)
+    html += detail()
     html += '''</br><input type="submit" name="submit" value="Modier ce compteur" />
                 </form>'''
     html += '''</aside>
@@ -90,9 +90,10 @@ def make_event_article(id_compteur):
         html+="""
         <div id='event'>
             <h5>{0} a signalé :</h5>
-            {1}
+            {1}</br>
+            <img src="../images/img_event/{2}" alt="pas de photo" height=150px padding:5px;"></img>
         </div>
-        """.format(createur.nom, event.descriptif)
+        """.format(createur.nom, event.descriptif, event.photo)
     return html
 
 
