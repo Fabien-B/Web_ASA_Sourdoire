@@ -32,6 +32,15 @@ class Releve(object):
         curseur.execute(requete)
         connection.commit()
 
+    def update(self):
+        if self.compteur == None or self.exploitant == None or self.index_deb == None or self.index_fin == None or self.date == None:
+            raise ReleveError("All attributes must be completed")
+        connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
+        curseur = connection.cursor()
+        requete = "UPDATE Releve SET Compteur='{0}', Exploitant='{1}', Index_début='{2}', Index_fin='{3}', Date='{4}' WHERE Id_releve={5};".format(self.compteur, self.exploitant, self.index_deb, self.index_fin, self.date, self.id)
+        curseur.execute(requete)
+        connection.commit()
+
     def load(self,id_rel):
         connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
         curseur = connection.cursor()
