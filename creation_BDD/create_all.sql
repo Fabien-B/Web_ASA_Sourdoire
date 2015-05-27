@@ -6,4 +6,5 @@ source Compteurs.sql;
 source exploitants.sql;
 source parcelles.sql;
 source propriete.sql;
-source releves.sql
+source releves.sql;
+source evenements.sql;
