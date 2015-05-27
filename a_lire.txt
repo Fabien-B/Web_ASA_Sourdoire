@@ -1,0 +1,5 @@
+Bienvenue dans le projet de l'ASA Sourdoire des messieurs Pastre Guillaume, Buisan Guilhem, Dziecil Nicolas et Bonneval Fabien.
+Les identifiants des utilisateurs sont login0 pour l'administrateur, et "login1", "login2", "login3" etc... pour les autres utilisateurs.
+Les mots de passe sont quant à eux tous initialisés à "azerty"
+
+Bonne visite sur le site
