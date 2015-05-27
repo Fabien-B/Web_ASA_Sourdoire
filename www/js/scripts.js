@@ -204,4 +204,23 @@ function update_inspector_releve(selec,index){
 	});
 }
 
+function get_releves_params() {
+	id_rel = document.getElementById('releves_select').value
+	index_deb = document.getElementById('visu_rel_index_deb').value
+	index_fin = document.getElementById('visu_rel_index_fin').value
+	
+	
+	$.ajax({
+		type:"get",
+		url:'../page_visu_releves.py/update_releves',   // fonction python appelée
+		data: {'id_rel':id_rel, 'index_deb':index_deb, 'index_fin':index_fin}, // parametres passes a cette fonction
+		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
+			alert(reponse)
+		},
+		error:function(){ alert("erreur lors de la recuperation de la page");}
+	});	
+	
+}
+
+
 //End document.ready
