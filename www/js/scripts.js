@@ -263,4 +263,16 @@ function update_litige_select(){
 		error:function(){ alert("erreur lors de la recuperation de la page");}
 	});
 }
+
+function update_lat_lon_field(lat,lon){
+	$.ajax({
+		type:"get",
+		url:'../page_modif_compteur.py/lat_lon',   // fonction python appelée
+		data: {'lat':lat,'lon':lon}, // parametres passes a cette fonction
+		success:function(reponse){  // recup dans reponse du return fait par la fonction corps_page_connecte
+			$("#input_lat_lon").html(reponse);   // maj sur la page 
+		},
+		error:function(){ alert("erreur lors de la recuperation de la page");}
+	});
+}
 //End document.ready

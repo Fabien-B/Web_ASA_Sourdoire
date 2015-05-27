@@ -24,7 +24,14 @@ class Compteur(object):
     def save(self):
         connection = mysql.connector.connect(user=Compteur.user, password=Compteur.password,host=Compteur.host,database=Compteur.database)
         curseur = connection.cursor()
-        requete = "INSERT INTO Compteur VALUES ({0},{1},{2},{3},{4});".format(self.id, self.nom, self.lat, self.lon, self.altitude)
+        requete = "INSERT INTO Compteur VALUES ({0},'{1}',{2},{3},{4});".format(self.id, self.nom, self.lat, self.lon, self.altitude)
+        curseur.execute(requete)
+        connection.commit()
+
+    def update(self):
+        connection = mysql.connector.connect(user=Compteur.user, password=Compteur.password,host=Compteur.host,database=Compteur.database)
+        curseur = connection.cursor()
+        requete = "UPDATE Compteur SET Nom='{0}', GPS_LAT={1}, GPS_LON={2}, Altitude={3} WHERE Id_compteur={4};".format(self.nom, self.lat, self.lon, self.altitude, self.id)
         curseur.execute(requete)
         connection.commit()
 
