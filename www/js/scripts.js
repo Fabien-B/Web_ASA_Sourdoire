@@ -100,6 +100,19 @@ function change_combo_box(id_compteur){
 	combo.options[index_combo].selected=true;
 }
 
+function change_combo_box_compteur(id_compteur){
+	combo = document.getElementById('combo_compteur')
+	var l = combo.options.length;
+	var index_combo = 0;
+	for (var i=0; i < l; i++){
+		var val =  combo.options[i].value;
+		if (val == id_compteur) {
+			index_combo = i;
+		}
+	}
+	combo.options[index_combo].selected=true;
+}
+
 /*update detail compteur on page "Le réseau d'irrigation"*/
 function update_details_compteur(id_compteur) {
    $.ajax({

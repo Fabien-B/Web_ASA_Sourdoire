@@ -11,4 +11,5 @@ function onEach_popup(feature, layer) {
 
 function oncompteurClick(id_compteur) {
 	update_details_compteur(id_compteur);
+	change_combo_box_compteur(id_compteur);
 }

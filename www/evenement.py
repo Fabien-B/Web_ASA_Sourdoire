@@ -74,7 +74,20 @@ class Evenement(object):
         requete = 'select max(Id_Event) from Evenement;'
         curseur.execute(requete)
         (maxId,)=curseur.fetchall()[0]
+        if maxId==None: maxId = 0
         return maxId
+
+    @staticmethod
+    def get_event_from_compteurid(compteurid):
+        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=Evenement.database)
+        curseur = connection.cursor()
+        requete = 'select Id_Event from Evenement where Compteur = {0};'.format(compteurid)
+        curseur.execute(requete)
+        eventid = curseur.fetchall()
+        curseur.close()
+        connection.close()
+        return eventid
+
 
 class EvenementError(Exception):
     pass

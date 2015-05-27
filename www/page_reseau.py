@@ -21,6 +21,7 @@ def corps_page():
         <aside class="six columns main-content">
             <h2>Compteur séléctionné</h2>
     '''
+    html+=compteurs_list()
     html += detail(0)
     html += '''</aside>
         <article class="ten columns right-sidebar">
@@ -48,14 +49,50 @@ def detail(id_compteur=1):
         exploits += '    - ' + name + '</br>'
     conjug = '' if len(Ids_ex)==1 else 's'
 
-    html = '''<span id="detail_compteur">
+    html='''
+
+    <span id="detail_compteur">
+                <div>
                 <img src="{0}" alt="pas de photo" height=150px padding:5px;"></img>
                  <h3>Nom : {1}</h3>
-                 <h3>position : {2}, {3}</h3>
+                 <h3>Position : {2}, {3}</h3>
                  <h3>Altitude : {4}</h3>
                  <h3>Exploitant{5} : {6}</h3>
-            </span>'''.format(path,nom,latitude,longitude,altitude,conjug,exploits)
+                 <h3>Evenements : </h3>
+                 '''.format(path,nom,latitude,longitude,altitude,conjug,exploits)
+    html+=make_event_article(id_compteur)
+    html+='''
+            </div>
+            </span>'''
     return html
+
+def compteurs_list():
+    compteur_list = compteur.Compteur.get_compteurs_id(0)
+    html="""
+    <select id="combo_compteur" name="compteur_id" onchange="update_details_compteur(this.selectedIndex+1)">
+    """
+    for compteurid in compteur_list:
+        mycompteur = compteur.Compteur(compteurid)
+        html+="<option value='{0}'>".format(mycompteur.id) + str(mycompteur.id)+", "+str(mycompteur.nom)+"</option>"
+    html+="</select>"
+    return html
+
+
+def make_event_article(id_compteur):
+    events_list = evenement.Evenement.get_event_from_compteurid(id_compteur)
+    html = ""
+    for eventid in reversed(events_list):
+        event = evenement.Evenement(eventid[0])
+        createur = exploitant.Exploitant(event.createur)
+        html+="""
+        <div id='event'>
+            <h5>{0} a signalé :</h5>
+            {1}
+        </div>
+        """.format(createur.nom, event.descriptif)
+    return html
+
+
 
 def get_json_compteurs(ex=not None):
     if ex and "login" in Session():     #une recherche ciblée necessite d'être connecté pour aboutir

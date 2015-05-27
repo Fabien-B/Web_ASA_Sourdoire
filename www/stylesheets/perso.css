@@ -25,3 +25,18 @@ div#choose_compteur {
   background: rgba(1,1,1,0.1);
   border-radius: 10px;
   padding: 10px;
+}
+
+
+
+#detail_compteur img {border: 2px solid #2CB235;}
+#detail_compteur div {border: 3px solid #004204;
+		border-radius: 15px;
+		padding: 5px;}
+
+div#event {
+  border-radius: 15px 50px;
+  border: 2px solid #2CB235;
+  padding: 20px;
+  margin-bottom: 20px;
+}
