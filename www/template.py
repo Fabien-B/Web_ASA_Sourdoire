@@ -176,42 +176,42 @@ def afficherBasPage():
         <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
             <tr>
                 <td>
-                    <a href="../page_tuto.py">Comment utiliser ce site internet ?</a>
+                    <a style= "color:black;"href="../page_tuto.py">Comment utiliser ce site internet ?</a>
                 </td>
                 <td>
-                    <a href="../page_conso.py">Voir ma consommation d'eau </aW
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="../page_releves.py">Entrer ses relevés</a>
-                </td>
-                <td>
-                    <a href="../page_visu_releves.py">Voir les relevés déjà entrés</a>
+                    <a style= "color:black;"href="../page_conso.py">Voir ma consommation d'eau </aW
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="../page_parcelles.py">Voir mes parcelles et les compteurs</a>
+                    <a style= "color:black;"href="../page_releves.py">Entrer ses relevés</a>
                 </td>
                 <td>
-                    <a href="../page_litiges.py">Voir les éventuels conflits</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
-                </td>
-                <td>
-                    <a href="../page_evenements.py">Voir les événements sur le réseau</a>
+                    <a style= "color:black;"href="../page_visu_releves.py">Voir les relevés déjà entrés</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="../page_profil.py">Voir/Modifier ses informations personnelles</a>
+                    <a style= "color:black;"href="../page_parcelles.py">Voir mes parcelles et les compteurs</a>
                 </td>
                 <td>
-                    <a href="../page_contact.py">Contacter l'administrateur</a>
+                    <a style= "color:black;"href="../page_litiges.py">Voir les éventuels conflits</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a style= "color:black;"href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
+                </td>
+                <td>
+                    <a style= "color:black;"href="../page_evenements.py">Voir les événements sur le réseau</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a style= "color:black;"href="../page_profil.py">Voir/Modifier ses informations personnelles</a>
+                </td>
+                <td>
+                    <a style= "color:black;"href="../page_contact.py">Contacter l'administrateur</a>
                 </td>
             </tr>
         </table>
