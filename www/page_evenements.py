@@ -99,8 +99,8 @@ def Upload (id_compteur, description, submit, mon_fichier = 0):
     myevent.createur = Session()["Id_exploitant"]
     myevent.compteur = int(id_compteur)
     if mon_fichier != 0:
-        photo1 = Upload_img(mon_fichier, myevent.id)
-        myevent.photo1 = photo1
+        photo = Upload_img(mon_fichier, myevent.id)
+        myevent.photo = photo
     myevent.save()
     return index('Évènement envoyé')
 
