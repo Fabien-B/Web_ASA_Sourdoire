@@ -1,5 +1,6 @@
-import bcrypt           #commenter / decommenter cette ligne pour utiliser ou non le hashage du mot de passe
-#RIEN DU TOUT
+import hashlib
+import binascii
+
 exploitant = Import('Exploitant.py')
 
 def Connexion(page, choix, login='',password=''):
@@ -13,8 +14,7 @@ def Connexion(page, choix, login='',password=''):
         target_ex = exploitant.Exploitant(id_ex)
         pw_base = target_ex.password
         salt = target_ex.salt
-        pw_user = bcrypt.hashpw(password,salt)
-        #pw_user = password
+        pw_user = binascii.hexlify(hashlib.pbkdf2_hmac('sha256', bytes(password, 'utf-8'), bytes(salt, 'utf-8'), 100000)).decode()
         if pw_user == pw_base:
             Session()["login"] = target_ex.login
             Session()["Id_exploitant"] = target_ex.id

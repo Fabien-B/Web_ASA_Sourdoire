@@ -2,8 +2,8 @@ template = Import('template.py' ) # import du fichier template (entete, pieds de
 connexion = Import('gestion_session.py')
 exploitant = Import('Exploitant.py')
 import time
-import bcrypt
-#RIEN DU TOUT
+import hashlib
+import binascii
 
 def index(error=''):
     if "login" in Session() and not Session()["Id_exploitant"]:
@@ -159,8 +159,7 @@ def afficherContact_admin():
 def changerNumero(mdp='', tel='', error=''):
     myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
 
-    if bcrypt.hashpw(mdp, myexploitant.salt) == myexploitant.password:
-    #if mdp == myexploitant.password:
+    if binascii.hexlify(hashlib.pbkdf2_hmac('sha256',bytes(mdp, 'utf-8'), bytes(myexploitant.salt, 'utf-8'), 100000)).decode() == myexploitant.password:
         nom = myexploitant.nom
         login = myexploitant.login
         password = myexploitant.password
