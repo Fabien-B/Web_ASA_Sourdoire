@@ -19,62 +19,44 @@ def corps_page_deconnecte():
     return '<p>Veuillez vous connecter en administrateur!</p>'
 
 def corps_page_connecte():
-    script = '''<script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
-  <script>
-  $(function() {
-    $( "#timepicker" ).timepicker();
-  });
-  </script>
-'''
-
-    style='''<style> input[type="text"] { float: right; margin-right: 20px;} select{ float: right; margin-right: 20px;} p{margin-bottom:35px;}</style>'''
-
-    html = """
-    {0}
-    <div class="container">
+    style = '''<style>p {margin-bottom: 40px;} select#releves_select{width:60%;min-width:250px;}</style>'''
+    html = '''{}
+    <div id="consulter_rel" class="container">
     <h1 class="container sixteen columns over" style="text-align: center;margin-bottom:15px;">Informations du relevé</h1>
-        <aside class="six columns left-sidebar">
-        <div class="sidebar-widget">
-        <h2 style='margin-bottom:30px'>Choisir un relevé :</h2>""".format(style)
-
-
-    html +=inspector()
-
-    html +=''' <p style='float:right; margin-right:20px;'><input type="submit" name="submit" value="Valider" onclick="get_releves_params()" /></p>
-            </aside>
-        <!-- End Left Sidebar -->
-
-
-        <article class="ten columns main-content">
+    <article class="ten columns main-content">
         <html>
     <head>
-    <script type="text/javascript" src="../js/jquery-2.1.3.js"></script>
     </head>
 
     <div>
 
 <form>
-        <div class="sidebar-widget">'''
+        <div class="sidebar-widget">'''.format(style)
 
     html += get_compteur_combo_box(Session()["Id_exploitant"])
 
     html += get_releve_select()
-
-
-    html += '''</div>
-        <link rel="stylesheet" href="../stylesheets/jquery-ui.min.css">
-        <script src="../js/jquery-ui.min.js"></script>
-{}
+    html+="""
+</div>
 </html>
 
         </article>
+        <aside class="six columns left-sidebar">
+        <div class="sidebar-widget">
+        <h2 style='margin-bottom:30px'>Choisir un relevé :</h2>"""
+
+
+    html +=inspector()
+
+    html +=''' <p><input style="float: right;" type="submit" name="submit" value="Valider" onclick="get_releves_params()" /></p>
+            </aside>
+        <!-- End Left Sidebar -->
+
+
+
         <!-- End main Content -->
     </div>
-    '''.format(script)
+    '''
     return html
 
 
@@ -122,11 +104,11 @@ def inspector(id_rel = 0):
     html = '<div id="releve_inspector">'
     html += '''
     <p>Index début :
-    <input id="visu_rel_index_deb" name="index_debut" type="text" value="{0}" required></p>
+    <input style="float: right;"  id="visu_rel_index_deb" name="index_debut" type="text" value="{0}" required></p>
     '''.format(rel.index_deb)
     html += '''
     <p>Index fin :
-    <input id="visu_rel_index_fin" name="index_fin"type="text" value="{0}" required></p>
+    <input style="float: right;"  id="visu_rel_index_fin" name="index_fin"type="text" value="{0}" required></p>
     </div>'''.format(rel.index_fin)
     return html
 

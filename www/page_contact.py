@@ -12,7 +12,7 @@ def index(error=''):
         ret=template.afficherHautPage(error, titre='Contacter l\'Admin')
     if "login" in Session():
         if Session()["Id_exploitant"] == 0:
-            ret += afficherContact_admin()
+            ret += consulter_contact()
         else:
             ret += afficherFormulaireContact_connecte()
     else:
@@ -129,60 +129,9 @@ def remerciements(error=''):
     ret += template.afficherBasPage()
     return ret
 
-def afficherContact_admin():
-    html = """
-        <div class="sixteen columns main-content">
-            <div>Le numéro de l'administrateur affiché est : """ + str(exploitant.Exploitant(0).tel) + """</div>
-            <form action=../page_contact.py/changerNumero METHOD="POST" class="two-thirds.column" style="margin:25px">
-            <div style="margin-top = 40px;">
-                <div>Changer le numéro affiché : <input name="tel" size=10 maxlength=10 type="tel" value="" placeholder="Nouveau numéro de téléphone" required />
-                </div>
-                <br />
-            <div>
-                <input name="mdp" size=20 maxlength=40 type="password" placeholder="Mot de passe administrateur" required />
-            </div>
-            <br />
-            <div>
-                <input type=submit value=Envoyer>
-                <input type=reset value=Annuler>
-            </div>
-            </form>
-            <form action="../page_contact.py/consulter_contact" class="two-thirds.column" style="margin:25px">
-            <div>
-                <input type="submit" value="Consulter les demandes de contact" style="margin:30px;">
-            </form>
-        </div>
-    """
-    return html
-
-
-def changerNumero(mdp='', tel='', error=''):
-    myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
-
-    if binascii.hexlify(hashlib.pbkdf2_hmac('sha256',bytes(mdp, 'utf-8'), bytes(myexploitant.salt, 'utf-8'), 100000)).decode() == myexploitant.password:
-        nom = myexploitant.nom
-        login = myexploitant.login
-        password = myexploitant.password
-        email = myexploitant.mail
-        salt = myexploitant.salt
-        if not email: email = "Non renseignée"
-        myexploitant.update(nom, email, tel, login, password, salt)
-
-        result = template.afficherHautPage(error, titre='Contacter l\'Admin')
-        result += """
-            <div class="sixteen columns main-content">
-                Merci de votre mise à jour, les utilisateurs du réseau pourront à nouveau vous contacter par téléphone
-            </div>
-        """
-        result += template.afficherBasPage()
-        return result
-    else:
-        return index()
-
 
 def consulter_contact(error=''):
-    ret = template.afficherHautPage(error, titre='Demandes à l\'administrateur')
-    ret += """<div class="sixteen columns main-content">"""""
+    ret = """<div class="sixteen columns main-content" style="min-height:200px;">"""""
     with open("contact.txt", "r") as f:
         for line in f:
             ret += """<table class="sixteen columns main-content" style="margin:30px;"><tr><td>""" + line + """</td></tr></table>"""
@@ -195,12 +144,10 @@ def consulter_contact(error=''):
         </form>
     </div>
     """
-    ret += template.afficherBasPage()
-
     return ret
 
 def effacer_demandes(error=''):
     with open("contact.txt", "w") as f:
         f.write("""Demandes plus vieilles effacées le """ + str(time.asctime()))
         f.close()
-    return consulter_contact()
+    return index()

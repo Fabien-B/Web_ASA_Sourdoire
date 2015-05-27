@@ -106,13 +106,13 @@ def Upload (id_compteur, description, submit, mon_fichier = 0):
 
 def Upload_img(mon_fichier,id_event):
     if mon_fichier is not None:
-        from PIL import Image
         try:
+            import PIL.Image
             if mon_fichier.filename != "" :
                 file_ext = mon_fichier.filename.split('.').pop()
                 f = mon_fichier.file # file-like object
                 dest_name = "./asa/images/img_event/{}.{}".format(id_event, file_ext)
-                im = Image.open(f)
+                im = PIL.Image.open(f)
                 im.save(dest_name)
                 photo = "{}.{}".format(id_event, file_ext)
 
