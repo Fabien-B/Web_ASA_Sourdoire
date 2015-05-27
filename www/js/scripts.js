@@ -166,7 +166,8 @@ function update_exploitant_releve(selec,index){
 	update_index_deb_releve(id_compteur);
 }
 
-function change_combo_box(opt_check){
+function change_combo_box_event(opt_check){
+	alert(opt_check);
 	$.ajax({
 		type:"get",
 		url:'../page_evenements.py/get_combo_box',   // fonction python appelée

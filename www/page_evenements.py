@@ -34,7 +34,7 @@ def corps_page_connecte():
             </h3>
             <div style="display:inline-flex; width:100%;text-align:center;font-weight: bold;" >
 
-                    <div class="alpha" style="float:left;width:50%;text-decoration:bold;"><INPUT TYPE="radio" NAME= "choix" VALUE="0" CHECKED onclick="change_combo_box(this.value)">Un de vos compteur / parcelles </div>
+                    <div class="alpha" style="float:left;width:50%;text-decoration:bold;"><INPUT TYPE="radio" NAME= "choix" VALUE="0" CHECKED onclick="change_combo_box_event(this.value)">Un de vos compteur / parcelles </div>
                     <div class="alpha" style="float:right;width:50%;"><INPUT TYPE="radio" NAME= "choix" VALUE="1" onclick="change_combo_box(this.value)">Un autre compteur / parcelle </div>
 
             </div>
