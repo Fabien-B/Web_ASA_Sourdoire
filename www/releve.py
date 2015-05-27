@@ -88,6 +88,40 @@ class Releve(object):
 
         return id_rel_list
 
+    @staticmethod
+    def get_releve_id_from_compteur(id_compteur, youger_date=None, older_date=None):
+        '''return a list of id: [id_releve1, id_releve2, ... ]'''
+        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1',database=Releve.database)
+        curseur = connection.cursor()
+
+        if youger_date:
+            youger_date = "'{}'".format(youger_date)
+        else:
+            youger_date = 'NULL'
+
+        if older_date:
+            older_date = "'{}'".format(older_date)
+        else:
+            older_date = 'NULL'
+        if id_compteur:
+            requete = '''SELECT Id_releve FROM Releve
+                WHERE Releve.Compteur = {2}
+                AND (Releve.Date < {0} OR {0} IS NULL)
+                AND (Releve.Date > {1} OR {1} IS NULL)
+                ORDER BY Releve.Date DESC;'''.format(older_date,youger_date,id_compteur)
+        else:
+            requete = '''SELECT Id_releve FROM Releve
+                        WHERE (Releve.Date < {0} OR {0} IS NULL)
+                        AND (Releve.Date > {1} OR {1} IS NULL)
+                        ORDER BY Releve.Date DESC;'''.format(older_date,youger_date)
+        curseur.execute(requete)
+        id_rel_tuple = curseur.fetchall()
+        id_rel_list = []
+        for (id_rel,) in id_rel_tuple:
+            id_rel_list.append(id_rel,)
+
+        return id_rel_list
+
 class ReleveError(Exception):
     pass
 #                    'AND Id_exploitant={2}'
