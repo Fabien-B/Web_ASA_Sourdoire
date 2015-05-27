@@ -4,12 +4,23 @@ connexion = Import('gestion_session.py')
 def index(error=''):
     ret=template.afficherHautPage(error, titre='Accueil')
     ret += afficherAccueil()
+    ret += corps_accueil()
     ret += template.afficherBasPage()
     return ret
 
 def corps_accueil():
     html = """
-    <p>Un petit paragraphe</p>
+        <div class="container">
+            <div class="sixteen columns main-content">
+                <div class="sixteen columns">
+                    <p>Bienvenue sur le site de l'ASA Sourdoire, le site de gestion de l'irrigation par internet.</p><br />
+                    <p>(Re)Découvrez l'ASA Sourdoire désormais connecté ! Vous pouvez désormais rentrer vos relevés de chez vous par internet,
+                     votre consommation est alors mise à jour en direct, et les dialogues avec le gestionnaire sont désormais plus simples.</p>
+                     <br />
+                     <p>Commencez à l'utiliser dès maintenant ! Si vous rencontrez des difficultés, consultez nos tutoriels vidéo en cliquand sur "Comment utiliser ce site internet ?" un peu plus bas !</p>
+                </div>
+            </div>
+        </div>
     """
     return html
 
