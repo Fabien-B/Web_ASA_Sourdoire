@@ -2,12 +2,15 @@ import mysql.connector
 
 class Litige(object):
     database = 'asa'
+    user = 'root'
+    password = 'root'
+    host = '127.0.0.1'
 
     def __init__(self,id_lit,etat=None,id_rel1=None,id_rel2=None):
         if  id_lit>0:
             self.load(id_lit)
         else:
-            connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=self.database)
+            connection = mysql.connector.connect(user=Litige.user, password=Litige.password,host=Litige.host,database=Litige.database)
             curseur = connection.cursor()
             requete = 'select max(Id_Litige) from Litige;'
             curseur.execute(requete)
@@ -21,14 +24,14 @@ class Litige(object):
             self.id_rel2 = id_rel2
 
     def save(self):
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=self.database)
+        connection = mysql.connector.connect(user=Litige.user, password=Litige.password,host=Litige.host,database=Litige.database)
         curseur = connection.cursor()
         requete = "INSERT INTO Litige VALUES ({0},{1},{2},{3});".format(self.id, self.etat, self.id_rel1, self.id_rel2)
         curseur.execute(requete)
         connection.commit()
 
     def load(self,id_lit):
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=self.database)
+        connection = mysql.connector.connect(user=Litige.user, password=Litige.password,host=Litige.host,database=Litige.database)
         curseur = connection.cursor()
         requete = 'select * from Litige where Id_litige={};'.format(id_lit)
         curseur.execute(requete)

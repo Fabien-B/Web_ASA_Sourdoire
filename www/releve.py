@@ -2,12 +2,15 @@ import mysql.connector
 
 class Releve(object):
     database = 'asa'
+    user = 'root'
+    password = 'root'
+    host = '127.0.0.1'
 
     def __init__(self,id_rel,compteur=None,exploitant=None,index_deb=None,index_fin=None,date=None):
         if  id_rel>0:
             self.load(id_rel)
         else:
-            connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=self.database)
+            connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
             curseur = connection.cursor()
             requete = 'select max(Id_Releve) from Releve;'
             curseur.execute(requete)
@@ -23,14 +26,14 @@ class Releve(object):
         if self.compteur == None or self.exploitant == None or self.index_deb == None or self.index_fin == None or self.date == None:
             raise ReleveError("All attributes must be completed")
 
-        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1', database=self.database)
+        connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
         curseur = connection.cursor()
         requete = "INSERT INTO Releve VALUES ({0},{1},{2},{3},{4},'{5}');".format(self.id, self.compteur, self.exploitant, self.index_deb, self.index_fin, self.date)
         curseur.execute(requete)
         connection.commit()
 
     def load(self,id_rel):
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=self.database)
+        connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
         curseur = connection.cursor()
         requete = 'select * from Releve where Id_releve={};'.format(id_rel)
         curseur.execute(requete)
@@ -50,7 +53,7 @@ class Releve(object):
     def get_releves_id(id_exploitant,youger_date=None, older_date=None):
         '''return a list of tuples: [(id_releve, id_parcelle), ... ]'''
         id_exploitant = int(id_exploitant)
-        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1',database=Releve.database)
+        connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
         curseur = connection.cursor()
 
         if youger_date:
@@ -91,7 +94,7 @@ class Releve(object):
     @staticmethod
     def get_releve_id_from_compteur(id_compteur, youger_date=None, older_date=None):
         '''return a list of id: [id_releve1, id_releve2, ... ]'''
-        connection = mysql.connector.connect(user='root', password='root', host='127.0.0.1',database=Releve.database)
+        connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
         curseur = connection.cursor()
 
         if youger_date:
