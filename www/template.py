@@ -4,7 +4,7 @@ def afficherHautPage(error = '', titre=''):
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
-            <title>Test WEB python sous Karrigell</title>
+            <title>ASA Sourdoire</title>
             <meta http-equiv="content-type" content="text/html; charset=utf-8" />
             <meta name="language" content="FR"/>
             <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=yes" />
@@ -168,11 +168,54 @@ def afficherBasPage():
 
 <div class="footer-inner container">
 
-<div class="footer-columns sixteen columns">
-<h2><i></i>À propos</h2>
-<p>L'Association syndicale autorisée de la sourdoire a été crée en 2532 et irrigue plus de 75356 hectares.</p>
-</div>
-
+    <div class="footer-columns sixteen columns">
+        <h2><i></i>À propos</h2>
+        <p>L'Association syndicale autorisée de la sourdoire a été crée en 1973 et irrigue plus de 75356 hectares.</p>
+    </div>
+    <div class="footer-columns sixteen columns">
+        <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
+            <tr>
+                <td>
+                    <a href="../page_tuto.py">Comment utiliser ce site internet ?</a>
+                </td>
+                <td>
+                    <a href="../page_conso.py">Voir ma consommation d'eau </aW
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../page_releves.py">Entrer ses relevés</a>
+                </td>
+                <td>
+                    <a href="../page_visu_releves.py">Voir les relevés déjà entrés</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../page_parcelles.py">Voir mes parcelles et les compteurs</a>
+                </td>
+                <td>
+                    <a href="../page_litiges.py">Voir les éventuels conflits</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
+                </td>
+                <td>
+                    <a href="../page_evenements.py">Voir les événements sur le réseau</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../page_profil.py">Voir/Modifier ses informations personnelles</a>
+                </td>
+                <td>
+                    <a href="../page_contact.py">Contacter l'administrateur</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 <div id="footer-base">

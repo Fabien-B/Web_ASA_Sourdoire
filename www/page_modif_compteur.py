@@ -1,0 +1,68 @@
+template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
+connexion = Import('gestion_session.py')
+releve = Import('releve.py')
+parcelle = Import('parcelle.py')
+compteur = Import('compteur.py')
+exploitant = Import('Exploitant.py')
+litige = Import('litige.py')
+
+
+def index(error='',id_compteur=12):
+    ret=template.afficherHautPage(error, titre='Modifier un compteur')
+    if "login" in Session() and not Session()["Id_exploitant"]:
+        ret += corps_page_connecte(id_compteur)
+    else:
+        ret += corps_page_deconnecte()
+    ret += template.afficherBasPage()
+    return ret
+
+def corps_page_connecte(id_compt):
+    html = """
+        <div class="container">
+
+            <div class="sixteen columns main-content">"""
+    html +='''<h2>Modifier un compteur</h2>'''
+
+    html += '''<form action="traiter_modif_compteur" method="GET">
+                <input type="hidden" name="id_compteur"  value="{}" />'''.format(id_compt)
+    compt = compteur.Compteur(int(id_compt))
+    html += '''Nom: <input name="nom_compteur" type="text" value="{0}"></br>'''.format(compt.nom)
+    html += lat_lon(compt.lat, compt.lon)
+    html += '''Altitude (m): <input name="alt_compteur" type="text" value="{0}"></br>'''.format(compt.altitude)
+    html += '''<input type="submit" name="submit" value="Valider" />
+                </form>'''
+
+    #MAP! a mettre à droite.
+    html +='''<article>
+            <div id="map" style="height: 700px"></div>
+            <script type="text/javascript" src="../js/map.js"></script>
+            <script type="text/javascript" src="../js/map_modif_compteur.js"></script>
+        </article>'''
+
+    html += """</div>
+    </div>"""
+    return html
+
+def corps_page_deconnecte():
+    html = """
+    <p>Bonjour! Veuillez vous connecter en administrateur!.</p>
+    """
+    return html
+
+def lat_lon(lat,lon):
+    html = '''<p id="input_lat_lon">
+                Latitude: <input name="lat_compteur" type="text" value="{0}"></br>
+                Longitude: <input name="lon_compteur" type="text" value="{1}"></br></p>'''.format(lat,lon)
+    return html
+
+def traiterFormulaireConnexion(choix, login='',password=''):
+    return connexion.Connexion(index, choix, login, password)
+
+def traiter_modif_compteur(id_compteur, nom_compteur, lat_compteur, lon_compteur, alt_compteur, submit):
+    compt = compteur.Compteur(int(id_compteur))
+    compt.nom = nom_compteur
+    compt.lat = float(lat_compteur)
+    compt.lon = float(lon_compteur)
+    compt.altitude = int(alt_compteur)
+    compt.update()
+    return index(error='compteur mis à jour', id_compteur=id_compteur)
