@@ -25,12 +25,7 @@ def corps_page_connecte():
     <h1 class="container sixteen columns over" style="text-align: center;margin-bottom:15px;">Informations du relevé</h1>
     <article class="ten columns main-content">
         <html>
-    <head>
-    </head>
-
     <div>
-
-
         '''.format(style)
 
     html += get_compteur_combo_box(Session()["Id_exploitant"])
@@ -42,7 +37,6 @@ def corps_page_connecte():
 
         </article>
         <aside class="six columns left-sidebar">
-        <div class="sidebar-widget">
         <h2 style='margin-bottom:30px'>Choisir un relevé :</h2>"""
 
 
