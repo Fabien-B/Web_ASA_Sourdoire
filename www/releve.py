@@ -1,7 +1,7 @@
 import mysql.connector
 
 class Releve(object):
-    database = 'asa'
+    database = 'IENAC14_asa'
     user = 'root'
     password = 'root'
     host = '127.0.0.1'
