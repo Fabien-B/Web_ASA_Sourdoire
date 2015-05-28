@@ -38,7 +38,8 @@ def corps_page():
 def detail(id_compteur=1):
     id_compteur = int(id_compteur)
     selected_comp = compteur.Compteur(id_compteur)
-    path = '../images/Compteurs/compteur_{0}.jpg'.format(id_compteur)
+    path = '../images/Compteurs/'
+    photo = path+str(selected_comp.photo) if selected_comp.photo else path+'pompe.png'
     nom = selected_comp.nom if selected_comp.nom else 'Donnée manquante'
     latitude = selected_comp.lat if selected_comp.lat else 'Donnée manquante'
     longitude = selected_comp.lon if selected_comp.lon else'Donnée manquante'
@@ -61,7 +62,7 @@ def detail(id_compteur=1):
                  <h3>Altitude : {4}</h3>
                  <h3>Exploitant{5} : {6}</h3>
                  <h3>Evenements : </h3>
-                 '''.format(path,nom,latitude,longitude,altitude,conjug,exploits)
+                 '''.format(photo,nom,latitude,longitude,altitude,conjug,exploits)
     html+=make_event_article(id_compteur)
     html+='''
             </div>
