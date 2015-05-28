@@ -6,7 +6,7 @@ class Compteur(object):
     password = 'root'
     host = '127.0.0.1'
 
-    def __init__(self,id_compt,nom=None,lat=None,lon=None,altitude=None):
+    def __init__(self,id_compt,nom=None,lat=None,lon=None,altitude=None, photo=None):
         if  id_compt>0:
             self.load(id_compt)
         else:
@@ -20,13 +20,14 @@ class Compteur(object):
             self.lat = lat
             self.lon = lon
             self.altitude = altitude
+            self.photo = photo
             curseur.close()
             connection.close()
 
     def save(self):
         connection = mysql.connector.connect(user=Compteur.user, password=Compteur.password,host=Compteur.host,database=Compteur.database)
         curseur = connection.cursor()
-        requete = "INSERT INTO Compteur VALUES ({0},'{1}',{2},{3},{4});".format(self.id, self.nom, self.lat, self.lon, self.altitude)
+        requete = "INSERT INTO Compteur VALUES ({0},'{1}',{2},{3},{4}, {5});".format(self.id, self.nom, self.lat, self.lon, self.altitude, self.photo)
         curseur.execute(requete)
         connection.commit()
         curseur.close()
@@ -35,7 +36,7 @@ class Compteur(object):
     def update(self):
         connection = mysql.connector.connect(user=Compteur.user, password=Compteur.password,host=Compteur.host,database=Compteur.database)
         curseur = connection.cursor()
-        requete = "UPDATE Compteur SET Nom='{0}', GPS_LAT={1}, GPS_LON={2}, Altitude={3} WHERE Id_compteur={4};".format(self.nom, self.lat, self.lon, self.altitude, self.id)
+        requete = "UPDATE Compteur SET Nom='{0}', GPS_LAT={1}, GPS_LON={2}, Altitude={3}, Photo={5} WHERE Id_compteur={4};".format(self.nom, self.lat, self.lon, self.altitude, self.id, self.photo)
         curseur.execute(requete)
         connection.commit()
         curseur.close()
@@ -47,7 +48,7 @@ class Compteur(object):
         requete = 'select * from Compteur where Id_compteur={};'.format(id_compt)
         curseur.execute(requete)
         try:
-            (_,nom,lat,lon,altitude)=curseur.fetchall()[0]
+            (_,nom,lat,lon,altitude, photo)=curseur.fetchall()[0]
         except IndexError:
             raise CompteurError("Compteur with id {} doesn't exist".format(id_compt))
 
@@ -56,6 +57,7 @@ class Compteur(object):
         self.lat = lat
         self.lon = lon
         self.altitude = altitude
+        self.photo = photo
         curseur.close()
         connection.close()
 
