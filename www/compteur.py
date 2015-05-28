@@ -1,7 +1,7 @@
 import mysql.connector
 
 class Compteur(object):
-    database = 'asa'
+    database = 'IENAC14_asa'
     user = 'root'
     password = 'root'
     host = '127.0.0.1'

@@ -203,7 +203,7 @@ def afficherBasPage():
                     <a style= "color:black;"href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
                 </td>
                 <td>
-                    <a style= "color:black;"href="../page_evenements.py">Voir les événements sur le réseau</a>
+                    <a style= "color:black;"href="../page_evenements.py">Signaler un événement sur le réseau</a>
                 </td>
             </tr>
             <tr>
