@@ -96,21 +96,20 @@ def afficher_form_ajout_photo(id_compt):
             <input type="submit" name="submit" value="Changer la photo" />
         </form>'''.format(id_compt)
 
-def Upload_img(mon_fichier,id_compteur):
+def Upload_img(mon_fichier,id_compteur, submit):
     if mon_fichier is not None:
         try:
-            import PIL_perso
-            from PIL
+            import PIL.Image
             if mon_fichier.filename != "" :
                 file_ext = mon_fichier.filename.split('.').pop()
                 f = mon_fichier.file # file-like object
                 dest_name = "./asa/images/Compteurs/compteur_{}.{}".format(id_compteur, file_ext)
-                im = PIL_perso.Image.open(f)
+                im = PIL.Image.open(f)
                 im.save(dest_name)
                 photo = "compteur_{}.{}".format(id_compteur, file_ext)
 
         except AttributeError:
             photo = "NULL"
 
-        compteur.modif_img_compteur(id_compteur, photo)
+        compteur.Compteur.modif_img_compteur(id_compteur, photo)
         return index("Photo du compteur mis à jour")
