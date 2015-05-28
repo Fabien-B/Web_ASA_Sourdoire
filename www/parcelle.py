@@ -1,4 +1,5 @@
 import mysql.connector
+import datetime
 
 class Parcelle(object):
     database = 'IENAC14_asa'
@@ -54,14 +55,25 @@ class Parcelle(object):
         self.lon = lon
         self.altitude = altitude
 
-    def release_my(self):
+    def release_my_ornot(self, exploitant=0):
         connection = mysql.connector.connect(user=Parcelle.user, password=Parcelle.password,host=Parcelle.host,database=Parcelle.database)
         curseur = connection.cursor()
-        requete = 'UPDATE Propriete SET Id_exploitant=NULL WHERE Id_parcelle={0};'.format(self.id)
+        actualtime = str(datetime.datetime.now())
+        requete = 'UPDATE Propriete SET date_fin="{1}" WHERE Id_parcelle={0} AND date_fin IS NULL;'.format(self.id, actualtime)
+        curseur.execute(requete)
+        requete = 'select max(Id_propriete) from Propriete;'
+        curseur.execute(requete)
+        (maxId,)=curseur.fetchall()[0]
+        if exploitant==0:
+            requete = 'INSERT INTO Propriete VALUES({2}, {0}, 0, "{1}", NULL);'.format(self.id, actualtime, maxId+1)
+        else:
+            requete = 'INSERT INTO Propriete VALUES({2}, {0}, {3}, "{1}", NULL);'.format(self.id, actualtime, maxId+1, exploitant.id)
         curseur.execute(requete)
         connection.commit()
         curseur.close()
         connection.close()
+
+
 
     @staticmethod
     def get_exploitant_parcelle_id(id_ex):
@@ -70,9 +82,9 @@ class Parcelle(object):
         if id_ex == 0:
             requete = 'select Id_parcelle FROM Parcelle;'
         elif id_ex == -1: #parcelles libres
-            requete = 'select Parcelle.Id_parcelle FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Propriete.Id_exploitant IS NULL;'
+            requete = 'select Parcelle.Id_parcelle FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Id_exploitant = 0 AND date_fin IS NULL ORDER BY Parcelle.Id_parcelle;'
         else:
-            requete = 'select Parcelle.Id_parcelle FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Id_exploitant = {};'.format(id_ex)
+            requete = 'select Parcelle.Id_parcelle FROM Parcelle,Propriete WHERE Propriete.Id_parcelle = Parcelle.Id_parcelle AND Id_exploitant = {0} AND date_fin IS NULL ORDER BY Parcelle.Id_parcelle;'.format(id_ex)
         curseur.execute(requete)
         id_parc = curseur.fetchall()
         curseur.close()

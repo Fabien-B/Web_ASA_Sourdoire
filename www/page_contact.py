@@ -2,8 +2,6 @@ template = Import('template.py' ) # import du fichier template (entete, pieds de
 connexion = Import('gestion_session.py')
 exploitant = Import('Exploitant.py')
 import time
-import hashlib
-import binascii
 
 def index(error=''):
     if "login" in Session() and not Session()["Id_exploitant"]:

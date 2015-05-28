@@ -17,10 +17,11 @@ def index(error=''):
 
      </div>
         <div id="photo">
-            <img width="100px" src="../polo.png" alt="Nicolas">
+            <img width="100px" src="../Pastre.jpg" alt="Guillaume">
         </div>
             <p>Chambre 339 Résidence Védrines, 7 Avenue Edouard Belin<br/>
             31055 TOULOUSE<br/>
+            Tel : <strong>06 58 40 54 88</strong><br />
             <span class="mail" >guillaume.pastre@alumni.enac.fr</span>
             </p>
     </header>
