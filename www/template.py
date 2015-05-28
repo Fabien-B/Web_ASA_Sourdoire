@@ -73,7 +73,6 @@ def afficherHautPage(error = '', titre=''):
             ret += create_link('menu-item-7', 'Voir le réseau', titre,'page_reseau.py')
             ret += create_link('menu-item-8', 'Gérer les membres', titre, 'page_gestion_exploitant.py')
             ret += create_link('menu-item-9', 'Demandes à l\'administrateur', titre, 'page_contact.py')
-            ret += create_link('menu-item-10', 'Page cv', titre, 'page_cv.py')
         else:   #utilisateur classique
             ret += create_link('menu-item-2', 'Ma Conso', titre,'page_conso.py')
             ret += create_link('menu-item-3', 'Entrer un relevé', titre,'page_releves.py')
