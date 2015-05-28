@@ -24,17 +24,20 @@ def corps_accueil():
                     <hr>
                     <section class="container">
 
-        <div class="one-third column" style ="text-align: justify;">
-            <h3><i class="icon-heart rounded"></i> Consommation</h3>
-            <p>Vous pouvez consulter votre consommation quand vous voulez,suivre l'évolution de celle ci et garder un suivi personnalisé de vos bornes et parcelles.</p>
+        <div class="one-third column" style ="text-align: center;" >
+        <img src="../images/logo_conso.png" height="60em" />
+            <h3> Consommation</h3>
+            <p style ="text-align: justify;">Vous pouvez consulter votre consommation quand vous voulez,suivre l'évolution de celle ci et garder un suivi personnalisé de vos bornes et parcelles.</p>
         </div>
-        <div class="one-third column" style ="text-align: justify;">
-            <h3><i class="icon-cog rounded"></i> Fini la galère des relevés </h3>
-            <p>Grâce à ce nouveau système vous pouvez entrer vous même un relevé, plus besoin d'intermédiaire !</p>
+        <div class="one-third column" style ="text-align: center;">
+        <img src="../images/logo_releve.png" height="60em" />
+            <h3> Fini la galère des relevés </h3>
+            <p style ="text-align: justify;">Grâce à ce nouveau système vous pouvez entrer vous même un relevé, plus besoin d'intermédiaire !</p>
         </div>
-        <div class="one-third column" style ="text-align: justify;">
-            <h3><i class="icon-resize-full rounded"></i> Signalez les problèmes</h3>
-            <p>Maintenant vous pouvez signalez quand il y a un soucis sur une des bornes, un relevé, consulter l'état du réseau et bien plus encore...</p>
+        <div class="one-third column" style ="text-align: center;">
+        <img src="../images/signal.png" height="60em" />
+            <h3> Signalez les problèmes</h3>
+            <p style ="text-align: justify;">Maintenant vous pouvez signalez quand il y a un soucis sur une des bornes, un relevé, consulter l'état du réseau et bien plus encore...</p>
         </div>
 
         </section>
