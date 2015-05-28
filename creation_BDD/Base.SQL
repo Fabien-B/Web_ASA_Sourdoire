@@ -110,8 +110,8 @@ CREATE TABLE IF NOT EXISTS `Propriete` (
   `date_debut` datetime,
   `date_fin` datetime,
   PRIMARY KEY (`Id_propriete`),
-  FOREIGN KEY (Id_parcelle) REFERENCES Parcelle (Id_parcelle),
-  FOREIGN KEY (Id_exploitant) REFERENCES Exploitant (Id_exploitant)
+  FOREIGN KEY (Id_exploitant) REFERENCES Exploitant (Id_exploitant),
+  FOREIGN KEY (Id_parcelle) REFERENCES Parcelle (Id_parcelle)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -129,7 +129,8 @@ CREATE TABLE IF NOT EXISTS `Releve` (
   `Date` timestamp NOT NULL,
   
   PRIMARY KEY (`Id_releve`),
-  FOREIGN KEY (Compteur) REFERENCES Compteur (Id_compteur)
+  FOREIGN KEY (Compteur) REFERENCES Compteur (Id_compteur),
+  FOREIGN KEY (Exploitant) REFERENCES Exploitant (Id_exploitant)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
