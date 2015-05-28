@@ -214,6 +214,11 @@ def afficherBasPage():
                     <a style= "color:black;"href="../page_contact.py">Contacter l'administrateur</a>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <a style= "color:black;"href="../page_cv.py">Voir les CV</a>
+                </td>
+            </tr>
         </table>
     </div>
 </div>
