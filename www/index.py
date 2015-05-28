@@ -27,7 +27,7 @@ def corps_accueil():
         <div class="one-third column" style ="text-align: center;" >
         <img src="../images/logo_conso.png" height="60em" />
             <h3> Consommation</h3>
-            <p style ="text-align: justify;">Vous pouvez consulter votre consommation quand vous voulez,suivre l'évolution de celle ci et garder un suivi personnalisé de vos bornes et parcelles.</p>
+            <p style ="text-align: justify;">Vous pouvez consulter votre consommation quand vous voulez, suivre l'évolution de celle ci et garder un suivi personnalisé de vos bornes et parcelles.</p>
         </div>
         <div class="one-third column" style ="text-align: center;">
         <img src="../images/logo_releve.png" height="60em" />
