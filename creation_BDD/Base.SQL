@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `Parcelle` (
 CREATE TABLE IF NOT EXISTS `Propriete` (
   `Id_propriete` int(11) NOT NULL AUTO_INCREMENT,
   `Id_parcelle` int(11) NOT NULL,
-  `Id_exploitant` int(11),
+  `Id_exploitant` int(11) NOT NULL,
   `date_debut` datetime,
   `date_fin` datetime,
   PRIMARY KEY (`Id_propriete`),
