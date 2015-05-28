@@ -5,15 +5,22 @@ connexion = Import('gestion_session.py')
 def index(error=''):
     ret=template.afficherHautPage(error, titre='Page cv')
     if "login" in Session():
+        if Session()["Id_exploitant"] == 0:
             ret += corps_page_connecte()
-    else:
-        ret += corps_page_deconnecte()
+        else:
+            ret += corps_page_deconnecte()
     ret += template.afficherBasPage()
     return ret
 
 def corps_page_deconnecte():
     html = """
-    <p>Bonjour! Veuillez vous connecter.</p>
+    <div class="container">
+            <div style="text-align:center;" class="sixteen columns main-content">
+                <div class="sixteen columns">
+                    Bonjour! Merci de vous connecter en administrateur !
+                </div>
+            </div>
+    </div>
     """
     return html
 

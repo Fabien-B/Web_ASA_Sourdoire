@@ -16,7 +16,16 @@ def index(error=''):
     return ret
 
 def corps_page_deconnecte():
-    return '<p>Veuillez vous connecter en administrateur!</p>'
+    html="""
+    <div class="container">
+                        <div style="text-align:center;" class="sixteen columns main-content">
+                            <div class="sixteen columns">
+                                Bonjour! Merci de vous connecter en administrateur !
+                            </div>
+                        </div>
+                </div>
+            """
+    return html
 
 def corps_page_connecte():
     style = '''<style>p {margin-bottom: 40px;} select#releves_select{width:60%;min-width:250px;}</style>'''
