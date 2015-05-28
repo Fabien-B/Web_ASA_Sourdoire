@@ -100,6 +100,16 @@ class Compteur(object):
         curseur.execute(requete)
         connection.commit()
 
+    @staticmethod
+    def get_img_compteur(id_compteur):
+        connection = mysql.connector.connect(user=Compteur.user, password=Compteur.password,host=Compteur.host,database=Compteur.database)
+        curseur = connection.cursor()
+        requete ="select Photo from Compteur WHERE Id_compteur={};".format(id_compteur)
+        curseur.execute(requete)
+        photo = curseur.fetchall()[0][0]
+        return photo
+
+
 
 class CompteurError(Exception):
     pass

@@ -133,6 +133,24 @@ CREATE TABLE IF NOT EXISTS `Releve` (
   FOREIGN KEY (Exploitant) REFERENCES Exploitant (Id_exploitant)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table Messages
+
+CREATE TABLE IF NOT EXISTS `Message` (
+  `Id_message` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime NOT NULL,
+  `Objet` varchar(60) COLLATE utf8_unicode_ci,
+  `Corps` varchar(1500) COLLATE utf8_unicode_ci,
+  `Nom` varchar(1500) COLLATE utf8_unicode_ci,
+  `Numero` varchar(20) COLLATE utf8_unicode_ci,
+  `Id_exploitant` int(11),
+
+  PRIMARY KEY (`Id_message`),
+  FOREIGN KEY (Id_exploitant) REFERENCES Exploitant (Id_exploitant)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

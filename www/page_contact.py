@@ -1,7 +1,8 @@
 template = Import('template.py' ) # import du fichier template (entete, pieds de page...)
 connexion = Import('gestion_session.py')
 exploitant = Import('Exploitant.py')
-import time
+message_file = Import('message.py')
+import datetime
 
 def index(error=''):
     if "login" in Session() and not Session()["Id_exploitant"]:
@@ -99,20 +100,27 @@ def traiterFormulaireContact(nom='', numero='', topic='', demande='', captcha=''
     result=""
 
     if captcha == '4':
-
+        new_message = message_file.Message(0)
         if "login" in Session():
-            result += "Nom : " + str(Session()["nom"]) + ";\nIdentifiant : " + str(Session()["Id_exploitant"])
-            result += ";\nSujet : " + topic + ";\nDemande : " + demande
+            my_exp = exploitant.Exploitant(int(Session()["Id_exploitant"]))
+            new_message.nom = my_exp.nom
+            new_message.date =  time.asctime()
+            new_message.numero = my_exp.numero
+            new_message.objet = topic
+            new_message.corps = demande
+            new_message.id_exploitant = my_exp.id
+            new_message.save()
         else:
-            result += """<br />Infos : <br />"""
-            result += nom + numero + topic + demande
-        final = str("""\n \n """ + time.asctime() + """ ;\n""" +  result)
+            new_message.nom = nom
+            new_message.date =  str(datetime.datetime.now())
+            new_message.numero = numero
+            new_message.objet = topic
+            new_message.corps = demande
+            new_message.id_exploitant = 'NULL'
+            new_message.save()
 
-        with open("contact.txt", "a+") as f:
-            f.write(final)      #Doesn't seem to work properly
-            f.close()
     else:
-        return index()
+        return index(error="Captcha invalide")
 
     return remerciements()
 
@@ -129,11 +137,10 @@ def remerciements(error=''):
 
 
 def consulter_contact(error=''):
+    message_list = message_file.Message.get_all_messages()
     ret = """<div class="sixteen columns main-content" style="min-height:200px;">"""""
-    with open("contact.txt", "w+") as f:
-        for line in f:
-            ret += """<table class="sixteen columns main-content" style="margin:30px;"><tr><td>""" + line + """</td></tr></table>"""
-        f.close()
+    for my_mail in reversed(message_list):
+        ret += """<table class="sixteen columns main-content" style="margin:30px;"><tr><td>""" +str(my_mail.id)+str(my_mail.date)+my_mail.nom+my_mail.numero+my_mail.objet+my_mail.corps+ """</td></tr></table>"""
     ret += """
     </div>
     <div>
@@ -145,7 +152,5 @@ def consulter_contact(error=''):
     return ret
 
 def effacer_demandes(error=''):
-    with open("contact.txt", "w+") as f:
-        f.write("""Demandes plus vieilles effacées le """ + str(time.asctime()))
-        f.close()
+    message_file.Message.delete_all()
     return index()
