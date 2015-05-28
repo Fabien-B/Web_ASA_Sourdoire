@@ -15,6 +15,8 @@ class Litige(object):
             requete = 'select max(Id_Litige) from Litige;'
             curseur.execute(requete)
             (maxId,)=curseur.fetchall()[0]
+            curseur.close()
+            connection.close()
             try :
                 self.id = maxId + 1
             except TypeError:
@@ -29,6 +31,8 @@ class Litige(object):
         requete = "INSERT INTO Litige VALUES ({0},{1},{2},{3});".format(self.id, self.etat, self.id_rel1, self.id_rel2)
         curseur.execute(requete)
         connection.commit()
+        curseur.close()
+        connection.close()
 
     def load(self,id_lit):
         connection = mysql.connector.connect(user=Litige.user, password=Litige.password,host=Litige.host,database=Litige.database)
@@ -39,7 +43,8 @@ class Litige(object):
             (_,etat,id_rel1,id_rel2)=curseur.fetchall()[0]
         except IndexError:
             raise LitigeError("Litige with id {} doesn't exist".format(id_lit))
-
+        curseur.close()
+        connection.close()
         self.id = id_lit
         self.etat = etat
         self.id_rel1 = id_rel1
@@ -51,6 +56,8 @@ class Litige(object):
         requete = "DELETE FROM Litige Where Id_litige={}".format(self.id)
         curseur.execute(requete)
         connection.commit()
+        curseur.close()
+        connection.close()
 
     @staticmethod
     def get_all_litiges():
@@ -62,6 +69,8 @@ class Litige(object):
         litige_list = []
         for (id_lit,) in Id_litige_list:
             litige_list.append(Litige(id_lit))
+        curseur.close()
+        connection.close()
         return litige_list
 
 class LitigeError(Exception):

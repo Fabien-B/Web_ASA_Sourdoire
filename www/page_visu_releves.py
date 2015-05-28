@@ -39,7 +39,6 @@ def corps_page_connecte():
         <aside class="six columns left-sidebar">
         <h2 style='margin-bottom:30px'>Choisir un relevé :</h2>"""
 
-
     html +=inspector()
 
     html +=''' <p><input style="float: right;" type="submit" name="submit" value="Valider" onclick="get_releves_params()" /></p>
@@ -92,7 +91,7 @@ def get_releve_select(id_compteur = 0):
     return html
 
 
-def inspector(id_rel = 0):
+def inspector(id_rel = 1):
     id_rel = int(id_rel)
     rel = releve.Releve(id_rel)
     html = '<div id="releve_inspector">'
