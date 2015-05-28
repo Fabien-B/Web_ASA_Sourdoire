@@ -13,10 +13,32 @@ def corps_accueil():
         <div class="container">
             <div class="sixteen columns main-content">
                 <div class="sixteen columns">
-                    <p>Bienvenue sur le site de l'ASA Sourdoire, le site de gestion de l'irrigation par internet.</p><br />
-                    <p>(Re)Découvrez l'ASA Sourdoire désormais connecté ! Vous pouvez désormais rentrer vos relevés de chez vous par internet,
+                    <div class="tagline">
+                        <p>Bienvenue sur le site de l'<strong>ASA Sourdoire</strong>, le site de gestion de l'irrigation par internet.<br>
+                        Simple. Minimal. Easy-to-use.</p>
+                    </div>
+                    <hr>
+                    <p style ="font-size: large; text-align: justify;">(Re)Découvrez l'ASA Sourdoire désormais connecté ! Vous pouvez désormais rentrer vos relevés de chez vous par internet,
                      votre consommation est alors mise à jour en direct, et les dialogues avec le gestionnaire sont désormais plus simples.</p>
                      <br />
+                    <hr>
+                    <section class="container">
+
+        <div class="one-third column" style ="text-align: justify;">
+            <h3><i class="icon-heart rounded"></i> Consommation</h3>
+            <p>Vous pouvez consulter votre consommation quand vous voulez,suivre l'évolution de celle ci et garder un suivi personnalisé de vos bornes et parcelles.</p>
+        </div>
+        <div class="one-third column" style ="text-align: justify;">
+            <h3><i class="icon-cog rounded"></i> Fini la galère des relevés </h3>
+            <p>Grâce à ce nouveau système vous pouvez entrer vous même un relevé, plus besoin d'intermédiaire !</p>
+        </div>
+        <div class="one-third column" style ="text-align: justify;">
+            <h3><i class="icon-resize-full rounded"></i> Signalez les problèmes</h3>
+            <p>Maintenant vous pouvez signalez quand il y a un soucis sur une des bornes, un relevé, consulter l'état du réseau et bien plus encore...</p>
+        </div>
+
+        </section>
+
                      <p>Commencez à l'utiliser dès maintenant ! Si vous rencontrez des difficultés, consultez nos tutoriels vidéo en cliquand sur "Comment utiliser ce site internet ?" un peu plus bas !</p>
                 </div>
             </div>
