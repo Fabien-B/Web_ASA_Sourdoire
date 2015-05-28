@@ -17,6 +17,7 @@ def index(error='',compteur_id=12,submit=None):
     return ret
 
 def corps_page_connecte(id_compt):
+    photo = compteur.Compteur.get_img_compteur(id_compt)
     html = '''
         <div class="container">
             <div class="sidebar-widget">
@@ -32,16 +33,17 @@ def corps_page_connecte(id_compt):
                 </form>
                 <br />
                 <h2>Modifier la photo du compteur</h2>
+                <div style="margin-left:25%;"><img style="border: 1px solid rgba(1,1,1,0.4);" src="../images/Compteurs/{1}" height="80em" /> <p> (Image actuelle) </p></div>
                 <form method="post" action="Upload_img" method="POST", enctype="multipart/form-data">
     <label for="mon_fichier">Photo (tous formats | max. 5 Mo) :</label>
-    <input type="hidden" name="id_compteur"  value="{}" />
+    <input type="hidden" name="id_compteur"  value="{0}" />
             <input type="file" name="mon_fichier" id="mon_fichier" />
 
             <br /><br />
 
             <input type="submit" name="submit" value="Changer la photo" />
         </form>
-        </aside>'''.format(id_compt)
+        </aside>'''.format(id_compt,photo)
 
     #MAP! a mettre à droite.
     html +='''<article class="ten columns main-content">
@@ -112,4 +114,4 @@ def Upload_img(mon_fichier,id_compteur, submit):
             photo = "NULL"
 
         compteur.Compteur.modif_img_compteur(id_compteur, photo)
-        return index("Photo du compteur mis à jour")
+        return page_reseau.index("Photo du compteur mis à jour")
