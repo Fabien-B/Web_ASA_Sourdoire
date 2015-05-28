@@ -2,8 +2,6 @@ template = Import('template.py' ) # import du fichier template (entete, pieds de
 connexion = Import('gestion_session.py')
 exploitant = Import('Exploitant.py')
 import time
-import hashlib
-import binascii
 
 def index(error=''):
     if "login" in Session() and not Session()["Id_exploitant"]:
@@ -110,7 +108,7 @@ def traiterFormulaireContact(nom='', numero='', topic='', demande='', captcha=''
             result += nom + numero + topic + demande
         final = str("""\n \n """ + time.asctime() + """ ;\n""" +  result)
 
-        with open("contact.txt", "a") as f:
+        with open("contact.txt", "a+") as f:
             f.write(final)      #Doesn't seem to work properly
             f.close()
     else:
@@ -132,7 +130,7 @@ def remerciements(error=''):
 
 def consulter_contact(error=''):
     ret = """<div class="sixteen columns main-content" style="min-height:200px;">"""""
-    with open("contact.txt", "r") as f:
+    with open("contact.txt", "w+") as f:
         for line in f:
             ret += """<table class="sixteen columns main-content" style="margin:30px;"><tr><td>""" + line + """</td></tr></table>"""
         f.close()
@@ -147,7 +145,7 @@ def consulter_contact(error=''):
     return ret
 
 def effacer_demandes(error=''):
-    with open("contact.txt", "w") as f:
+    with open("contact.txt", "w+") as f:
         f.write("""Demandes plus vieilles effacées le """ + str(time.asctime()))
         f.close()
     return index()
