@@ -32,7 +32,7 @@ def corps_page_connecte():
 
                 <div class="four columns alpha">
                 <a href="../cv/cv_polo.py/index">
-                <img src="../images/pompe.png" title="DZIECIOL Nicolas" width="75%">
+                <img src="../cv/polo.png" title="DZIECIOL Nicolas" width="75%">
                 </a>
                 <p> CV DZIECIOL Nicolas </p>
                 </div>
@@ -53,7 +53,7 @@ def corps_page_connecte():
 
                 <div class="four columns omega">
                 <a href="../cv/cv_guilhem.py/index">
-                <img src="../images/pompe.png" title="BUISAN Guilhem" width="75%">
+                <img src="../cv/guilhem.png" title="BUISAN Guilhem" width="75%">
                 </a>
                 <p>CV BUISAN Guilhem</p>
                 </div>
