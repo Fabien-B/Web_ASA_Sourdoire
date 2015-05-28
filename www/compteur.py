@@ -78,5 +78,14 @@ class Compteur(object):
             result = (0,-1)
         return result   #(Index_fin,Id_releve)
 
+    @staticmethod
+    def modif_img_compteur(id_compteur, photo):
+        connection = mysql.connector.connect(user=Compteur.user, password=Compteur.password,host=Compteur.host,database=Compteur.database)
+        curseur = connection.cursor()
+        requete ="UPDATE Compteur SET Photo='{0}' WHERE Id_compteur={1};".format(photo,id_compteur)
+        curseur.execute(requete)
+        connection.commit()
+
+
 class CompteurError(Exception):
     pass
