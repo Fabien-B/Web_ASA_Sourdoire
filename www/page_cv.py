@@ -53,7 +53,7 @@ def corps_page_connecte():
 
                 <div class="four columns omega">
                 <a href="../cv/cv_guilhem.py/index">
-                <img src="../cv/Buisan.png" title="BUISAN Guilhem" width="75%">
+                <img src="../cv/guilhem.png" title="BUISAN Guilhem" width="75%">
                 </a>
                 <p>CV BUISAN Guilhem</p>
                 </div>
