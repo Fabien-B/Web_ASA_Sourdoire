@@ -39,7 +39,11 @@ def corps_accueil():
 
         </section>
 
-                     <p>Commencez à l'utiliser dès maintenant ! Si vous rencontrez des difficultés, consultez nos tutoriels vidéo en cliquand sur "Comment utiliser ce site internet ?" un peu plus bas !</p>
+                     <br/>
+                     <fieldset>
+                        <legend style="font-size:20px; margin-bottom:20px; margin-top:10px;">Aide</legend>
+                        <p>Commencez à l'utiliser dès maintenant ! Si vous rencontrez des difficultés, consultez nos tutoriels vidéo en <a href="../page_tuto.py">cliquant ici !</a></p>
+                    </fieldset>
                 </div>
             </div>
         </div>
