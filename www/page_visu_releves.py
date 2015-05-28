@@ -16,7 +16,16 @@ def index(error=''):
     return ret
 
 def corps_page_deconnecte():
-    return '<p>Veuillez vous connecter en administrateur!</p>'
+    html="""
+    <div class="container">
+                        <div style="text-align:center;" class="sixteen columns main-content">
+                            <div class="sixteen columns">
+                                Bonjour! Merci de vous connecter en administrateur !
+                            </div>
+                        </div>
+                </div>
+            """
+    return html
 
 def corps_page_connecte():
     style = '''<style>p {margin-bottom: 40px;} select#releves_select{width:60%;min-width:250px;}</style>'''
@@ -38,7 +47,6 @@ def corps_page_connecte():
         </article>
         <aside class="six columns left-sidebar">
         <h2 style='margin-bottom:30px'>Choisir un relevé :</h2>"""
-
 
     html +=inspector()
 
@@ -92,7 +100,7 @@ def get_releve_select(id_compteur = 0):
     return html
 
 
-def inspector(id_rel = 0):
+def inspector(id_rel = 1):
     id_rel = int(id_rel)
     rel = releve.Releve(id_rel)
     html = '<div id="releve_inspector">'

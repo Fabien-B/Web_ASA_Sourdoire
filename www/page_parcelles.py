@@ -9,7 +9,13 @@ def index(error=''):
 
 def corps_page():
     html = """
-    <p>A travers les plaines</p>
+    <div class="container">
+                        <div style="text-align:center;" class="sixteen columns main-content">
+                            <div class="sixteen columns">
+                                Bonjour! Merci de vous connecter !
+                            </div>
+                        </div>
+                </div>
     """
     return html
 

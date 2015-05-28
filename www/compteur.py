@@ -20,6 +20,8 @@ class Compteur(object):
             self.lat = lat
             self.lon = lon
             self.altitude = altitude
+            curseur.close()
+            connection.close()
 
     def save(self):
         connection = mysql.connector.connect(user=Compteur.user, password=Compteur.password,host=Compteur.host,database=Compteur.database)
@@ -27,6 +29,8 @@ class Compteur(object):
         requete = "INSERT INTO Compteur VALUES ({0},'{1}',{2},{3},{4});".format(self.id, self.nom, self.lat, self.lon, self.altitude)
         curseur.execute(requete)
         connection.commit()
+        curseur.close()
+        connection.close()
 
     def update(self):
         connection = mysql.connector.connect(user=Compteur.user, password=Compteur.password,host=Compteur.host,database=Compteur.database)
@@ -34,6 +38,8 @@ class Compteur(object):
         requete = "UPDATE Compteur SET Nom='{0}', GPS_LAT={1}, GPS_LON={2}, Altitude={3} WHERE Id_compteur={4};".format(self.nom, self.lat, self.lon, self.altitude, self.id)
         curseur.execute(requete)
         connection.commit()
+        curseur.close()
+        connection.close()
 
     def load(self,id_compt):
         connection = mysql.connector.connect(user=Compteur.user, password=Compteur.password,host=Compteur.host,database=Compteur.database)
@@ -50,6 +56,8 @@ class Compteur(object):
         self.lat = lat
         self.lon = lon
         self.altitude = altitude
+        curseur.close()
+        connection.close()
 
     @staticmethod
     def get_compteurs_id(id_ex):
@@ -64,6 +72,8 @@ class Compteur(object):
         id_compt_list = []
         for (id_compt,) in id_compt_tuple:
             id_compt_list.append(id_compt)
+        curseur.close()
+        connection.close()
         return id_compt_list
 
     @staticmethod
@@ -76,6 +86,8 @@ class Compteur(object):
             result = curseur.fetchall()[0]
         except IndexError:
             result = (0,-1)
+        curseur.close()
+        connection.close()
         return result   #(Index_fin,Id_releve)
 
     @staticmethod

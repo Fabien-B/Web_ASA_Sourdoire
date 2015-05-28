@@ -15,6 +15,8 @@ class Releve(object):
             requete = 'select max(Id_Releve) from Releve;'
             curseur.execute(requete)
             (maxId,) = curseur.fetchall()[0]
+            curseur.close()
+            connection.close()
             self.id = maxId + 1
             self.compteur = compteur
             self.exploitant = exploitant
@@ -31,6 +33,8 @@ class Releve(object):
         requete = "INSERT INTO Releve VALUES ({0},{1},{2},{3},{4},'{5}');".format(self.id, self.compteur, self.exploitant, self.index_deb, self.index_fin, self.date)
         curseur.execute(requete)
         connection.commit()
+        curseur.close()
+        connection.close()
 
     def update(self):
         if self.compteur == None or self.exploitant == None or self.index_deb == None or self.index_fin == None or self.date == None:
@@ -40,6 +44,8 @@ class Releve(object):
         requete = "UPDATE Releve SET Compteur='{0}', Exploitant='{1}', Index_début='{2}', Index_fin='{3}', Date='{4}' WHERE Id_releve={5};".format(self.compteur, self.exploitant, self.index_deb, self.index_fin, self.date, self.id)
         curseur.execute(requete)
         connection.commit()
+        curseur.close()
+        connection.close()
 
     def load(self,id_rel):
         connection = mysql.connector.connect(user=Releve.user, password=Releve.password,host=Releve.host,database=Releve.database)
@@ -50,7 +56,8 @@ class Releve(object):
             (_,compteur,exploitant,index_deb,index_fin,date)=curseur.fetchall()[0]
         except IndexError:
             raise ReleveError("Releve with id {} doesn't exist".format(id_rel))
-
+        curseur.close()
+        connection.close()
         self.id = id_rel
         self.compteur = compteur
         self.exploitant = exploitant
@@ -97,7 +104,8 @@ class Releve(object):
         id_rel_list = []
         for (id_rel,id_pacelle) in id_rel_tuple:
             id_rel_list.append((id_rel,id_pacelle))
-
+        curseur.close()
+        connection.close()
         return id_rel_list
 
     @staticmethod
@@ -131,7 +139,8 @@ class Releve(object):
         id_rel_list = []
         for (id_rel,) in id_rel_tuple:
             id_rel_list.append(id_rel,)
-
+        curseur.close()
+        connection.close()
         return id_rel_list
 
 class ReleveError(Exception):

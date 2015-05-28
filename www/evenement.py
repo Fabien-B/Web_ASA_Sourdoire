@@ -36,6 +36,8 @@ class Evenement(object):
         requete = "INSERT INTO Evenement VALUES ({0},'{1}',{2},{3},{4});".format(self.id, descriptif, createur, compteur, photo)
         curseur.execute(requete)
         connection.commit()
+        curseur.close()
+        connection.close()
 
     def load(self, id_event):
         connection = mysql.connector.connect(user=Evenement.user, password=Evenement.password,host=Evenement.host,database=Evenement.database)
@@ -46,12 +48,13 @@ class Evenement(object):
             (_, descriptif, createur, compteur, photo) = curseur.fetchall()[0]
         except IndexError:
             raise EvenementError("Evenement with id {} doesn't exist".format(id_event))
-
         self.id = id_event
         self.descriptif = descriptif
         self.createur = createur
         self.compteur = compteur
         self.photo = photo
+        curseur.close()
+        connection.close()
 
     def update(self, descriptif, createur, compteur, photo):
         connection = mysql.connector.connect(user=Evenement.user, password=Evenement.password,host=Evenement.host,database=Evenement.database)
@@ -59,6 +62,8 @@ class Evenement(object):
         requete = "UPDATE Evenement SET Descriptif='{0}', Createur='{1}', Compteur='{2}', Photo='{3}' WHERE Id_event={4};".format(descriptif, createur, compteur, photo, self.id)
         curseur.execute(requete)
         connection.commit()
+        curseur.close()
+        connection.close()
 
     @staticmethod
     def get_last_id():
@@ -69,11 +74,13 @@ class Evenement(object):
         (maxId,)=curseur.fetchall()[0]
         if maxId is None:
             maxId = 0
+        curseur.close()
+        connection.close()
         return maxId
 
     @staticmethod
     def get_event_from_compteurid(compteurid):
-        connection = mysql.connector.connect(user='root', password='root',host='127.0.0.1',database=Evenement.database)
+        connection = mysql.connector.connect(user=Evenement.user, password=Evenement.password,host=Evenement.host,database=Evenement.database)
         curseur = connection.cursor()
         requete = 'select Id_Event from Evenement where Compteur = {0};'.format(compteurid)
         curseur.execute(requete)
