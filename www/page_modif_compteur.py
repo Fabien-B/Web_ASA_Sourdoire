@@ -44,7 +44,13 @@ def corps_page_connecte(id_compt):
 
 def corps_page_deconnecte():
     html = """
-    <p>Bonjour! Veuillez vous connecter en administrateur!.</p>
+    <div class="container">
+                        <div style="text-align:center;" class="sixteen columns main-content">
+                            <div class="sixteen columns">
+                                Bonjour! Merci de vous connecter en administrateur !
+                            </div>
+                        </div>
+                </div>
     """
     return html
 

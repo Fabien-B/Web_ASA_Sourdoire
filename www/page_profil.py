@@ -72,7 +72,7 @@ def corps_page_deco():
          <div class="container">
             <div class="sixteen columns main-content">
                 <div class="sixteen columns over" style="text-align:center">
-                    <h1> Veuillez vous identifier</h1>
+                    <h1> Merci de vous identifier</h1>
                 </div>
             </div>
         </div>

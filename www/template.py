@@ -186,12 +186,12 @@ def afficherBasPage():
                     <a style= "color:black;"href="../page_releves.py">Entrer ses relevés</a>
                 </td>
                 <td>
-                    <a style= "color:black;"href="../page_visu_releves.py">Voir les relevés déjà entrés</a>
+                    <a style= "color:black;"href="../page_visu_releves.py">Voir les relevés déjà entrés (Administrateur)</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a style= "color:black;"href="../page_parcelles.py">Voir mes parcelles et les compteurs</a>
+                    <a style= "color:black;"href="../page_conso.py">Voir mes parcelles et les compteurs</a>
                 </td>
                 <td>
                     <a style= "color:black;"href="../page_litiges.py">Voir les éventuels conflits</a>

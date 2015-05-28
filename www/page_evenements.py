@@ -19,8 +19,14 @@ def index(error=''):
 
 def corps_page_deconnecte():
     html = """
-    <p>Bonjour! Veuillez vous connecter.</p>
-    """
+            <div class="container">
+                        <div style="text-align:center;" class="sixteen columns main-content">
+                            <div class="sixteen columns">
+                                Bonjour! Merci de vous connecter !
+                            </div>
+                        </div>
+                </div>
+            """
     return html
 
 
