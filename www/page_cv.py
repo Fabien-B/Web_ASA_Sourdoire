@@ -46,7 +46,7 @@ def corps_page_connecte():
 
                 <div class="four columns alpha">
                 <a href="../cv/cv_guillaume.py/index">
-                <img src="../images/pompe.png" title="PASTRE Guillaume" width="75%">
+                <img src="../cv/Pastre.jpg" title="PASTRE Guillaume" width="75%">
                 </a>
                 <p> CV PASTRE Guillaume </p>
                 </div>
