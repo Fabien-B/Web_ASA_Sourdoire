@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `Compteur` (
   `GPS_LAT` float,
   `GPS_LON` float,
   `Altitude` int,
+  `Photo` varchar(20) COLLATE utf8_unicode_ci,
   PRIMARY KEY (`Id_Compteur`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
