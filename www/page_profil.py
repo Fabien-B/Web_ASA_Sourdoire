@@ -66,6 +66,7 @@ def corps_page():
         return html
 
 
+
 def corps_page_deco():
         html='''
          <div class="container">
@@ -77,6 +78,7 @@ def corps_page_deco():
         </div>
         '''
         return html
+
 
 
 def get_info_exploitant():
@@ -91,24 +93,27 @@ def get_info_exploitant():
 
 def updateProfile(nom=0, tel=0, login=0, password=0, password_confirm=0, email=0, old_password=0, submit=0):
     myexploitant = exploitant.Exploitant(Session()["Id_exploitant"])
-    if binascii.hexlify(hashlib.pbkdf2_hmac('sha256', bytes(old_password, 'utf-8'), bytes(myexploitant.salt, 'utf-8'), 100000)).decode() == myexploitant.password:
-        salt = uuid.uuid4().hex
-        if not nom: nom = myexploitant.nom
-        if not tel: tel = myexploitant.tel
-        if not login: login = myexploitant.login
-        if not password:
-            password = myexploitant.password
-        elif password != password_confirm:
-            return index()
-        else:
-            password = binascii.hexlify(hashlib.pbkdf2_hmac('sha256', password.encode('UTF-8'), bytes(salt, 'utf-8'), 100000)).decode()
-        if not email: email = myexploitant.mail
-        myexploitant.update(nom, email, tel, login, password, salt)
-        Session()["login"] = login
-        Session()["nom"] = nom
-        return index('Profil mis à jour')
+    if myexploitant.exist_login(login) != -1:
+        return index('Ce login existe déjà')
     else:
-        return index("Mot de passe incorrect, modifications annulées")
+        if binascii.hexlify(hashlib.pbkdf2_hmac('sha256', bytes(old_password, 'utf-8'), bytes(myexploitant.salt, 'utf-8'), 100000)).decode() == myexploitant.password:
+            salt = uuid.uuid4().hex
+            if not nom: nom = myexploitant.nom
+            if not tel: tel = myexploitant.tel
+            if not login: login = myexploitant.login
+            if not password:
+                password = myexploitant.password
+            elif password != password_confirm:
+                return index()
+            else:
+                password = binascii.hexlify(hashlib.pbkdf2_hmac('sha256', password.encode('UTF-8'), bytes(salt, 'utf-8'), 100000)).decode()
+            if not email: email = myexploitant.mail
+            myexploitant.update(nom, email, tel, login, password, salt)
+            Session()["login"] = login
+            Session()["nom"] = nom
+            return index('Profil mis à jour')
+        else:
+            return index("Mot de passe incorrect, modifications annulées")
 
 def traiterFormulaireConnexion(choix, login='',password=''):
     return connexion.Connexion(index, choix, login, password)
