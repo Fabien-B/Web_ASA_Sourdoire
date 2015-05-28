@@ -48,7 +48,8 @@ def corps_page_connecte(id_compt):
             <div id="map" style="height: 400px"></div>
             <script type="text/javascript" src="../js/map.js"></script>
             <script type="text/javascript" src="../js/map_modif_compteur.js"></script>
-        </article>'''
+            <script>add_marker({},{},"position actuelle")</script>
+        </article>'''.format(compt.lat,compt.lon)
 
     html += """</div>
     </div>"""

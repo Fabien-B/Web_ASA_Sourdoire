@@ -19,3 +19,7 @@ function onMapClick(e) {
     update_lat_lon_field(e.latlng.lat.toFixed(5), e.latlng.lng.toFixed(5));
 }
 
+function add_marker(lat,lon,texte) {
+L.marker([lat,lon]).addTo(map_compteur)
+	.bindPopup(texte).openPopup();
+}
