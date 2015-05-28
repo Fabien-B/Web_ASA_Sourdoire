@@ -5,7 +5,8 @@ get_network(map_network,onEach_popup,null);
 
 function onEach_popup(feature, layer) {
     if (feature.properties && feature.properties["altitude"]) {
-		layer.on('click', function(e) {oncompteurClick(feature.properties["id"]);});
+    	var texte = String(feature.properties["nom"]);
+		layer.bindPopup(texte).on('click', function(e) {oncompteurClick(feature.properties["id"]);});
     }
 }
 
