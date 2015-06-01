@@ -64,8 +64,8 @@ class Message(object):
         curseur.execute(requete)
         Id_message_list = curseur.fetchall()
         message_list = []
-        for i in range(1, len(Id_message_list)):
-            message_list.append(Message(Id_message_list[i][0]))
+        for (id_mess,) in Id_message_list:
+            message_list.append(Message(id_mess))
         curseur.close()
         connection.close()
         return message_list

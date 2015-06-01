@@ -140,7 +140,7 @@ def consulter_contact(error=''):
     message_list = message_file.Message.get_all_messages()
     ret = """<div class="sixteen columns main-content" style="min-height:200px;">"""""
     for my_mail in reversed(message_list):
-        ret += """<table class="sixteen columns main-content" style="margin:30px;"><tr><td>""" +str(my_mail.id)+str(my_mail.date)+my_mail.nom+my_mail.numero+my_mail.objet+my_mail.corps+ """</td></tr></table>"""
+        ret += """<table class="sixteen columns main-content" style="margin:30px;"><tr><td>""" +"<br />Id n°:\t"+ str(my_mail.id)+"<br />Reçu le:\t"+str(my_mail.date)+"<br />De la part de:\t"+my_mail.nom+"<br />Tel:\t"+my_mail.numero+"<br />Objet:\t"+my_mail.objet+"<br /><br />Message:<br />"+my_mail.corps+"<br /><hr />"+ """</td></tr></table>"""
     ret += """
     </div>
     <div>

@@ -8,33 +8,33 @@ def afficherHautPage(error = '', titre=''):
             <meta http-equiv="content-type" content="text/html; charset=utf-8" />
             <meta name="language" content="FR"/>
             <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=yes" />
-            <meta name="description" content="Test python web" />
-            <link rel="stylesheet" href="../stylesheets/base.css">
-            <link rel="stylesheet" href="../stylesheets/skeleton.css">
-            <link rel="stylesheet" href="../stylesheets/layout.css">
-            <link rel="stylesheet" href="../stylesheets/flexslider.css">
-            <link rel="stylesheet" href="../stylesheets/prettyPhoto.css">
-            <link rel="stylesheet" href="../stylesheets/perso.css">
-            <link rel="stylesheet" href="../stylesheets/leaflet.css">
-            <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon/apple-icon-57x57.png">
-            <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon/apple-icon-60x60.png">
-            <link rel="apple-touch-icon" sizes="72x72" href="../images/favicon/apple-icon-72x72.png">
-            <link rel="apple-touch-icon" sizes="76x76" href="../images/favicon/apple-icon-76x76.png">
-            <link rel="apple-touch-icon" sizes="114x114" href="../images/favicon/apple-icon-114x114.png">
-            <link rel="apple-touch-icon" sizes="120x120" href="../images/favicon/apple-icon-120x120.png">
-            <link rel="apple-touch-icon" sizes="144x144" href="../images/favicon/apple-icon-144x144.png">
-            <link rel="apple-touch-icon" sizes="152x152" href="../images/favicon/apple-icon-152x152.png">
-            <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-icon-180x180.png">
-            <link rel="icon" type="image/png" sizes="192x192"  href="../images/favicon/android-icon-192x192.png">
-            <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
-            <link rel="icon" type="image/png" sizes="96x96" href="../images/favicon/favicon-96x96.png">
-            <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
-            <link rel="manifest" href="../images/favicon/manifest.json">
+            <meta name="description" content="WEB ASA Sourdoire" />
+            <link rel="stylesheet" href="../stylesheets/base.css" />
+            <link rel="stylesheet" href="../stylesheets/skeleton.css" />
+            <link rel="stylesheet" href="../stylesheets/layout.css" />
+            <link rel="stylesheet" href="../stylesheets/flexslider.css" />
+            <link rel="stylesheet" href="../stylesheets/prettyPhoto.css" />
+            <link rel="stylesheet" href="../stylesheets/perso.css" />
+            <link rel="stylesheet" href="../stylesheets/leaflet.css" />
+            <link rel="apple-touch-icon" href="../images/favicon/apple-icon-57x57.png" />
+            <link rel="apple-touch-icon" href="../images/favicon/apple-icon-60x60.png" />
+            <link rel="apple-touch-icon" href="../images/favicon/apple-icon-72x72.png" />
+            <link rel="apple-touch-icon" href="../images/favicon/apple-icon-76x76.png" />
+            <link rel="apple-touch-icon" href="../images/favicon/apple-icon-114x114.png" />
+            <link rel="apple-touch-icon" href="../images/favicon/apple-icon-120x120.png" />
+            <link rel="apple-touch-icon" href="../images/favicon/apple-icon-144x144.png" />
+            <link rel="apple-touch-icon" href="../images/favicon/apple-icon-152x152.png" />
+            <link rel="apple-touch-icon" href="../images/favicon/apple-icon-180x180.png" />
+            <link rel="icon" type="image/png" href="../images/favicon/android-icon-192x192.png" />
+            <link rel="icon" type="image/png" href="../images/favicon/favicon-32x32.png" />
+            <link rel="icon" type="image/png" href="../images/favicon/favicon-96x96.png" />
+            <link rel="icon" type="image/png" href="../images/favicon/favicon-16x16.png" />
+            <link rel="manifest" href="../images/favicon/manifest.json" />
 
             <link rel="Stylesheet" media="screen and (max-width: 900px)" href="../stylesheets/menu_deroulant.css" />
             <link rel="Stylesheet" media="screen and (min-width: 900px)" href="../stylesheets/menu.css" />
 
-            <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css">
+            <link rel="stylesheet" href="../stylesheets/jquery_ui.min.css" />
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
             <script type="text/javascript" src="../js/jquery-2.1.3.js"></script>
             <script type="text/javascript" src="../js/jquery.flexslider-min.js"></script>
