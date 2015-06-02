@@ -5,20 +5,18 @@ message_file = Import('message.py')
 import datetime
 
 def index(error=''):
-    if "login" in Session() and not Session()["Id_exploitant"]:
-        ret=template.afficherHautPage(error, titre='Demandes à l\'administrateur')
+    if "login" in Session():
+        if Session()["Id_exploitant"]:
+            ret=template.afficherHautPage(error, titre='Contacter l\'Admin')
+            ret += afficherFormulaireContact_connecte()
+        else:
+            ret=template.afficherHautPage(error, titre='Demandes à l\'administrateur')
+            ret += consulter_contact()
     else:
         ret=template.afficherHautPage(error, titre='Contacter l\'Admin')
-    if "login" in Session():
-        if Session()["Id_exploitant"] == 0:
-            ret += consulter_contact()
-        else:
-            ret += afficherFormulaireContact_connecte()
-    else:
         ret+= afficherFormulaireContact_non_connecte()
     ret += template.afficherBasPage()
     return ret
-
 
 def traiterFormulaireConnexion(choix, login='',password=''):
     return connexion.Connexion(index, choix, login, password)
@@ -104,8 +102,8 @@ def traiterFormulaireContact(nom='', numero='', topic='', demande='', captcha=''
         if "login" in Session():
             my_exp = exploitant.Exploitant(int(Session()["Id_exploitant"]))
             new_message.nom = my_exp.nom
-            new_message.date =  time.asctime()
-            new_message.numero = my_exp.numero
+            new_message.date =  str(datetime.datetime.now())
+            new_message.tel = my_exp.tel
             new_message.objet = topic
             new_message.corps = demande
             new_message.id_exploitant = my_exp.id
@@ -113,7 +111,7 @@ def traiterFormulaireContact(nom='', numero='', topic='', demande='', captcha=''
         else:
             new_message.nom = nom
             new_message.date =  str(datetime.datetime.now())
-            new_message.numero = numero
+            new_message.tel = numero
             new_message.objet = topic
             new_message.corps = demande
             new_message.id_exploitant = 'NULL'
