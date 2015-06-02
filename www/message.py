@@ -30,7 +30,7 @@ class Message(object):
         connection = mysql.connector.connect(user=Message.user, password=Message.password,host=Message.host,database=Message.database)
         curseur = connection.cursor()
         requete = """
-        INSERT INTO Message VALUES ({0},"{1}","{2}","{3}","{4}","{5}","{6}");""".format(self.id, self.date, self.objet, self.corps, self.nom, self.numero, self.id_exploitant)
+        INSERT INTO Message VALUES ({0},"{1}","{2}","{3}","{4}","{5}","{6}");""".format(self.id, self.date, str(self.objet), str(self.corps), self.nom, self.numero, self.id_exploitant)
         curseur.execute(requete)
         connection.commit()
         curseur.close()

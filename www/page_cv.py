@@ -9,6 +9,8 @@ def index(error=''):
             ret += corps_page_connecte()
         else:
             ret += corps_page_deconnecte()
+    else:
+        ret += corps_page_deconnecte()
     ret += template.afficherBasPage()
     return ret
 
