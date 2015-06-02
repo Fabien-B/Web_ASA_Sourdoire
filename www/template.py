@@ -162,78 +162,182 @@ border-image: url(bordure.png) 5 5 5 5 fill round;background: rgba(2,0,1,0.3);">
 
 
 def afficherBasPage():
-    return '''
-<footer>
 
-<div class="footer-inner container">
+    if "login" in Session():
+        if Session()['Id_exploitant'] == 0: #admin
+            return '''
+            <footer>
 
-    <div class="footer-columns sixteen columns">
-        <h2><i></i>À propos</h2>
-        <p>L'Association syndicale autorisée de la sourdoire a été crée en 1973 et irrigue plus de 75356 hectares.</p>
-    </div>
-    <div class="footer-columns sixteen columns">
-        <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
-            <tr>
-                <td>
-                    <a style= "color:black;"href="../page_tuto.py">Comment utiliser ce site internet ?</a>
-                </td>
-                <td>
-                    <a style= "color:black;"href="../page_conso.py">Voir ma consommation d'eau </aW
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a style= "color:black;"href="../page_releves.py">Entrer ses relevés</a>
-                </td>
-                <td>
-                    <a style= "color:black;"href="../page_visu_releves.py">Voir les relevés déjà entrés (Administrateur)</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a style= "color:black;"href="../page_conso.py">Voir mes parcelles et les compteurs</a>
-                </td>
-                <td>
-                    <a style= "color:black;"href="../page_litiges.py">Voir les éventuels conflits</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a style= "color:black;"href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
-                </td>
-                <td>
-                    <a style= "color:black;"href="../page_evenements.py">Signaler un événement sur le réseau</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a style= "color:black;"href="../page_profil.py">Voir/Modifier ses informations personnelles</a>
-                </td>
-                <td>
-                    <a style= "color:black;"href="../page_contact.py">Contacter l'administrateur</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a style= "color:black;"href="../page_cv.py">Voir les CV</a>
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
+            <div class="footer-inner container">
 
-<div id="footer-base">
-<div class="container">
-<div class="eight columns">
-ASA Sourdoire &copy; 2015
-</div>
-</div>
-</div>
+                <div class="footer-columns sixteen columns">
+                    <h2><i></i>À propos</h2>
+                    <p>L'Association syndicale autorisée de la sourdoire a été crée en 1973 et irrigue plus de 7356 hectares.</p>
+                </div>
+                <div class="footer-columns sixteen columns">
+                    <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_tuto.py">Comment utiliser ce site internet ?</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;"href="../page_conso.py">Voir ma consommation d'eau </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_releves.py">Entrer ses relevés</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;"href="../page_visu_releves.py">Voir les relevés déjà entrés </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_conso.py">Voir mes parcelles et les compteurs</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;"href="../page_litiges.py">Voir les éventuels conflits</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;"href="../page_evenements.py">Signaler un événement sur le réseau</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_profil.py">Voir/Modifier ses informations personnelles</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;"href="../page_contact.py">Contacter l'administrateur</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_cv.py">Voir les CV</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-</footer>
-<script src="js/jquery.prettyPhoto.js"></script>
-</body>
-</html>
-   '''
+            <div id="footer-base">
+            <div class="container">
+            <div class="eight columns">
+            ASA Sourdoire &copy; 2015
+            </div>
+            </div>
+            </div>
 
+            </footer>
+            <script src="js/jquery.prettyPhoto.js"></script>
+            </body>
+            </html>
+               '''
+        else:
+            return """
+            <footer>
 
+            <div class="footer-inner container">
+
+                <div class="footer-columns sixteen columns">
+                    <h2><i></i>À propos</h2>
+                    <p>L'Association syndicale autorisée de la sourdoire a été crée en 1973 et irrigue plus de 7356 hectares.</p>
+                </div>
+                <div class="footer-columns sixteen columns">
+                    <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_tuto.py">Comment utiliser ce site internet ?</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;"href="../page_conso.py">Voir ma consommation d'eau </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_releves.py">Entrer ses relevés</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;"href="../page_conso.py">Voir mes parcelles et les compteurs</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;"href="../page_evenements.py">Signaler un événement sur le réseau</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_profil.py">Voir/Modifier ses informations personnelles</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;"href="../page_contact.py">Contacter l'administrateur</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div id="footer-base">
+            <div class="container">
+            <div class="eight columns">
+            ASA Sourdoire &copy; 2015
+            </div>
+            </div>
+            </div>
+
+            </footer>
+            <script src="js/jquery.prettyPhoto.js"></script>
+            </body>
+            </html>
+               """
+    else:
+        return """
+            <footer>
+
+            <div class="footer-inner container">
+
+                <div class="footer-columns sixteen columns">
+                    <h2><i></i>À propos</h2>
+                    <p>L'Association syndicale autorisée de la sourdoire a été crée en 1973 et irrigue plus de 7356 hectares.</p>
+                </div>
+                <div class="footer-columns sixteen columns">
+                    <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_tuto.py">Comment utiliser ce site internet ?</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;"href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;"href="../page_contact.py">Contacter l'administrateur</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div id="footer-base">
+            <div class="container">
+            <div class="eight columns">
+            ASA Sourdoire &copy; 2015
+            </div>
+            </div>
+            </div>
+
+            </footer>
+            <script src="js/jquery.prettyPhoto.js"></script>
+            </body>
+            </html>
+               """
