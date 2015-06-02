@@ -176,7 +176,7 @@ function update_exploitant_releve(selec,index){
 	
 	var combo = document.getElementById('combo_compteur_releves')
 	var id_compteur = parseInt(combo.options[0].value);
-	update_index_deb_releve(id_compteur);
+	update_index_deb_releve(-1,id_compteur);
 }
 
 function change_combo_box_event(opt_check){

@@ -13,10 +13,10 @@ def index(error=''):
         else:
             ret += afficherFormulaireContact_connecte()
     else:
+        ret=template.afficherHautPage(error, titre='Contacter l\'Admin')
         ret+= afficherFormulaireContact_non_connecte()
     ret += template.afficherBasPage()
     return ret
-
 
 def traiterFormulaireConnexion(choix, login='',password=''):
     return connexion.Connexion(index, choix, login, password)
@@ -103,7 +103,7 @@ def traiterFormulaireContact(nom='', numero='', topic='', demande='', captcha=''
             my_exp = exploitant.Exploitant(int(Session()["Id_exploitant"]))
             new_message.nom = my_exp.nom
             new_message.date =  str(datetime.datetime.now())
-            new_message.numero = my_exp.tel
+            new_message.tel = my_exp.tel
             new_message.objet = topic.replace("\"", "\\\"")
             new_message.corps = demande.replace("\"", "\\\"")
             new_message.id_exploitant = my_exp.id
@@ -111,7 +111,7 @@ def traiterFormulaireContact(nom='', numero='', topic='', demande='', captcha=''
         else:
             new_message.nom = nom
             new_message.date =  str(datetime.datetime.now())
-            new_message.numero = numero
+            new_message.tel = numero
             new_message.objet = topic.replace("\"", "\\\"")
             new_message.corps = demande.replace("\"", "\\\"")
             new_message.id_exploitant = '0'

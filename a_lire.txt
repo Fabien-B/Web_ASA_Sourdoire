@@ -2,7 +2,7 @@ Bienvenue dans le projet de l'ASA Sourdoire des messieurs Pastre Guillaume, Buis
 Les identifiants des utilisateurs sont login0 pour l'administrateur, et "login1", "login2", "login3" etc... pour les autres utilisateurs.
 Les mots de passe sont quant à eux tous initialisés à "azerty".
 
-Pour utliser les fonction d'upload d'image, installer la librairie PIL jointe au projet.
+Pour utiliser les fonction d'upload d'image, installer la librairie PIL jointe au projet.
 
 Bonne visite sur le site
 
