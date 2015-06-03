@@ -19,7 +19,7 @@ class Message(object):
             self.id = maxId + 1
             self.date = date
             self.nom = nom
-            self.numero = numero
+            self.tel = numero
             self.objet = objet
             self.corps = corps
             self.id_exploitant = id_exploitant
@@ -30,7 +30,7 @@ class Message(object):
         connection = mysql.connector.connect(user=Message.user, password=Message.password,host=Message.host,database=Message.database)
         curseur = connection.cursor()
         requete = """
-        INSERT INTO Message VALUES ({0},"{1}","{2}","{3}","{4}","{5}","{6}");""".format(self.id, self.date, str(self.objet), str(self.corps), self.nom, self.numero, self.id_exploitant)
+        INSERT INTO Message VALUES ({0},"{1}","{2}","{3}","{4}","{5}","{6}");""".format(self.id, self.date, str(self.objet), str(self.corps), self.nom, self.tel, self.id_exploitant)
         curseur.execute(requete)
         connection.commit()
         curseur.close()
@@ -51,10 +51,30 @@ class Message(object):
         self.id = id_mess
         self.date = date
         self.nom = nom
-        self.numero = numero
+        self.tel = numero
         self.objet = objet
         self.corps = corps
         self.id_exploitant = id_exploitant
+
+    def update(self):
+        connection = mysql.connector.connect(user=Message.user, password=Message.password,host=Message.host,database=Message.database)
+        curseur = connection.cursor()
+        requete = "UPDATE Message SET date='{0}', Objet='{1}', Corps='{2}', Nom='{3}', Numero='{4}', Id_exploitant='{5}' WHERE Id_message={6};".format(self.date, self.objet, self.corps, self.nom, self.tel,self.id_exploitant, self.id)
+        curseur.execute(requete)
+        connection.commit()
+        curseur.close()
+        connection.close()
+
+    def delete(self):
+        connection = mysql.connector.connect(user=Message.user, password=Message.password,host=Message.host,database=Message.database)
+        curseur = connection.cursor()
+        requete = "DELETE FROM Message WHERE Id_message={};".format(self.id)
+        curseur.execute(requete)
+        connection.commit()
+        curseur.close()
+        connection.close()
+
+
 
     @staticmethod
     def get_all_messages():
