@@ -171,6 +171,7 @@ def afficherBasPage():
             <div class="footer-inner container">
 
                 <div class="footer-columns sixteen columns">
+                    <br />
                     <h2><i></i>À propos</h2>
                     <p>L'Association syndicale autorisée de la sourdoire a été crée en 1987 et rend service à 80 adhérents en permettant d'irriger plus de 180 hectares.</p>
                 </div>
@@ -245,6 +246,7 @@ def afficherBasPage():
             <div class="footer-inner container">
 
                 <div class="footer-columns sixteen columns">
+                    <br />
                     <h2><i></i>À propos</h2>
                     <p>L'Association syndicale autorisée de la sourdoire a été crée en 1987 et rend service à 80 adhérents en permettant d'irriger plus de 180 hectares.</p>
                 </div>
@@ -306,6 +308,7 @@ def afficherBasPage():
             <div class="footer-inner container">
 
                 <div class="footer-columns sixteen columns">
+                <br />
                     <h2><i></i>À propos</h2>
                     <p>L'Association syndicale autorisée de la sourdoire a été crée en 1987 et rend service à 80 adhérents en permettant d'irriger plus de 180 hectares.</p>
                 </div>
