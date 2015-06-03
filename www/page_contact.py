@@ -126,7 +126,7 @@ def traiterFormulaireContact(nom='', numero='', topic='', demande='', captcha=''
 def remerciements(error=''):
     ret=template.afficherHautPage(error="L'administrateur vous contactera sous peu", titre='Remerciements')
     ret += """
-        <div class="sixteen columns main-content" style="text-align:center;">
+        <div class="sixteen columns main-content" style="text-align:center;min-height:400px;">
             Merci de votre requête, l'administrateur du réseau d'irrigation vous contactera sous peu
         </div>
     """
@@ -148,9 +148,12 @@ def consulter_contact(error=''):
             """
         for my_mail in reversed(message_list):
             myexp = exploitant.Exploitant(my_mail.id_exploitant)
+            my_mail.tel = myexp.tel if my_mail.id_exploitant else my_mail.tel
+            my_mail.update()
+            tel = "Téléphone non renseigné" if my_mail.tel is None else "Téléphone : "+str(my_mail.tel)
             auth = "" if my_mail.id_exploitant else "(Utilisateur NON authentifié)"
             ret+="""
-                <div id="event"><h4>Message {0}<br />
+                <div id="event"><h4>Message {0}
                 Le <b>{1}</b> </h4>
                 Objet : {5}<br />
                 <blockquote class="testimonial">
@@ -160,8 +163,12 @@ def consulter_contact(error=''):
                     {3}
                 </cite>
                 </blockquote>
+                    <div style="text-align:center;">
+                        <button type="submit" value={0} name="mailid">Supprimer</button><br />
+                    </div>
                 </div>
-                """.format(my_mail.id, my_mail.date, my_mail.nom, "Téléphone : " + my_mail.numero if my_mail.numero != "None" else "Téléphone non renseigné", auth, my_mail.objet, my_mail.corps, "<a href='../page_gestion_exploitant.py/corps_page_exploitant?exploitant="+str(myexp.id)+"'>" if my_mail.id_exploitant else "", "</a>"if my_mail.id_exploitant else "")
+                """.format(my_mail.id, my_mail.date, my_mail.nom,
+                           str(tel), auth, my_mail.objet, my_mail.corps, "<a href='../page_gestion_exploitant.py/corps_page_exploitant?exploitant="+str(myexp.id)+"'>" if my_mail.id_exploitant else "", "</a>"if my_mail.id_exploitant else "")
 
 
         ret += """
@@ -171,12 +178,12 @@ def consulter_contact(error=''):
         """
     else:
         ret+="""
-        <div class="sixteen columns main-content" style="min-height:500px; text-align:center;">
+        <div class="sixteen columns main-content" style="min-height:200px; text-align:center;">
             <h4>Vous n'avez aucun message</h4>
         </div>
         """
     return ret
 
-def effacer_demandes(error=''):
-    message_file.Message.delete_all()
+def effacer_demandes(mailid=0):
+    message_file.Message(int(mailid)).delete()
     return index()
