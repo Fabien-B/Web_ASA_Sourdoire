@@ -23,8 +23,9 @@ def corps_page():
     html += '<form action=../page_modif_compteur.py/index>'
     html+=compteurs_list()
     html += detail()
-    html += '''</br><input type="submit" name="submit" value="Modier ce compteur" />
-                </form>'''
+    if "login" in Session() and Session()["Id_exploitant"] == 0:
+        html += '''</br><input type="submit" name="submit" value="Modier ce compteur" />'''
+    html += '''</form>'''
     html += '''</aside>
         <article class="ten columns right-sidebar">
             <div id="map" style="height: 700px"></div>
