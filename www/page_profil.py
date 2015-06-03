@@ -97,23 +97,19 @@ def updateProfile(nom=0, tel=0, login=0, password=0, password_confirm=0, email=0
         return index('Ce login existe déjà')
     else:
         if binascii.hexlify(hashlib.pbkdf2_hmac('sha256', bytes(old_password, 'utf-8'), bytes(myexploitant.salt, 'utf-8'), 100000)).decode() == myexploitant.password:
-            salt = uuid.uuid4().hex
-            if not nom: nom = myexploitant.nom
-            if not tel: tel = myexploitant.tel
-            if not login: login = myexploitant.login
-            if not password:
-                password = myexploitant.password
-            elif password != password_confirm:
-                return index()
-            else:
-                password = binascii.hexlify(hashlib.pbkdf2_hmac('sha256', password.encode('UTF-8'), bytes(salt, 'utf-8'), 100000)).decode()
-            if not email: email = myexploitant.mail
-            myexploitant.update(nom, email, tel, login, password, salt)
-            Session()["login"] = login
-            Session()["nom"] = nom
+            if nom: myexploitant.nom = nom
+            if tel: myexploitant.tel = tel
+            if login: myexploitant.login = login
+            if password and password == password_confirm:
+                salt = uuid.uuid4().hex
+                myexploitant.password = binascii.hexlify(hashlib.pbkdf2_hmac('sha256', password.encode('UTF-8'), bytes(salt, 'utf-8'), 100000)).decode()
+            if email: myexploitant.mail = email
+            myexploitant.update()
+            Session()["login"] = myexploitant.login
+            Session()["nom"] = myexploitant.nom
             return index('Profil mis à jour')
         else:
-            return index("Mot de passe incorrect, modifications annulées")
+            return index("Modifications annulées")
 
 def traiterFormulaireConnexion(choix, login='',password=''):
     return connexion.Connexion(index, choix, login, password)
