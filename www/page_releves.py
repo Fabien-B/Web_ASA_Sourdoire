@@ -57,7 +57,7 @@ def corps_page_connecte():
     if not Session()["Id_exploitant"]:
         options_exploitant = get_options_exploitant()
         html +='''<p style="padding-bottom:35px;">Exploitant :
-            <select id="combo_exploitant_releves" name="id_exploitant" onchange="update_exploitant_releve(this,this.selectedIndex)">
+            <select style="float: right; margin-right: 20px;"id="combo_exploitant_releves" name="id_exploitant" onchange="update_exploitant_releve(this,this.selectedIndex)">
             {0}
             </select></p>'''.format(options_exploitant)
 
@@ -68,9 +68,9 @@ def corps_page_connecte():
     if Session()["Id_exploitant"]:
         verif = ' required onblur="verif_releve(this)"'
 
-    html += '''<p style="padding-bottom:35px;">Index fin :<input name="index_fin" type="text"{0}></p>
-            <p style="padding-bottom:35px;">Date : <input name="date" type="text" id="datepicker" required></p>
-            <p style="padding-bottom:35px;">Heure : <input name="time" type="text" id="timepicker" required></p>
+    html += '''<p style="padding-bottom:35px;">Index fin :<input name="index_fin" type="text" style="float: right; margin-right: 20px;"{0}></p>
+            <p style="padding-bottom:35px;">Date : <input name="date" type="text" style="float: right; margin-right: 20px;" id="datepicker" required></p>
+            <p style="padding-bottom:35px;">Heure : <input name="time" type="text" style="float: right; margin-right: 20px;" id="timepicker" required></p>
             <p style='float:right; margin-right:20px;'><input type="submit" name="submit" value="Valider" /></p>
             </div></form>
 
@@ -109,7 +109,7 @@ def part_index_debut(id_compteur=0):
     index = compteur.Compteur.get_last_index(id_compteur)[0]
     html = '''
     <p style="padding-bottom:35px;" id="index_debut_releves">Index début :
-    <input id="index_debut" name="index_debut" type="text" value="{0}" required></p>
+    <input id="index_debut" name="index_debut" type="text" style="float: right; margin-right: 20px;" value="{0}" required></p>
     '''.format(index)
     return html
 
@@ -160,7 +160,7 @@ def traiterFormulaireConnexion(choix, login='',password=''):
 def get_compteur_combo_box(id_ex):
     id_ex = int(id_ex)
     html = """<p style="padding-bottom:35px;">Compteur :
-        <select id="combo_compteur_releves" name="id_compteur" onchange="update_index_deb_releve(this.selectedIndex)">
+        <select style="float: right; margin-right: 20px;" id="combo_compteur_releves" name="id_compteur" onchange="update_index_deb_releve(this.selectedIndex)">
         {0}
         </select></p>""".format(recup_options(id_ex))
     return html

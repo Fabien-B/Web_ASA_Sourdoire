@@ -44,7 +44,6 @@ def afficherHautPage(error = '', titre=''):
             <script type="text/javascript" src="../js/jssor.js"></script>
             <script type="text/javascript" src="../js/jssor.slider.js"></script>
         <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
-        <style type="text/css"> input[type="text"] { float: right; margin-right: 20px;} select{ float: right; margin-right: 20px;}</style>
          <style type="text/css">
             /* jssor slider bullet navigator skin 21 css */
             /*
@@ -274,6 +273,9 @@ def afficherBasPage():
                         <tr>
                             <td>
                                 <a style= "color:black;" href="../page_cv.py">Voir les CV</a>
+                            </td>
+                            <td>
+
                             </td>
                         </tr>
                     </table>

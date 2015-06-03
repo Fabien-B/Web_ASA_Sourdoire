@@ -31,12 +31,16 @@ def corps_page_connecte():
         {0}
         </select>'''.format(options)
 
-    html += """<form>
+    html += """<script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script><form>
         <label for="date_debut">Date de début:</label>
-        <input type="date" name="date_debut" id="date_debut" onchange="update_conso()">
+        <input type="text" name="date_debut" id="date_debut" onchange="update_conso()">
         <label for="date_fin">date de fin:</label>
-        <input type="date" name="Date_fin" id="date_fin" onchange="update_conso()">
-        <button type="button" id="update_releves" >Ok</button>
+        <p style="display:inline-flex;"><input style="margin-right:20px;" type="text" name="Date_fin" id="date_fin" onchange="update_conso()">
+        <button type="button" id="update_releves" >Ok</button></p>
     </form>"""
     html += conso_table(id_ex=1)
     html += """</div>
