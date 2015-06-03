@@ -172,7 +172,7 @@ def afficherBasPage():
 
                 <div class="footer-columns sixteen columns">
                     <h2><i></i>À propos</h2>
-                    <p>L'Association syndicale autorisée de la sourdoire a été crée en 1973 et irrigue plus de 7356 hectares.</p>
+                    <p>L'Association syndicale autorisée de la sourdoire a été crée en 1987 et rend service à 80 adhérents en permettant d'irriger plus de 180 hectares.</p>
                 </div>
                 <div class="footer-columns sixteen columns">
                     <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
@@ -246,7 +246,7 @@ def afficherBasPage():
 
                 <div class="footer-columns sixteen columns">
                     <h2><i></i>À propos</h2>
-                    <p>L'Association syndicale autorisée de la sourdoire a été crée en 1973 et irrigue plus de 7356 hectares.</p>
+                    <p>L'Association syndicale autorisée de la sourdoire a été crée en 1987 et rend service à 80 adhérents en permettant d'irriger plus de 180 hectares.</p>
                 </div>
                 <div class="footer-columns sixteen columns">
                     <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
@@ -307,21 +307,16 @@ def afficherBasPage():
 
                 <div class="footer-columns sixteen columns">
                     <h2><i></i>À propos</h2>
-                    <p>L'Association syndicale autorisée de la sourdoire a été crée en 1973 et irrigue plus de 7356 hectares.</p>
+                    <p>L'Association syndicale autorisée de la sourdoire a été crée en 1987 et rend service à 80 adhérents en permettant d'irriger plus de 180 hectares.</p>
                 </div>
                 <div class="footer-columns sixteen columns">
-                    <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
-                        <tr>
-                            <td>
-                                <a style= "color:black;"href="../page_tuto.py">Comment utiliser ce site internet ?</a>
-                            </td>
-                            <td>
-                                <a style= "color:black;"href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
-                            </td>
-                        </tr>
+                    <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table; text-align: center;">
                         <tr>
                             <td>
                                 <a style= "color:black;"href="../page_contact.py">Contacter l'administrateur</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;"href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
                             </td>
                         </tr>
                     </table>
