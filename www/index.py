@@ -31,7 +31,7 @@ def corps_accueil():
         </div>
         <div class="one-third column" style ="text-align: center;">
         <img src="../images/logo_releve.png" height="60em" />
-            <h3> Fini la galère des relevés </h3>
+            <h3> Finie la galère des relevés </h3>
             <p style ="text-align: justify;">Grâce à ce nouveau système vous pouvez entrer vous même un relevé, plus besoin d'intermédiaire !</p>
         </div>
         <div class="one-third column" style ="text-align: center;">
