@@ -1,16 +1,7 @@
-/**
- * icebrrrg.js
- * 
- * The main javascript for Icebrrrg.
- * 
- * Copyright 2012 Opendesigns.
- * http://www.opendesigns.org/design/icebrrrg/
- * 
- */
 
 jQuery(document).ready(function(){
 	
-	$("#update_releves").click(update_conso);
+	//$("#update_releves").click(update_conso);  boutton maintenant inutile, laissé pour le coté "psychologique"
 	
 /* FLEX SLIDER */
 	var $flexSlider = $('.flexslider');

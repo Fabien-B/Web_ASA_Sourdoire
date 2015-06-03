@@ -33,9 +33,9 @@ def corps_page_connecte():
 
     html += """<form>
         <label for="date_debut">Date de début:</label>
-        <input type="date" name="date_debut" id="date_debut">
+        <input type="date" name="date_debut" id="date_debut" onreturn="update_conso()">
         <label for="date_fin" placeholder="2020-01-01">date de fin:</label>
-        <input type="date" name="Date_fin" id="date_fin">
+        <input type="date" name="Date_fin" id="date_fin" onchange="update_conso()">
         <button type="button" id="update_releves" >Ok</button>
     </form>"""
     html += conso_table(id_ex=1)
