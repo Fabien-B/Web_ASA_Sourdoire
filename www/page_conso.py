@@ -29,12 +29,12 @@ def corps_page_connecte():
         options = get_exploitant_options()
         html += '''<select id="combo_ex_conso" name="exploitants" onchange="change_exploitant_conso(this,this.selectedIndex)">
         {0}
-        </select></p>'''.format(options)
+        </select>'''.format(options)
 
     html += """<form>
         <label for="date_debut">Date de début:</label>
-        <input type="date" name="date_debut" id="date_debut" onreturn="update_conso()">
-        <label for="date_fin" placeholder="2020-01-01">date de fin:</label>
+        <input type="date" name="date_debut" id="date_debut" onchange="update_conso()">
+        <label for="date_fin">date de fin:</label>
         <input type="date" name="Date_fin" id="date_fin" onchange="update_conso()">
         <button type="button" id="update_releves" >Ok</button>
     </form>"""

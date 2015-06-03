@@ -1,9 +1,10 @@
 
 def afficherHautPage(error = '', titre=''):
     ret = '''
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+        <html lang="fr">
         <head>
+            <style type="text/css"> #connect td {padding: 15px;}</style>
             <title>ASA Sourdoire</title>
             <meta http-equiv="content-type" content="text/html; charset=utf-8" />
             <meta name="language" content="FR"/>
@@ -39,25 +40,82 @@ def afficherHautPage(error = '', titre=''):
             <script type="text/javascript" src="../js/jquery-2.1.3.js"></script>
             <script type="text/javascript" src="../js/jquery.flexslider-min.js"></script>
             <script type="text/javascript" src="../js/scripts.js"></script>
-            <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+            <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
             <script type="text/javascript" src="../js/jssor.js"></script>
             <script type="text/javascript" src="../js/jssor.slider.js"></script>
         <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+        <style type="text/css"> input[type="text"] { float: right; margin-right: 20px;} select{ float: right; margin-right: 20px;}</style>
+         <style type="text/css">
+            /* jssor slider bullet navigator skin 21 css */
+            /*
+            .jssorb21 div           (normal)
+            .jssorb21 div:hover     (normal mouseover)
+            .jssorb21 .av           (active)
+            .jssorb21 .av:hover     (active mouseover)
+            .jssorb21 .dn           (mousedown)
+            */
+            .jssorb21 {
+                position: absolute;
+            }
+            .jssorb21 div, .jssorb21 div:hover, .jssorb21 .av {
+                position: absolute;
+                /* size of bullet elment */
+                width: 19px;
+                height: 19px;
+                text-align: center;
+                line-height: 19px;
+                color: white;
+                font-size: 12px;
+                background: url(../images/accueil/picture_slider/b21.png) no-repeat;
+                overflow: hidden;
+                cursor: pointer;
+            }
+            .jssorb21 div { background-position: -5px -5px; }
+            .jssorb21 div:hover, .jssorb21 .av:hover { background-position: -35px -5px; }
+            .jssorb21 .av { background-position: -65px -5px; }
+            .jssorb21 .dn, .jssorb21 .dn:hover { background-position: -95px -5px; }
+        </style>
+        <style  type="text/css">
+            /* jssor slider arrow navigator skin 21 css */
+            /*
+            .jssora21l                  (normal)
+            .jssora21r                  (normal)
+            .jssora21l:hover            (normal mouseover)
+            .jssora21r:hover            (normal mouseover)
+            .jssora21l.jssora21ldn      (mousedown)
+            .jssora21r.jssora21rdn      (mousedown)
+            */
+            .jssora21l, .jssora21r {
+                display: block;
+                position: absolute;
+                /* size of arrow element */
+                width: 55px;
+                height: 55px;
+                cursor: pointer;
+                background: url(../images/accueil/picture_slider/a21.png) center center no-repeat;
+                overflow: hidden;
+            }
+            .jssora21l { background-position: -3px -33px; }
+            .jssora21r { background-position: -63px -33px; }
+            .jssora21l:hover { background-position: -123px -33px; }
+            .jssora21r:hover { background-position: -183px -33px; }
+            .jssora21l.jssora21ldn { background-position: -243px -33px; }
+            .jssora21r.jssora21rdn { background-position: -303px -33px; }
+        </style>
         </head>
-        <body>
-            <header id="header" class="site-header" role="banner">
-                <div class="containner sixteen columns over" >
+                <div id="header" class="site-header">
+                    <div class="containner sixteen columns over" >
 
-                    <div class="three columns alpha" style="float:left; margin-top:10px;">
-                        <a href="../index.py" id="logo"><img src="../images/logo.png" alt="Icebrrrg logo" height="100" /></a>
-                    </div>
-                    <div id="login" class="four columns omega" style="float:right;margin-top:10px;">
-                    ''' + afficherFormulaireConnexion(error) + '''
-                    </div>
+                        <div class="three columns alpha" style="float:left; margin-top:10px;">
+                            <a href="../index.py" id="logo"><img src="../images/logo.png" alt="ASA_LOGO" height="100" /></a>
+                        </div>
+                        <div id="login" class="four columns omega" style="float:right;margin-top:10px;">
+                        ''' + afficherFormulaireConnexion(error) + '''
+                        </div>
 
-                </div>
+                    </div>
             <div id="header-inner" class="containner sixteen columns over" style="position: relative; margin: 0 auto; padding: 0;">
-                    <nav id="main-nav">
+                    <div id="main-nav">
                         <ul id="main-nav-menu" class="nav-menu">
                         <li><a href="#" id='menu_der' style="height:0px;">Menu</a>
                             <a href="#" id='menu'></a>
@@ -83,10 +141,10 @@ def afficherHautPage(error = '', titre=''):
         ret += create_link('menu-item-2', 'Voir le réseau', titre,'page_reseau.py')
         ret += create_link('menu-item-3', 'Contacter l\'Admin', titre, 'page_contact.py')
 
-    ret += '''          </ul></ul>
-                    </nav>
-            </div>
-        </header>'''
+    ret += '''
+</ul></li></ul>
+</div></div>
+            </div>'''
     if error != "":
         ret +='''<BODY onLoad="alert('{}')">
 '''.format(error)
@@ -105,17 +163,16 @@ def afficherFormulaireConnexion(option=''):
 
     if "login" not in Session():
         ret='''
-        <style> #connect td {padding: 10px;}</style>
-        <form id="connect" action="traiterFormulaireConnexion" METHOD="POST">
+        <form id="connect" action="traiterFormulaireConnexion" METHOD="post">
             <table id ='connect' style="border-style: solid; border-width: 5px 5px 5px 5px; -moz-border-image: url(bordure.png) 5 5 5 5round; -webkit-border-image: url(bordure.png) 5 5 5 5 round; -o-border-image: url(bordure.png) 5 5 5 5 round; border-image: url(bordure.png) 5 5 5 5 fill round;background: rgba(2,0,1,0.3);">
                 <tr>
                     <td>
-                    <input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" style="margin-bottom:10px;" required />
-                    <input name="password" type="password" placeholder="Mot de passe" required />
+                    <p><input name="login" size=10 maxlength=10 type="text" value="" placeholder="Identifiant" style="margin-bottom:10px;" required /></p>
+                    <p><input name="password" type="password" placeholder="Mot de passe" required /></p>
                     </td>
 
                     <td style="text-align:center;">
-                        <input type="submit" name="choix" value="Ok" />
+                        <p><input type="submit" name="choix" value="Ok" /></p>
                     </td>
                 </tr>
             </table>
@@ -127,9 +184,6 @@ def afficherFormulaireConnexion(option=''):
 
     else: # utilisateur connecte
         ret = '''
-        <style> #connect td {padding: 15px;}</style>
-
-
          <table id ='connect' style="
                     border-style: solid;
 border-width: 5px 5px 5px 5px;
@@ -145,10 +199,10 @@ border-image: url(bordure.png) 5 5 5 5 fill round;background: rgba(2,0,1,0.3);">
 
                 <td style="text-align:center;">
                     <form style="margin-bottom:10px;" action="../page_profil.py">
-                        <input style="width:100%;" type="submit" value="Profil" />
+                        <p><input style="width:100%;" type="submit" value="Profil" /></p>
                     </form>
-                    <form action="traiterFormulaireConnexion" method="POST">
-                        <input type="submit" name="choix" value="Déconnecter">
+                    <form action="traiterFormulaireConnexion" method="post">
+                        <p><input type="submit" name="choix" value="Déconnecter" /></p>
                     </form>
                 </td>
             </tr>
@@ -179,47 +233,47 @@ def afficherBasPage():
                     <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
                         <tr>
                             <td>
-                                <a style= "color:black;"href="../page_tuto.py">Comment utiliser ce site internet ?</a>
+                                <a style= "color:black;" href="../page_tuto.py">Comment utiliser ce site internet ?</a>
                             </td>
                             <td>
-                                <a style= "color:black;"href="../page_conso.py">Voir ma consommation d'eau </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a style= "color:black;"href="../page_releves.py">Entrer ses relevés</a>
-                            </td>
-                            <td>
-                                <a style= "color:black;"href="../page_visu_releves.py">Voir les relevés déjà entrés </a>
+                                <a style= "color:black;" href="../page_conso.py">Voir ma consommation d'eau </a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a style= "color:black;"href="../page_conso.py">Voir mes parcelles et les compteurs</a>
+                                <a style= "color:black;" href="../page_releves.py">Entrer ses relevés</a>
                             </td>
                             <td>
-                                <a style= "color:black;"href="../page_litiges.py">Voir les éventuels conflits</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a style= "color:black;"href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
-                            </td>
-                            <td>
-                                <a style= "color:black;"href="../page_evenements.py">Signaler un événement sur le réseau</a>
+                                <a style= "color:black;" href="../page_visu_releves.py">Voir les relevés déjà entrés </a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a style= "color:black;"href="../page_profil.py">Voir/Modifier ses informations personnelles</a>
+                                <a style= "color:black;" href="../page_conso.py">Voir mes parcelles et les compteurs</a>
                             </td>
                             <td>
-                                <a style= "color:black;"href="../page_contact.py">Contacter l'administrateur</a>
+                                <a style= "color:black;" href="../page_litiges.py">Voir les éventuels conflits</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a style= "color:black;"href="../page_cv.py">Voir les CV</a>
+                                <a style= "color:black;" href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;" href="../page_evenements.py">Signaler un événement sur le réseau</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;" href="../page_profil.py">Voir/Modifier ses informations personnelles</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;" href="../page_contact.py">Contacter l'administrateur</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;" href="../page_cv.py">Voir les CV</a>
                             </td>
                         </tr>
                     </table>
@@ -235,8 +289,6 @@ def afficherBasPage():
             </div>
 
             </footer>
-            <script src="js/jquery.prettyPhoto.js"></script>
-            </body>
             </html>
                '''
         else:
@@ -254,34 +306,34 @@ def afficherBasPage():
                     <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table;">
                         <tr>
                             <td>
-                                <a style= "color:black;"href="../page_tuto.py">Comment utiliser ce site internet ?</a>
+                                <a style= "color:black;" href="../page_tuto.py">Comment utiliser ce site internet ?</a>
                             </td>
                             <td>
-                                <a style= "color:black;"href="../page_conso.py">Voir ma consommation d'eau </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a style= "color:black;"href="../page_releves.py">Entrer ses relevés</a>
-                            </td>
-                            <td>
-                                <a style= "color:black;"href="../page_conso.py">Voir mes parcelles et les compteurs</a>
+                                <a style= "color:black;" href="../page_conso.py">Voir ma consommation d'eau </a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a style= "color:black;"href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
+                                <a style= "color:black;" href="../page_releves.py">Entrer ses relevés</a>
                             </td>
                             <td>
-                                <a style= "color:black;"href="../page_evenements.py">Signaler un événement sur le réseau</a>
+                                <a style= "color:black;" href="../page_conso.py">Voir mes parcelles et les compteurs</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a style= "color:black;"href="../page_profil.py">Voir/Modifier ses informations personnelles</a>
+                                <a style= "color:black;" href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
                             </td>
                             <td>
-                                <a style= "color:black;"href="../page_contact.py">Contacter l'administrateur</a>
+                                <a style= "color:black;" href="../page_evenements.py">Signaler un événement sur le réseau</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style= "color:black;" href="../page_profil.py">Voir/Modifier ses informations personnelles</a>
+                            </td>
+                            <td>
+                                <a style= "color:black;" href="../page_contact.py">Contacter l'administrateur</a>
                             </td>
                         </tr>
                     </table>
@@ -297,8 +349,6 @@ def afficherBasPage():
             </div>
 
             </footer>
-            <script src="js/jquery.prettyPhoto.js"></script>
-            </body>
             </html>
                """
     else:
@@ -314,14 +364,12 @@ def afficherBasPage():
                 </div>
                 <div class="footer-columns sixteen columns">
                     <table class="footer-columns sixteen columns" style="border-collapse: unset; border-spacing: 10px; padding: 5px; display: table; text-align: center;">
-                        <tr>
                             <td>
-                                <a style= "color:black;"href="../page_contact.py">Contacter l'administrateur</a>
+                                <a style= "color:black;" href="../page_contact.py">Contacter l'administrateur</a>
                             </td>
                             <td>
-                                <a style= "color:black;"href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
+                                <a style= "color:black;" href="../page_reseau.py">Consulter les bornes du réseau d'irrigation</a>
                             </td>
-                        </tr>
                     </table>
                 </div>
             </div>
@@ -335,7 +383,5 @@ def afficherBasPage():
             </div>
 
             </footer>
-            <script src="js/jquery.prettyPhoto.js"></script>
-            </body>
             </html>
                """
