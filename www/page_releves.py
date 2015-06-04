@@ -43,16 +43,13 @@ def corps_page_connecte():
   </script>
 '''
 
-    style=''''''
-
     html = """
-    {0}
     <div class="container">
     <h1 class="container sixteen columns over" style="text-align: center;margin-bottom:15px;">Entrer un relevé</h1>
         <aside class="six columns left-sidebar">
         <form action="ajout_releve" method="GET">
         <div class="sidebar-widget">
-        <h2 style='margin-bottom:30px;'>Informations du relevé :</h2>""".format(style)
+        <h2 style='margin-bottom:30px;'>Informations du relevé :</h2>"""
 
     if not Session()["Id_exploitant"]:
         options_exploitant = get_options_exploitant()
@@ -96,7 +93,6 @@ def corps_page_connecte():
         <script src="../js/jquery-ui.min.js"></script>
         <script src="../js/jquery.ui.timepicker.js"></script>
 {1}
-</html>
 
         </article>
         <!-- End main Content -->

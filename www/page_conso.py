@@ -17,7 +17,7 @@ def index(error=''):
     ret += template.afficherBasPage()
     return ret
 
-def corps_page_connecte():
+def corps_page_connecte2():
     html = """
         <div class="container">
 
@@ -25,7 +25,7 @@ def corps_page_connecte():
     if Session()["Id_exploitant"]:
         html +='''<h2>Ma Consommation</h2>'''
     else:
-        html += '''<h2>Consommation</h2>'''
+        html += '''<h2>Consommation</h2><form>'''
         options = get_exploitant_options()
         html += '''<select id="combo_ex_conso" name="exploitants" onchange="change_exploitant_conso(this,this.selectedIndex)">
         {0}
@@ -46,6 +46,63 @@ def corps_page_connecte():
     html += """</div>
     </div>"""
     return html
+
+def corps_page_connecte():
+    id_compteurs =compteur.Compteur.get_compteurs_id(Session()["Id_exploitant"])
+    script = '''
+  <script>
+  $(function() {
+    $( "#date_fin" ).datepicker();
+  });
+  </script>
+    <script>
+  $(function() {
+    $( "#date_debut" ).datepicker();
+  });
+  </script>
+  
+'''
+
+    html = '''
+    <div class="container">
+
+        <aside class="six columns left-sidebar">'''
+
+    if Session()["Id_exploitant"]:
+        html +='''<h2>Ma Consommation</h2>'''
+    else:
+        html += '''<h2>Consommation</h2>'''
+        options = get_exploitant_options()
+        html += '''<select id="combo_ex_conso" name="exploitants" onchange="change_exploitant_conso(this,this.selectedIndex)">
+        {0}
+        </select>'''.format(options)
+
+
+    html+='''<label for="date_debut">Date de début:</label>
+        <input type="text" name="date_debut" id="date_debut" onchange="update_conso()">
+        <label for="date_fin">Date de fin:</label>
+        <p style="display:inline-flex;"><input style="margin-right:20px;" type="text" name="Date_fin" id="date_fin" onchange="update_conso()">
+        <button type="button" id="update_releves" >Ok</button></p>
+
+
+    </aside>
+
+
+        <article class="ten columns main-content">'''
+    html += conso_table(id_ex=1)
+    html+='''
+        <head>
+    <script type="text/javascript" src="../js/jquery-2.1.3.js"></script>
+    </head>
+        <link rel="stylesheet" href="../stylesheets/jquery-ui.min.css">
+        <script src="../js/jquery-ui.min.js"></script>
+{0}
+
+        </article>
+    </div>
+    '''.format(script)
+    return html
+
 
 def corps_page_deconnecte():
     html = """

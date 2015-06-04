@@ -12,6 +12,9 @@ visibility: hidden;
     border: 1px solid rgba(1,1,1,0.2);
     padding: 15px;}
 
+table#conso_content {
+    margin-left: 25%;}
+
 .titre {background: rgba(10,200,10,0.5);}
 .impair {background: rgba(10,200,10,0.2);}
 .pair {background: rgba(10,200,10,0.1);}
