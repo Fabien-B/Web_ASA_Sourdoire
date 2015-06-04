@@ -43,3 +43,8 @@ div#event {
   padding: 20px;
   margin-bottom: 20px;
 }
+
+.ui-datepicker-title {
+  display: inline-flex;
+  width: 80%;
+}

@@ -52,12 +52,20 @@ def corps_page_connecte():
     script = '''
   <script>
   $(function() {
-    $( "#date_fin" ).datepicker();
+    $( "#date_fin" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+        })
   });
   </script>
     <script>
   $(function() {
-    $( "#date_debut" ).datepicker();
+    $( "#date_debut" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+        })
   });
   </script>
   
